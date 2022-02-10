@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FEC-samantha-irving-siva-michael/FrontEndCapstone.git"
+    "url": "git+https://github.com/fec-group-5/FrontEndCapstone.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/FEC-samantha-irving-siva-michael/FrontEndCapstone/issues"
+    "url": "https://github.com/fec-group-5/FrontEndCapstone/issues"
   },
-  "homepage": "https://github.com/FEC-samantha-irving-siva-michael/FrontEndCapstone#readme",
+  "homepage": "https://github.com/fec-group-5/FrontEndCapstone#readme",
   "dependencies": {
     "axios": "^0.25.0",
     "express": "^4.17.2",
