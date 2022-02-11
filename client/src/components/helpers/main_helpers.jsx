@@ -5,7 +5,6 @@ const BASEURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax';
 
 let id = window.location.pathname;
 
-
 let reqInstance = axios.create({
   headers: {
     Authorization: GITAPIKEY
@@ -15,16 +14,22 @@ let reqInstance = axios.create({
 // Product Requests
 export const getProducts = () => {
   reqInstance.get(`${BASEURL}/products`)
-    .then(res=>{
-      console.log("id = ", id);
-      console.log("res = ", res.data)})
+    .then(res=>{console.log(res.data)})
     .catch(err=>console.log(err.message))
 }
 export const getProduct = (productId) => {
   reqInstance.get(`${BASEURL}/products/${productId}`)
-    .then(res=>{
-      console.log("id = ", id);
-      console.log("res = ", res.data)})
+    .then(res=>{ console.log(res.data)})
+    .catch(err=>console.log(err.message))
+}
+export const getStyles = (productId) => {
+  reqInstance.get(`${BASEURL}/products/${productId}/styles`)
+    .then(res=>{ console.log(res.data)})
+    .catch(err=>console.log(err.message))
+}
+export const getRelated = (productId) => {
+  reqInstance.get(`${BASEURL}/products/${productId}/related`)
+    .then(res=>{ console.log(res.data)})
     .catch(err=>console.log(err.message))
 }
 
@@ -84,22 +89,3 @@ export const reportReview = (product_id) => {
     .then((res) => res.status(204).send(res.data))
     .catch((err) => res.status(404).send(err));
 }
-//Questions and Answers requests
-
-
-// {
-//   "product_id": "42366",
-//   "rating": "5",
-//   "summary": "dui faucibus in ornare quam",
-//   "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing elit duis tristique sollicitudin nibh. Id diam maecenas ultricies mi. Lorem ipsum dolor sit amet consectetur. Massa ultricies mi quis hendrerit dolor.",
-//   "recommend": true,
-//   "name": "viverra",
-//   "email": "mollis@email.com",
-//   "photos": ["https://i.natgeofe.com/n/f4d64d53-07ce-4933-a76e-1d405eec3473/giraffe_thumb.JPG"],
-//   "characteristics": {
-//       "Fit": "4",
-//       "Length": "4",
-//       "Comfort": "5",
-//       "Quality": "4"
-//   }
-// }
