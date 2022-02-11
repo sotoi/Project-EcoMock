@@ -12,3 +12,9 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 app.listen(port, () => {
   console.log(`App listening on port: ${port}`);
 })
+
+
+app.get('/' ,(req, res) => {
+  // console.log(req.headers);
+//   req.redirect('/product/42366')
+})
