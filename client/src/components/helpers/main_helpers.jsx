@@ -16,18 +16,21 @@ export const getProducts = () => {
     .then((res) => console.log(res.data))
     .catch((err) => console.log(err.message));
 };
-export const getProduct = (productId) => {
-  reqInstance.get(`${BASEURL}/products/${productId}`)
-    .then((res) => { store.dispatch(product.actions.setProduct(res.data)); })
+export const getProduct = async (product_id) => {
+  try{
+    let res =  await reqInstance.get(`${BASEURL}/products/${product_id}`)
+    return res
+  } catch(err){
+    return null;
+  }
+};
+export const getStyles = (product_id, callback) => {
+  reqInstance.get(`${BASEURL}/products/${product_id}/styles`)
+    .then((res) => { callback(res.data.results); })
     .catch((err) => console.log(err.message));
 };
-export const getStyles = (productId) => {
-  reqInstance.get(`${BASEURL}/products/${productId}/styles`)
-    .then((res) => { console.log(res.data); })
-    .catch((err) => console.log(err.message));
-};
-export const getRelated = (productId) => {
-  reqInstance.get(`${BASEURL}/products/${productId}/related`)
+export const getRelated = (product_id) => {
+  reqInstance.get(`${BASEURL}/products/${product_id}/related`)
     .then((res) => { console.log(res.data); })
     .catch((err) => console.log(err.message));
 };
@@ -35,45 +38,41 @@ export const getRelated = (productId) => {
 // Cart Requests
 
 // Review Requests
-export const getReviews = (page, count, sort, productId) => {
+export const getReviews = (page, count, sort, product_id) => {
   reqInstance.get(
     `${BASEURL}/reviews`,
     {
       params:
       {
-        page, count, sort, productId,
+        page, count, sort, product_id,
       },
     },
   )
-    .then((res) => res.status(200).send(res.data))
+    .then((res) => console.log(res.data))
     .catch((err) => console.error(err));
 };
-
-export const getReviewsMetadata = (productId) => {
+export const getReviewsMetadata = (product_id, callback) => {
   reqInstance.get(
     `${BASEURL}/reviews/meta`,
     {
       params:
-      { productId },
+      { product_id },
     },
   )
-    .then((res) => res.status(200).send(res.data))
-    .catch((err) => console.error(err));
+    .then((res) => callback(res.data))
+    .catch((err) => err);
 };
-
 export const addNewReview = (newReview) => {
   reqInstance.post(
     `${BASEURL}/reviews`,
     { params: newReview },
   );
 };
-
 export const markReviewAsHelpful = (product_id) => {
   reqInstance.put(`${BASEURL}/reviews/${product_id}/helpful`)
     .then((res) => res.status(204).send(res.data))
     .catch((err) => console.error(err));
 };
-
 export const reportReview = (product_id) => {
   reqInstance.put(`${BASEURL}/reviews/${product_id}/report`)
     .then((res) => res.status(204).send(res.data))

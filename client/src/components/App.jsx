@@ -1,24 +1,25 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import Overview from './product_info/Overview.jsx'
 import {
   useParams,
 } from 'react-router-dom';
-import { getProduct } from './helpers/main_helpers.jsx';
+import { useDispatch, useSelector } from 'react-redux';
+import {fetchProductId} from '../redux/store.js'
+import Review from './reviews/Review.jsx';
 
 function App() {
-  const product = useSelector((state) => state.product);
   const { id } = useParams();
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    getProduct(id);
+    dispatch(fetchProductId(id));
   }, []);
 
   return (
     <div>
-      hi we are loading
-      {JSON.stringify(product)}
+      {/* <Overview/> */}
+      <Review/>
     </div>
   );
 }
-
 export default App;
