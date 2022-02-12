@@ -27,12 +27,18 @@ function App() {
 
     <div>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <Overview styles={styles}/>
       <Related related={related} styles={styles} />
       {/* <Review/> */}
 =======
+=======
+      <h3>Product</h3>
+>>>>>>> fcfdba2 (added temporary headers to App.jsx to make it easier to see where one component ends and another starts)
       {/* hi we are loading */}
       {JSON.stringify(product)}
+      <h3>Reviews</h3>
+      <h4>Review Breakdown</h4>
       <ReviewBreakdown />
 >>>>>>> 019928f (updated App to show review breakdown)
     </div>
