@@ -16,6 +16,7 @@ export const getProducts = () => {
     .then((res) => console.log(res.data))
     .catch((err) => console.log(err.message));
 };
+
 export const getProduct = async (product_id) => {
   try{
     let res =  await reqInstance.get(`${BASEURL}/products/${product_id}`)
@@ -36,6 +37,7 @@ export const getStyles = (product_id, callback) => {
     .then((res) => { callback(res.data.results); })
     .catch((err) => console.log(err.message));
 };
+
 export const getRelated = (product_id, callback) => {
   reqInstance.get(`${BASEURL}/products/${product_id}/related`)
     .then((res) => { callback(res.data); })
@@ -61,10 +63,11 @@ export const getReviews = (page, count, sort, product_id) => {
       },
     },
   )
-    .then((res) => console.log(res.data))
-    .catch((err) => console.error(err));
+  .then((res) => console.log(res.data))
+  .catch((err) => console.error(err));
 };
-export const getReviewsMetadata = (product_id, callback) => {
+
+export const getReviewsMetadata = (product_id, setMetadata) => {
   reqInstance.get(
     `${BASEURL}/reviews/meta`,
     {
@@ -72,22 +75,24 @@ export const getReviewsMetadata = (product_id, callback) => {
       { product_id },
     },
   )
-    .then((res) => callback(res.data))
-    .catch((err) => err);
+    .then((res) => setMetadata(res.data))
+    .catch((err) => console.error(err));
 };
 export const addNewReview = (newReview) => {
   reqInstance.post(
     `${BASEURL}/reviews`,
     { params: newReview },
-  );
+  )
+    .then((res) => console.log(res.data))
+    .catch((err) => console.error(err));
 };
 export const markReviewAsHelpful = (product_id) => {
   reqInstance.put(`${BASEURL}/reviews/${product_id}/helpful`)
-    .then((res) => res.status(204).send(res.data))
+    .then((res) => console.log(res.data))
     .catch((err) => console.error(err));
 };
 export const reportReview = (product_id) => {
   reqInstance.put(`${BASEURL}/reviews/${product_id}/report`)
-    .then((res) => res.status(204).send(res.data))
+    .then((res) => console.log(res.data))
     .catch((err) => console.error(err));
 };
