@@ -17,9 +17,13 @@ import Overview from './product_info/Overview.jsx'
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { fetchProductId } from '../redux/store.js'
+<<<<<<< HEAD
 import ReviewsMetadata from './reviews/ReviewsMetadata.jsx';
 import RatingsBreakdown from './reviews/RatingsBreakdown.jsx';
 >>>>>>> 70ccb0a (rendered ratings)
+=======
+import ReviewsWidget from './reviews/ReviewsWidget.jsx';
+>>>>>>> 9c3e268 (rendered ratings breakdown - open to add dynamic filtering and changing aspects)
 
 function App() {
   const { id } = useParams();
@@ -36,6 +40,7 @@ function App() {
   return (
 
     <div>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
       <Overview styles={styles}/>
@@ -58,6 +63,9 @@ function App() {
       <h5>Ratings Breakdown</h5>
       <RatingsBreakdown />
 >>>>>>> 70ccb0a (rendered ratings)
+=======
+      <ReviewsWidget />
+>>>>>>> 9c3e268 (rendered ratings breakdown - open to add dynamic filtering and changing aspects)
     </div>
   );
 }
