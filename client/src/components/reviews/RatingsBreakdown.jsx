@@ -9,7 +9,6 @@ const RatingsBreakdown = ({ ratings }) => {
     totalRatingsCount += count;
     ratingsArray.push([rating, count]);
   }
-  console.log(ratings);
   // const { ratings } = action.payload;
   // let avgRating = 0;
   // let totalCount = 0;
@@ -21,11 +20,15 @@ const RatingsBreakdown = ({ ratings }) => {
   // avgRating /= totalCount;
 
   return (
-    <ul>
+    <>
       {ratingsArray.map((rating, index) => (
-        <li key={index}>{rating[0]}: {Math.round(rating[1] / totalRatingsCount * 100)}%</li>
+        // <div>
+        //   <input type='button'>{rating[0]}</input>
+        //   <progress />
+        // </div>
+        <div key={index}>{rating[0]}: {Math.round(rating[1] / totalRatingsCount * 100)}%</div>
       ))}
-    </ul>
+    </>
   );
 }
 

@@ -13,6 +13,7 @@ const ReviewsMetadata = () => {
       <div>{JSON.stringify(reviewsMetadata)}</div>
       <h5>Ratings Breakdown</h5>
       <RatingsBreakdown ratings={reviewsMetadata.value.ratings}/>
+      <h5>Product Breakdown</h5>
       <ProductBreakdown characteristics={reviewsMetadata.value.characteristics} />
     </>
   );
