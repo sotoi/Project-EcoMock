@@ -2,11 +2,20 @@
 import { createAsyncThunk, createSlice, configureStore } from '@reduxjs/toolkit';
 import {  combineReducers } from 'redux';
 import { getProduct } from '../components/helpers/main_helpers.jsx';
+import { getReviewsMetadata } from '../components/helpers/main_helpers.jsx';
 export const fetchProductId = createAsyncThunk(
   'products/fetchProductIdStatus',
   async (productId, thunkAPI) => {
     const response = await getProduct(productId)
     return response.data
+  }
+)
+
+export const fetchReviewsMetadata = createAsyncThunk(
+  'reviews/fetchReviewsMetadata',
+  async (product_id, thunkAPI) => {
+    const res = await getReviewsMetadata(product_id);
+    return res.data;
   }
 )
 
@@ -31,32 +40,32 @@ export const product = createSlice(
   },
 );
 
-export const avgRating = createSlice(
+export const reviewsMetadata = createSlice(
   {
-    name: 'avgRating',
+    name: 'reviewsMetadata',
     initialState: {
-      value: 0,
+      value: {},
     },
     reducers: {
-      setAvgRating: (state, action) => {
-        const { ratings } = action.payload;
-        let avgRating = 0;
-        let totalCount = 0;
-        for (const rating in ratings) {
-          const count = ratings[rating];
-          avgRating += rating * count;
-          totalCount += count;
-        }
-        avgRating /= totalCount;
-        state.value = avgRating;
+      setReviewsMetadata: (state, action) => {
+        state.value = action.payload;
       },
     },
+    extraReducers: (builder) => {
+      builder.addCase(fetchReviewsMetadata.fulfilled, (state, action) => {
+        state.value = action.payload;
+      })
+    }
   },
 );
 
 const reducer = combineReducers({
   product: product.reducer,
+<<<<<<< HEAD
   avgRating: avgRating.reducer,
+=======
+  reviewsMetadata: reviewsMetadata.reducer
+>>>>>>> 51fb9ef (updated store for reviews metadata)
 });
 
 export const store = configureStore({

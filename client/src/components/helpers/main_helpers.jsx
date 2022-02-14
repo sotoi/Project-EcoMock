@@ -88,6 +88,7 @@ export const getReviewsMetadata = (product_id, callback) => {
     .then((res) => console.log(res.data))
     .catch((err) => console.error(err));
 };
+<<<<<<< HEAD
 
 export const getReviewsMetadata = (product_id, callback) => {
 >>>>>>> 12ee090 (rendered ratings)
@@ -118,7 +119,34 @@ export const getReviewsMetadata = (product_id, callback) => {
 >>>>>>> 70ccb0a (rendered ratings)
 =======
 >>>>>>> 12ee090 (rendered ratings)
+=======
+export const getReviewsMetadata = async (product_id) => {
+  try {
+    let res = await reqInstance.get(
+      `${BASEURL}/reviews/meta`,
+      {
+        params:
+        { product_id },
+      },
+    );
+    console.log(res)
+    return res;
+  } catch (err) {
+    return null;
+  }
+>>>>>>> 51fb9ef (updated store for reviews metadata)
 };
+// export const getReviewsMetadata = (product_id) => {
+//   reqInstance.get(
+//     `${BASEURL}/reviews/meta`,
+//     {
+//       params:
+//       { product_id },
+//     },
+//   )
+//     .then((res) => callback(res.data))
+//     .catch((err) => console.error(err));
+// };
 export const addNewReview = (newReview) => {
   reqInstance.post(
     `${BASEURL}/reviews`,

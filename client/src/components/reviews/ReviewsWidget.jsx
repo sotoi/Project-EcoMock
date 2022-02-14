@@ -5,9 +5,6 @@ import ReviewsMetadata from './ReviewsMetadata.jsx';
 
 const ReviewsWidget = () => {
   const product = useSelector((state) => state.product);
-  const [reviews, setReviews] = useState({});
-
-  console.log(product);
 
   return (
     <>

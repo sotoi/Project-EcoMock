@@ -16,17 +16,23 @@ import React, { useEffect } from 'react';
 import Overview from './product_info/Overview.jsx'
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+<<<<<<< HEAD
 import { fetchProductId } from '../redux/store.js'
 <<<<<<< HEAD
 import ReviewsMetadata from './reviews/ReviewsMetadata.jsx';
 import RatingsBreakdown from './reviews/RatingsBreakdown.jsx';
 >>>>>>> 70ccb0a (rendered ratings)
 =======
+=======
+import { fetchProductId } from '../redux/store.js';
+import { fetchReviewsMetadata }  from '../redux/store.js';
+>>>>>>> 51fb9ef (updated store for reviews metadata)
 import ReviewsWidget from './reviews/ReviewsWidget.jsx';
 >>>>>>> 9c3e268 (rendered ratings breakdown - open to add dynamic filtering and changing aspects)
 
 function App() {
   const { id } = useParams();
+<<<<<<< HEAD
   const dispatch = useDispatch()
   const [styles, setStyles] = useState([]);
   const [related, setRelated] = useState([]);
@@ -36,6 +42,14 @@ function App() {
     getStyles(id, setStyles);
     getRelated(id, setRelated)
   }, [id]);
+=======
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchProductId(id));
+    dispatch(fetchReviewsMetadata(id));
+  }, []);
+>>>>>>> 51fb9ef (updated store for reviews metadata)
 
   return (
 
