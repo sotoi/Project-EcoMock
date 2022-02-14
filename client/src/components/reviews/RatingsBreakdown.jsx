@@ -14,14 +14,14 @@ const RatingsBreakdown = ({ ratings }) => {
   }
 
   return (
-    <>
+    <div>
       <h5>Ratings Breakdown: {totalRatingsCount} Ratings</h5>
       <Stack gap={3}>
         {ratingsArray.map((rating, index) => (
-          <span key={index}><Button variant='outline-dark'>{rating[0]} Stars:</Button> <ProgressBar variant='success' now={rating[1] / totalRatingsCount * 100} label={rating[1]}/></span>
+          <span key={index}><Button variant='outline-dark' size='sm'>{rating[0]} Stars:</Button> <ProgressBar variant='success' now={rating[1] / totalRatingsCount * 100} label={rating[1]}/></span>
         ))}
       </Stack>
-    </>
+    </div>
   );
 }
 

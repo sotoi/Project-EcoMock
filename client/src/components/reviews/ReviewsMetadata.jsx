@@ -8,12 +8,12 @@ const ReviewsMetadata = () => {
   const reviewsMetadata = useSelector((state) => state.reviewsMetadata);
 
   return (
-    <>
+    <div>
       {/* <div>{JSON.stringify(reviewsMetadata)}</div> */}
       <AverageRating ratings={reviewsMetadata.value.ratings}/>
       <RatingsBreakdown ratings={reviewsMetadata.value.ratings}/>
       <ProductBreakdown characteristics={reviewsMetadata.value.characteristics} />
-    </>
+    </div>
   );
 }
 

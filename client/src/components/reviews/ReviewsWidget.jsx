@@ -7,11 +7,11 @@ const ReviewsWidget = () => {
   const product = useSelector((state) => state.product);
 
   return (
-    <>
+    <div>
       <h3>Reviews for {product.value.name}</h3>
-      <h4>Reviews Metadata</h4>
+      <h4>Reviews Overview</h4>
       <ReviewsMetadata />
-    </>
+    </div>
   );
 }
 

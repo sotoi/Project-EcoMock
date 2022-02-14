@@ -12,9 +12,9 @@ const AverageRating = ({ ratings }) => {
   avgRating /= totalRatingsCount;
 
   return (
-    <>
+    <div>
       <h5>Average Rating: {avgRating.toFixed(2)} Stars</h5>
-    </>
+    </div>
   )
 }
 

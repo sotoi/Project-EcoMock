@@ -10,15 +10,31 @@ const ProductBreakdown = ({ characteristics }) => {
     characteristicsArray.push([characteristic, value]);
   }
 
+  const scaleDescription = (characteristic) => {
+    if (characteristic === 'Fit') {
+      return '1: Too Small | 3: Perfect | 5: Too Big';
+    } else if (characteristic === 'Length') {
+      return '1: Too Short | 3: Perfect | 5: Too Long';
+    } else if (characteristic === 'Comfort') {
+      return '1: Poor | 5: Great';
+    } else {
+      return '1: Poor | 5: Great';
+    }
+  };
+
   return (
-    <>
+    <div>
       <h5>Product Breakdown</h5>
       <Stack direction='vertical' gap={3}>
         {characteristicsArray.map((characteristic, index) => (
-          <span key={index}>{characteristic[0]}: <ProgressBar variant='success' now={characteristic[1] / 5 * 100} label={Math.round(characteristic[1])}/></span>
+          <div key={index}>
+            <h6>{characteristic[0]}:</h6>
+            <ProgressBar variant='success' now={characteristic[1] / 5 * 100} label={Math.round(characteristic[1])}/>
+            <span>{scaleDescription(characteristic[0])}</span>
+          </div>
         ))}
       </Stack>
-    </>
+    </div>
   );
 }
 
