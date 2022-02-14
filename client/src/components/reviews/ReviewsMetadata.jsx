@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-// import { useDispatch } from 'react-redux';
-// import { fetchReviewsMetadata }  from '../../redux/store.js';
+import AverageRating from './AverageRating.jsx';
 import RatingsBreakdown from './RatingsBreakdown.jsx';
 import ProductBreakdown from './ProductBreakdown.jsx';
 
@@ -10,10 +9,9 @@ const ReviewsMetadata = () => {
 
   return (
     <>
-      <div>{JSON.stringify(reviewsMetadata)}</div>
-      <h5>Ratings Breakdown</h5>
+      {/* <div>{JSON.stringify(reviewsMetadata)}</div> */}
+      <AverageRating ratings={reviewsMetadata.value.ratings}/>
       <RatingsBreakdown ratings={reviewsMetadata.value.ratings}/>
-      <h5>Product Breakdown</h5>
       <ProductBreakdown characteristics={reviewsMetadata.value.characteristics} />
     </>
   );

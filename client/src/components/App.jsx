@@ -13,7 +13,7 @@ import ReviewBreakdown from './reviews/ReviewBreakdown.jsx';
 >>>>>>> 019928f (updated App to show review breakdown)
 =======
 import React, { useEffect } from 'react';
-import Overview from './product_info/Overview.jsx'
+import Overview from './product_info/Overview.jsx';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 <<<<<<< HEAD
