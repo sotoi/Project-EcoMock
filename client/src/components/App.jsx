@@ -25,6 +25,7 @@ import RatingsBreakdown from './reviews/RatingsBreakdown.jsx';
 =======
 =======
 import { fetchProductId } from '../redux/store.js';
+import { fetchReviews }  from '../redux/store.js';
 import { fetchReviewsMetadata }  from '../redux/store.js';
 >>>>>>> 51fb9ef (updated store for reviews metadata)
 import ReviewsWidget from './reviews/ReviewsWidget.jsx';
@@ -47,6 +48,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchProductId(id));
+    dispatch(fetchReviews({product_id: id, count: 200, sort: 'relevant'}));
     dispatch(fetchReviewsMetadata(id));
   }, []);
 >>>>>>> 51fb9ef (updated store for reviews metadata)

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import GITAPIKEY from '../../../../config.js';
-import { store, product } from '../../redux/store.js';
+import { store } from '../../redux/store.js';
 
 const BASEURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax';
 
@@ -60,6 +60,7 @@ export const postCart = (sku_id) => {
 }
 
 // Review Requests
+<<<<<<< HEAD
 export const getReviews = (page, count, sort, product_id) => {
   reqInstance.get(
     `${BASEURL}/reviews`,
@@ -121,32 +122,26 @@ export const getReviewsMetadata = (product_id, callback) => {
 >>>>>>> 12ee090 (rendered ratings)
 =======
 export const getReviewsMetadata = async (product_id) => {
+=======
+export const getReviews = async (params) => {
+>>>>>>> 11a9c0f (added reviews and review tile components)
   try {
-    let res = await reqInstance.get(
-      `${BASEURL}/reviews/meta`,
-      {
-        params:
-        { product_id },
-      },
-    );
-    console.log(res)
+    let res = await reqInstance.get(`${BASEURL}/reviews`, {params: params});
+    console.log(res.data.results);
+    return res;
+  } catch (err) {
+    return null;
+  }
+};
+export const getReviewsMetadata = async (product_id) => {
+  try {
+    let res = await reqInstance.get(`${BASEURL}/reviews/meta`, {params: { product_id }});
     return res;
   } catch (err) {
     return null;
   }
 >>>>>>> 51fb9ef (updated store for reviews metadata)
 };
-// export const getReviewsMetadata = (product_id) => {
-//   reqInstance.get(
-//     `${BASEURL}/reviews/meta`,
-//     {
-//       params:
-//       { product_id },
-//     },
-//   )
-//     .then((res) => callback(res.data))
-//     .catch((err) => console.error(err));
-// };
 export const addNewReview = (newReview) => {
   reqInstance.post(
     `${BASEURL}/reviews`,
