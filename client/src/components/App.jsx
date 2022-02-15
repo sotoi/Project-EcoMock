@@ -6,6 +6,8 @@ import {getStyles, getRelated} from './helpers/main_helpers.jsx'
 import Overview from './product_info/Overview.jsx'
 import Related from './related_items/Related.jsx'
 import ReviewsWidget from './reviews/ReviewsWidget.jsx';
+import { getQandA } from './helpers/main_helpers.jsx';
+
 
 function App() {
   const { id } = useParams();
