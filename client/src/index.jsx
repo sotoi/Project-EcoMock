@@ -11,8 +11,13 @@ ReactDOM.render(
   <Router>
     <Provider store={store}>
       <Routes>
-        <Route path= "/products/:id" element={<App />} />
+
+        {/* <Route path= "/products/:id" element={<App />} />
         <Route path= "/" element={<Navigate replace to="/products/42375" />} />
+======= */}
+        <Route path="/products/:id" element={<App />} />
+        <Route path="/" element={<Navigate replace to="/products/42377" />} />
+
       </Routes>
     </Provider>
   </Router>,

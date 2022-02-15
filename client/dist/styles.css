@@ -49,3 +49,25 @@
   color: rgb(148, 148, 148);
   size: 100px;
 }
+.search {
+  display: flex;
+  margin-top: 1.5em;
+  padding: 15px;
+  font-size: 2em;
+  flex-direction: column;
+}
+.searchbar {
+  display: flex;
+  padding: 30px;
+  margin-top: -3em;
+  margin-bottom: -1em;
+  justify-content: center;
+
+}
+.searchbartitle {
+  display:block;
+  position: relative;
+  font-size: .6em;
+  margin-top: 3em;
+  font-family: sans-serif;
+}

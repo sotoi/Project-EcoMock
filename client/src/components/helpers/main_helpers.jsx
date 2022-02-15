@@ -34,7 +34,12 @@ export const getRelated = (product_id) => {
     .then((res) => { console.log(res.data); })
     .catch((err) => console.log(err.message));
 };
-
+//Q&A Requests
+export const getQandA = (productId) => {
+  reqInstance.get(`${BASEURL}/qa/questions/?product_id=${productId}`)
+    .then((res) => { store.dispatch(product.actions.setProduct(res.data)); })
+    .catch((err) => console.log(err.message));
+};
 // Cart Requests
 
 // Review Requests
