@@ -59,6 +59,7 @@ function App() {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <Overview styles={styles}/>
       <Related related={related} styles={styles} />
       {/* <Review/> */}
@@ -82,6 +83,9 @@ function App() {
 =======
       <ReviewsWidget />
 >>>>>>> 9c3e268 (rendered ratings breakdown - open to add dynamic filtering and changing aspects)
+=======
+      <ReviewsWidget product_id={id}/>
+>>>>>>> 43c5285 (added filtering for reviews)
     </div>
   );
 }

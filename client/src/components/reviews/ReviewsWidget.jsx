@@ -4,14 +4,14 @@ import { getReviewsMetadata} from '../helpers/main_helpers.jsx';
 import ReviewsMetadata from './ReviewsMetadata.jsx';
 import Reviews from './Reviews.jsx';
 
-const ReviewsWidget = () => {
+const ReviewsWidget = ({ product_id }) => {
   const product = useSelector((state) => state.product);
 
   return (
     <div>
       <h3>Reviews for {product.value.name}</h3>
       <ReviewsMetadata />
-      <Reviews />
+      <Reviews product_id={product_id}/>
     </div>
   );
 }

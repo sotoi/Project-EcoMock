@@ -1,29 +1,38 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import ReviewTile from './ReviewTile.jsx';
+import AddReview from './AddReview.jsx';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Stack from 'react-bootstrap/Stack';
+import { getReviews } from '../helpers/main_helpers.jsx';
+import { fetchReviews }  from '../../redux/store.js';
 
-const Reviews = () => {
+const Reviews = ({ product_id }) => {
   const reviews = useSelector((state) => state.reviews);
-  let remaingingReviews = reviews.value.results;
+  const dispatch = useDispatch();
 
-  // const [review, setReviews] = useState([]);
+  const [filter, setFilter] = useState('relevant');
+  const handleFilter = (value) => {
+    setFilter(value);
+    dispatch(fetchReviews({product_id: product_id, count: 200, sort: value}));
+  };
 
   return (
     <div>
       <h4>Reviews</h4>
-      <DropdownButton id="reviews-sort-by" title="SORT BY" variant='success' size='sm'>
-        <Dropdown.Item href="#/helpful">Helpful</Dropdown.Item>
-        <Dropdown.Item href="#/newest">Newest</Dropdown.Item>
-        <Dropdown.Item href="#/relevant">Relevant</Dropdown.Item>
-      </DropdownButton>
+      <h6>SORT BY:</h6>
+        <DropdownButton variant='outline-dark' size='sm' id='reviews-sort-by' title={filter}>
+          <Dropdown.Item href="#/helpful" eventKey='Helpful' onClick={() => handleFilter('helpful')}>helpful</Dropdown.Item>
+          <Dropdown.Item href="#/newest" eventKey='Newest' onClick={() => handleFilter('newest')}>newest</Dropdown.Item>
+          <Dropdown.Item href="#/relevant" eventKey='Relevant' onClick={() => handleFilter('relevant')}>relevant</Dropdown.Item>
+        </DropdownButton>
       <Stack gap={3}>
-        {remaingingReviews && remaingingReviews.map((review) => (
-          <ReviewTile review={review} key={review.review_id}/>
+        {reviews.value.results && reviews.value.results.map((review) => (
+          <ReviewTile review={review} product_id={product_id} key={review.review_id} />
         ))}
       </Stack>
+      <AddReview product_id={product_id}/>
     </div>
   );
 }
