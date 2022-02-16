@@ -4,6 +4,9 @@ import { fetchReviews }  from '../../redux/store.js';
 import Stack from 'react-bootstrap/Stack';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import Modal from 'react-bootstrap/Modal';
 import { markReviewAsHelpful, reportReview, getReviews } from '../helpers/main_helpers.jsx';
@@ -11,6 +14,7 @@ import { markReviewAsHelpful, reportReview, getReviews } from '../helpers/main_h
 const ReviewTile = ({ review, product_id }) => {
   const dispatch = useDispatch();
 
+  // HANDLE HELPFULNESS AND REPORT BUTTONS
   const handleHelpfulButton = (review_id) => {
     markReviewAsHelpful(review.review_id);
     dispatch(fetchReviews({product_id: product_id, count: 200, sort: 'relevant'}));
@@ -26,30 +30,60 @@ const ReviewTile = ({ review, product_id }) => {
     dispatch(fetchReviews({product_id: product_id, count: 200, sort: 'relevant'}));
   }
 
+  // REVIEWER RECOMMENDATION?
   const isRecommended = (trueOrFalse) => {
     if (trueOrFalse) {
       return 'I recommend this product ✅';
     }
   }
 
+  // REVIEW HAS RESPONSE FROM STAFF?
   const hasResponse = (response) => {
     if (response) {
       return 'RESPONSE: ' + response;
     }
   }
 
-  // const hasPhotos = (photos) => {
-  //   if (photos) {
-  //     let photosArray = [];
-  //     for (var i = 0; i < photos.length; i++) {
-  //       photosArray.push(photos[i]['url']);
-  //     }
-  //     return (
+  // REVIEW HAS PHOTOS?
+  const [show, setShow] = useState(false);
+  const [currPhoto, setCurrPhoto] = useState('');
 
-  //     );
-  //   }
-  // }
+  const handleClose = () => {
+    setShow(false);
+    setCurrPhoto('');
+  }
+  const handleShow = (url) => {
+    setCurrPhoto(url);
+    setShow(true);
+  }
 
+  const hasPhotos = (photos) => {
+    if (photos) {
+      let photosArray = [];
+      for (var i = 0; i < photos.length; i++) {
+        photosArray.push(photos[i]['url']);
+      }
+      return (
+        <Container>
+          <Row>
+            {photosArray.map((url, index) => (
+              <Col key={url}>
+                <Button variant="light" onClick={() => handleShow(url)}>
+                  <Image src={url} thumbnail className='review-photos' style={{height: '100px'}} onClick={handleShow}/>
+                </Button>
+                <Modal show={show} onHide={handleClose}>
+                  <Modal.Header closeButton></Modal.Header>
+                  <Modal.Body><Image src={currPhoto} fluid/></Modal.Body>
+                </Modal>
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      );
+    }
+  }
+
+  // CONVERT REVIEW DATE TO MONTH DD, YYYY FORMAT
   const convertDate = (date) => {
     let convertedDate = date.slice(0, 10);
     convertedDate = convertedDate.split('-');
@@ -89,7 +123,7 @@ const ReviewTile = ({ review, product_id }) => {
           <span className='review-summary'>{review.summary}</span>
           <p className='review-body'>{review.body}</p>
           <p className='review-response'>{hasResponse(review.response)}</p>
-          {/* <div>{hasPhotos(review.photos)}</div> */}
+          <div>{hasPhotos(review.photos)}</div>
           <span>Helpful?</span>
           <ButtonGroup className='helpful-button-group' size='sm'>
             <Button id='helpful-yes' variant='outline-dark' onClick={() => {handleHelpfulButton(review.review_id)}}>Yes ({review.helpfulness})</Button>
