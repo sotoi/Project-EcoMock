@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Image from 'react-bootstrap/Image';
+import Stars from './Stars.jsx';
 
 const AverageRating = ({ ratings }) => {
   let avgRating = 0;
@@ -20,15 +17,7 @@ const AverageRating = ({ ratings }) => {
   return (
     <div>
       <h5>Average Rating: {avgRatingRounded} Stars</h5>
-      <Container>
-        <Row>
-          <Col><Image src='../../../assets/FilledStar.png' style={{height: '20px'}}/></Col>
-          <Col><Image src='../../../assets/FilledStar.png' style={{height: '20px'}}/></Col>
-          <Col><Image src='../../../assets/FilledStar.png' style={{height: '20px'}}/></Col>
-          <Col><Image src='../../../assets/ThreeQuarterFilledStar.png' style={{height: '20px'}}/></Col>
-          <Col><Image src='../../../assets/EmptyStar.png' style={{height: '20px'}}/></Col>
-        </Row>
-      </Container>
+      <Stars ratingInput={avgRating}/>
     </div>
   );
 }

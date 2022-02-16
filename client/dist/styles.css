@@ -78,6 +78,7 @@ filter: invert(100%);
   height: auto;
 }
 
+<<<<<<< HEAD
 .overview {
   display: flex;
   flex-wrap: wrap;
@@ -239,4 +240,15 @@ filter: invert(100%);
   top: 8px;
   color: white;
   z-index: 200;
+=======
+  position:absolute;
+  top: 10px;
+  right:10px;
+  z-index: 1;
+  color: rgb(148, 148, 148);
+  size: 100px;
+}
+.star {
+  height: 20px;
+>>>>>>> 6053a6d (finished star component)
 }

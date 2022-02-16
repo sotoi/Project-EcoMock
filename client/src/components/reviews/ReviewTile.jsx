@@ -16,7 +16,7 @@ const ReviewTile = ({ review, product_id }) => {
 
   // HANDLE HELPFULNESS AND REPORT BUTTONS
   const handleHelpfulButton = (review_id) => {
-    markReviewAsHelpful(review.review_id);
+    markReviewAsHelpful(review.review_id)
     dispatch(fetchReviews({product_id: product_id, count: 200, sort: 'relevant'}));
   }
 
