@@ -16,8 +16,8 @@ const AverageRating = ({ ratings }) => {
 
   return (
     <div>
-      <h5>Average Rating: {avgRatingRounded} Stars</h5>
-      <Stars ratingInput={avgRating}/>
+      <h5>Average Rating:</h5>
+      <Stars ratingInput={avgRatingRounded} />
     </div>
   );
 }

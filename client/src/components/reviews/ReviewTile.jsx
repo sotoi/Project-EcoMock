@@ -10,6 +10,7 @@ import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import Modal from 'react-bootstrap/Modal';
 import { markReviewAsHelpful, reportReview, getReviews } from '../helpers/main_helpers.jsx';
+import Stars from './Stars.jsx';
 
 const ReviewTile = ({ review, product_id }) => {
   const dispatch = useDispatch();
@@ -115,7 +116,7 @@ const ReviewTile = ({ review, product_id }) => {
           <span className='reviewer-name'>{review.reviewer_name}</span>
           <span className='review-date'>{convertDate(review.date)}</span>
           <span className='review-recommendation'>{isRecommended(review.recommend)}</span>
-          <span className='review-rating'>Rating: {review.rating}</span>
+          <Stars ratingInput={review.rating}/>
         </Stack>
       </div>
       <div>

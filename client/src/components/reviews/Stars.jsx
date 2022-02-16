@@ -91,8 +91,8 @@ const Stars = ({ ratingInput }) => {
   }
 
   return (
-    <Container>
-      <Row>
+    <Container fluid={true} className='p-0'>
+      <Row xs='auto' noGutters>
         <Col>{star1}</Col>
         <Col>{star2}</Col>
         <Col>{star3}</Col>
