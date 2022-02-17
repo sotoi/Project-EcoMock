@@ -16,10 +16,15 @@ const ReviewTile = ({ review, product_id, sort, reviewCount }) => {
   const dispatch = useDispatch();
 
   // HANDLE HELPFULNESS BUTTONS
-  const handleHelpfulButton = (review_id) => {
-    markReviewAsHelpful(review_id)
-    dispatch(fetchReviews({product_id: product_id, count: reviewCount, sort: sort}));
+  const [helpful, setHelpful] = useState({});
+  const handleHelpfulButton = async () => {
+    let res = await markReviewAsHelpful(review.review_id);
+    setHelpful(res);
   }
+  useEffect(() => {
+    dispatch(fetchReviews({product_id: product_id, count: reviewCount, sort: sort}));
+  }, [helpful]);
+
 
   let unhelpful = 0;
   const handleUnhelpfulButton = () => {
@@ -27,10 +32,15 @@ const ReviewTile = ({ review, product_id, sort, reviewCount }) => {
   }
 
   // HANDLE REPORT BUTTON
-  const handleReportButton = (review_id) => {
-    reportReview(review_id);
-    dispatch(fetchReviews({product_id: product_id, count: reviewCount, sort: sort}));
+  const [report, setReport] = useState({});
+  const handleReportButton = async () => {
+    let res = reportReview(review.review_id);
+    setReport(res);
   }
+  useEffect(() => {
+    console.log(report);
+    dispatch(fetchReviews({product_id: product_id, count: reviewCount, sort: sort}));
+  }, [report])
 
   // REVIEWER RECOMMENDATION?
   const isRecommended = (trueOrFalse) => {
@@ -128,9 +138,9 @@ const ReviewTile = ({ review, product_id, sort, reviewCount }) => {
           <div>{hasPhotos(review.photos)}</div>
           <span>Helpful?</span>
           <ButtonGroup className='helpful-button-group' size='sm'>
-            <Button id='helpful-yes' variant='outline-dark' onClick={() => {handleHelpfulButton(review.review_id)}}>Yes ({review.helpfulness})</Button>
+            <Button id='helpful-yes' variant='outline-dark' onClick={() => {handleHelpfulButton()}}>Yes ({review.helpfulness})</Button>
             <Button id='helpful-no' variant='outline-dark' onClick={() => {handleUnhelpfulButton()}}>No ({unhelpful})</Button>
-            <Button id='danger' variant='outline-danger' onClick={() => {handleReportButton(review.review_id)}}>Report 🚩</Button>
+            <Button id='danger' variant='outline-danger' onClick={() => {handleReportButton()}}>Report 🚩</Button>
           </ButtonGroup>
         </Stack>
       </div>

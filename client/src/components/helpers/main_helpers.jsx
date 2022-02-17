@@ -127,7 +127,7 @@ export const getReviews = async (params) => {
 >>>>>>> 11a9c0f (added reviews and review tile components)
   try {
     let res = await reqInstance.get(`${BASEURL}/reviews`, {params: params});
-    console.log(res.data);
+    console.log(res);
     return res;
   } catch (err) {
     return null;
@@ -157,6 +157,6 @@ export const markReviewAsHelpful = (product_id) => {
 };
 export const reportReview = (product_id) => {
   reqInstance.put(`${BASEURL}/reviews/${product_id}/report`)
-    .then((res) => console.log(res.data))
+    .then((res) => res)
     .catch((err) => console.error(err));
 };
