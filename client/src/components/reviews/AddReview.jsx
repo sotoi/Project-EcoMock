@@ -333,9 +333,11 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Write Your Review</Modal.Title>
-          <br />
-          <small>About the {product_name}</small>
+          <Modal.Title>
+            Write Your Review
+            <br />
+            <small className='text-muted'>About the {product_name}</small>
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {renderForm()}
