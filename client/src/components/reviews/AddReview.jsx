@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 import Modal from 'react-bootstrap/Modal';
 import { fetchReviews, fetchReviewsMetadata }  from '../../redux/store.js';
 import { addNewReview, getReviews, getReviewsMetadata } from '../helpers/main_helpers.jsx';
@@ -9,6 +10,7 @@ import { addNewReview, getReviews, getReviewsMetadata } from '../helpers/main_he
 const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
   // const dispatch = useDispatch();
 
+  // HANDLE REVIEW FORM SUMBIT
   // const [addReviewParams, setAddReviewParams] = useState({});
   // const handleAddReviewButton = (params) => {
   //   setAddReviewParams(params);
@@ -266,9 +268,26 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
     }
   };
 
+  // FUNCTION TO RENDER REVIEW FORM
   const renderForm = () => {
     return (
       <Form>
+        <Form.Group className='mb-3' controlId='exampleForm.ControlTextarea1'>
+          <Form.Label>Do you recommend this product? (mandatory)</Form.Label>
+          <div key='recommend' className="mb-3">
+            <Form.Check
+              type='radio'
+              id='recommend-yes'
+              label='Yes'
+            />
+            <Form.Check
+              type='radio'
+              id='recommend-no'
+              label='No'
+            />
+          </div>
+        </Form.Group>
+        <br />
         <Form.Group className='mb-3' controlId='exampleForm.ControlTextarea1'>
           <Form.Label>Characteristics (mandatory)</Form.Label>
           <div key='size' className="mb-3">{hasSize()}</div>
@@ -292,6 +311,14 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
           <Form.Control as='textarea' rows={3} minLength='50' maxLength='1000' placeholder='Why did you like the product or not?'/>
           <Form.Text className='text-muted'>
             Between 50 to 1000 characters
+          </Form.Text>
+        </Form.Group>
+        <br />
+        <Form.Group controlIdMultiple files input example="formFileMultiple" className="mb-3">
+          <Form.Label>Upload your photos</Form.Label>
+          <Form.Control type="file" multiple arrayOf/>
+          <Form.Text className='text-muted'>
+            Up to 5 photos
           </Form.Text>
         </Form.Group>
         <br />

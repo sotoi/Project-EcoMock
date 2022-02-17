@@ -30,7 +30,7 @@ const ProductBreakdown = ({ characteristics }) => {
           <div key={index}>
             <h6>{characteristic[0]}:</h6>
             <ProgressBar variant='success' now={characteristic[1] / 5 * 100} label={Math.round(characteristic[1])}/>
-            <span>{scaleDescription(characteristic[0])}</span>
+            <small className='text-muted'>{scaleDescription(characteristic[0])}</small>
           </div>
         ))}
       </Stack>
