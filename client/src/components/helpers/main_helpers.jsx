@@ -151,12 +151,10 @@ export const addNewReview = (newReview) => {
     .catch((err) => console.error(err));
 };
 export const markReviewAsHelpful = (product_id) => {
-  reqInstance.put(`${BASEURL}/reviews/${product_id}/helpful`)
-    .then((res) => console.log(res.data))
+  return reqInstance.put(`${BASEURL}/reviews/${product_id}/helpful`)
     .catch((err) => console.error(err));
 };
 export const reportReview = (product_id) => {
-  reqInstance.put(`${BASEURL}/reviews/${product_id}/report`)
-    .then((res) => res)
+  return reqInstance.put(`${BASEURL}/reviews/${product_id}/report`)
     .catch((err) => console.error(err));
 };

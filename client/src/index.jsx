@@ -12,7 +12,7 @@ ReactDOM.render(
     <Provider store={store}>
       <Routes>
         <Route path= "/products/:id" element={<App />} />
-        <Route path= "/" element={<Navigate replace to="/products/42366" />} />
+        <Route path= "/" element={<Navigate replace to="/products/42368" />} />
       </Routes>
     </Provider>
   </Router>,

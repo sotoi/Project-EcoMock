@@ -33,6 +33,7 @@ const Reviews = ({ product_id, product_name }) => {
 
   return (
     <div>
+      {console.log(reviews.value.results)}
       <h4>Reviews</h4>
       <h6>SORT BY:</h6>
         <DropdownButton variant='dark' size='sm' id='reviews-sort-by' title={sort}>
