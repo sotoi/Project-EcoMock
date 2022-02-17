@@ -14,19 +14,26 @@ import Stars from './Stars.jsx';
 
 const ReviewTile = ({ review, product_id, sort, reviewCount }) => {
   const dispatch = useDispatch();
+  const [helpfulButtonsState, sethelpfulButtonsState] = useState(false);
 
   // HANDLE HELPFUL YES BUTTON
   const [helpful, setHelpful] = useState(review.helpfulness);
   const handleHelpfulButton = () => {
-    setHelpful(helpful + 1);
-    markReviewAsHelpful(review.review_id)
-      .then(() => dispatch(fetchReviews({product_id: product_id, count: reviewCount, sort: sort})));
+    if (!helpfulButtonsState) {
+      sethelpfulButtonsState(true);
+      setHelpful(helpful + 1);
+      markReviewAsHelpful(review.review_id)
+        .then(() => dispatch(fetchReviews({product_id: product_id, count: reviewCount, sort: sort})));
+    }
   }
 
   // HANDLE HELPFUL NO BUTTON
   const [unhelpful, setUnhelpful] = useState(0);
   const handleUnhelpfulButton = () => {
-    setUnhelpful(1);
+    if (!helpfulButtonsState) {
+      sethelpfulButtonsState(true);
+      setUnhelpful(1);
+    }
   }
 
   // HANDLE REPORT BUTTON

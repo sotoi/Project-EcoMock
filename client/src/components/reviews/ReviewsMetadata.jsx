@@ -10,7 +10,6 @@ const ReviewsMetadata = () => {
 
   return (
     <div>
-      {/* <div>{JSON.stringify(reviewsMetadata)}</div> */}
       <h4>Reviews Overview</h4>
       <Stack direction='horizontal' gap={3}>
         <AverageRating ratings={reviewsMetadata.value.ratings} />

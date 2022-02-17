@@ -11,6 +11,21 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
   // const dispatch = useDispatch();
 
   // HANDLE REVIEW FORM SUMBIT
+  const initialState = {
+    product_id: product_id,
+    rating: 0,
+    summary: '',
+    recommend: true,
+    body: '',
+    name: '',
+    email: '',
+    photos: [],
+    characteristics: {}
+  }
+
+  const [reviewParams, setReviewParams] = useState({});
+
+
   // const [addReviewParams, setAddReviewParams] = useState({});
   // const handleAddReviewButton = (params) => {
   //   setAddReviewParams(params);

@@ -18,18 +18,16 @@ const Reviews = ({ product_id, product_name }) => {
   const handleMoreReviewsButton = () => {
     setReviewCount(reviewCount + 2);
   };
-  useEffect(() => {
-    dispatch(fetchReviews({product_id: product_id, count: reviewCount, sort: sort}));
-  }, [reviewCount]);
 
   // HANDLE SORT SELECTION
   const [sort, setSort] = useState('relevant');
   const handleSort = (value) => {
     setSort(value);
   };
+
   useEffect(() => {
     dispatch(fetchReviews({product_id: product_id, count: reviewCount, sort: sort}));
-  }, [sort]);
+  }, [sort, reviewCount]);
 
   return (
     <div>
