@@ -12,13 +12,13 @@ import Modal from 'react-bootstrap/Modal';
 import { markReviewAsHelpful, reportReview, getReviews } from '../helpers/main_helpers.jsx';
 import Stars from './Stars.jsx';
 
-const ReviewTile = ({ review, product_id }) => {
+const ReviewTile = ({ review, product_id, sort, reviewCount }) => {
   const dispatch = useDispatch();
 
-  // HANDLE HELPFULNESS AND REPORT BUTTONS
+  // HANDLE HELPFULNESS BUTTONS
   const handleHelpfulButton = (review_id) => {
     markReviewAsHelpful(review_id)
-    dispatch(fetchReviews({product_id: product_id, count: 200, sort: 'relevant'}));
+    dispatch(fetchReviews({product_id: product_id, count: reviewCount, sort: sort}));
   }
 
   let unhelpful = 0;
@@ -26,9 +26,10 @@ const ReviewTile = ({ review, product_id }) => {
     unhelpful += 1;
   }
 
+  // HANDLE REPORT BUTTON
   const handleReportButton = (review_id) => {
     reportReview(review_id);
-    dispatch(fetchReviews({product_id: product_id, count: 200, sort: 'relevant'}));
+    dispatch(fetchReviews({product_id: product_id, count: reviewCount, sort: sort}));
   }
 
   // REVIEWER RECOMMENDATION?

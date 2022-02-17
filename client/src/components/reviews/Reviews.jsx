@@ -5,34 +5,48 @@ import AddReview from './AddReview.jsx';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Stack from 'react-bootstrap/Stack';
+import Button from 'react-bootstrap/Button';
 import { getReviews } from '../helpers/main_helpers.jsx';
 import { fetchReviews }  from '../../redux/store.js';
 
-const Reviews = ({ product_id }) => {
+const Reviews = ({ product_id, product_name }) => {
   const reviews = useSelector((state) => state.reviews);
   const dispatch = useDispatch();
 
-  const [filter, setFilter] = useState('relevant');
-  const handleFilter = (value) => {
-    setFilter(value);
-    dispatch(fetchReviews({product_id: product_id, count: 200, sort: value}));
+  // HANDLE MORE REVIEWS BUTTON
+  const [reviewCount, setReviewCount] = useState(2);
+  const handleMoreReviewsButton = () => {
+    setReviewCount(reviewCount + 2);
   };
+  useEffect(() => {
+    dispatch(fetchReviews({product_id: product_id, count: reviewCount, sort: sort}));
+  }, [reviewCount]);
+
+  // HANDLE SORT SELECTION
+  const [sort, setSort] = useState('relevant');
+  const handleSort = (value) => {
+    setSort(value);
+  };
+  useEffect(() => {
+    dispatch(fetchReviews({product_id: product_id, count: reviewCount, sort: sort}));
+  }, [sort]);
 
   return (
     <div>
       <h4>Reviews</h4>
       <h6>SORT BY:</h6>
-        <DropdownButton variant='outline-dark' size='sm' id='reviews-sort-by' title={filter}>
-          <Dropdown.Item href="#/helpful" eventKey='Helpful' onClick={() => handleFilter('helpful')}>helpful</Dropdown.Item>
-          <Dropdown.Item href="#/newest" eventKey='Newest' onClick={() => handleFilter('newest')}>newest</Dropdown.Item>
-          <Dropdown.Item href="#/relevant" eventKey='Relevant' onClick={() => handleFilter('relevant')}>relevant</Dropdown.Item>
+        <DropdownButton variant='dark' size='sm' id='reviews-sort-by' title={sort}>
+          <Dropdown.Item href="#/helpful" eventKey='Helpful' onClick={() => handleSort('helpful')}>helpful</Dropdown.Item>
+          <Dropdown.Item href="#/newest" eventKey='Newest' onClick={() => handleSort('newest')}>newest</Dropdown.Item>
+          <Dropdown.Item href="#/relevant" eventKey='Relevant' onClick={() => handleSort('relevant')}>relevant</Dropdown.Item>
         </DropdownButton>
       <Stack gap={3}>
         {reviews.value.results && reviews.value.results.map((review) => (
-          <ReviewTile review={review} product_id={product_id} key={review.review_id} />
+          <ReviewTile review={review} product_id={product_id} sort={sort} reviewCount={reviewCount} key={review.review_id} />
         ))}
       </Stack>
-      <AddReview product_id={product_id}/>
+      <Button variant='dark' onClick={() => handleMoreReviewsButton()}>More Reviews +</Button>
+      <AddReview product_id={product_id} product_name={product_name} sort={sort} reviewCount={reviewCount} />
     </div>
   );
 }

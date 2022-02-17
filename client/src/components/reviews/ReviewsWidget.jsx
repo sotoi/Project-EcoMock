@@ -11,7 +11,7 @@ const ReviewsWidget = ({ product_id }) => {
     <div>
       <h3>Reviews for {product.value.name}</h3>
       <ReviewsMetadata />
-      <Reviews product_id={product_id}/>
+      <Reviews product_id={product_id} product_name={product.value.name}/>
     </div>
   );
 }

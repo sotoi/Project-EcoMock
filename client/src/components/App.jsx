@@ -48,7 +48,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchProductId(id));
-    dispatch(fetchReviews({product_id: id, count: 200, sort: 'relevant'}));
+    dispatch(fetchReviews({product_id: id, count: 2, sort: 'relevant'}));
     dispatch(fetchReviewsMetadata(id));
   }, []);
 >>>>>>> 51fb9ef (updated store for reviews metadata)
