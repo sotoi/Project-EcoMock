@@ -6,14 +6,15 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Modal from 'react-bootstrap/Modal';
 import { fetchReviews, fetchReviewsMetadata }  from '../../redux/store.js';
 import { addNewReview, getReviews, getReviewsMetadata } from '../helpers/main_helpers.jsx';
+import Stars from './Stars.jsx';
 
 const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // HANDLE REVIEW FORM SUMBIT
+  // HANDLE CHANGES IN FORM
   const initialState = {
     product_id: product_id,
-    rating: 0,
+    rating: 5,
     summary: '',
     recommend: true,
     body: '',
@@ -23,28 +24,42 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
     characteristics: {}
   }
 
-  const [reviewParams, setReviewParams] = useState({});
+  const [newReview, setNewReview] = useState(initialState);
+  useEffect(() => {}, [newReview])
+  const handleOnChange = (event) => {
+    const {name, value} = event.target;
+    if (name === 'photos') {
+      let newPhotos = newReview.photos;
+      newPhotos.push(value);
+      setNewReview({...newReview, photos: newPhotos})
+    } else if (!newReview[name]) {
+      let newCharacteristics = newReview.characteristics;
+      newCharacteristics[name] = value;
+      setNewReview({...newReview, characteristics: newCharacteristics})
+    } else {
+      setNewReview({...newReview, [name]: value})
+    }
+  }
+  console.log('NEW REVIEW:', newReview);
 
-
-  // const [addReviewParams, setAddReviewParams] = useState({});
-  // const handleAddReviewButton = (params) => {
-  //   setAddReviewParams(params);
+  // HANDLE REVIEW FORM SUMBIT
+  // const [submitStatus, setSubmitStatus] = useState(false);
+  // const handleSubmit = () => {
+  //   addNewReview(newReview)
+  //     .then(() => submitStatus(true));
   // };
+
   // useEffect(() => {
-  //   addNewReview(addReviewParams);
   //   dispatch(fetchReviews({product_id: product_id, count: reviewCount, sort: sort}));
   //   dispatch(fetchReviewsMetadata(product_id));
-  // }, [addReviewParams]);
-
-  // const handleAddReviewButton = () => {
-  //   return ()
-  // }
+  // }, [submitStatus]);
 
   // FUNCTIONS TO RENDER CHARACTERISTICS DESIGNATED AS APPLICABLE TO PRODUCT
   const reviewsMetadata = useSelector((state) => state.reviewsMetadata);
 
   const hasSize = () => {
     if (reviewsMetadata.value.characteristics && reviewsMetadata.value.characteristics['Size']) {
+      let name = reviewsMetadata.value.characteristics['Size']['id'];
       return (
         <>
           <small>
@@ -52,26 +67,41 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
           </small>
           <Form.Check
             type='radio'
+            name={name}
+            value={1}
+            onChange={handleOnChange}
             id='size-1'
             label='1'
           />
           <Form.Check
             type='radio'
+            name={name}
+            value={2}
+            onChange={handleOnChange}
             id='size-2'
             label='2'
           />
           <Form.Check
             type='radio'
+            name={name}
+            value={3}
+            onChange={handleOnChange}
             id='size-3'
             label='3'
           />
           <Form.Check
             type='radio'
+            name={name}
+            value={4}
+            onChange={handleOnChange}
             id='size-4'
             label='4'
           />
           <Form.Check
             type='radio'
+            name={name}
+            value={5}
+            onChange={handleOnChange}
             id='size-5'
             label='5'
           />
@@ -85,6 +115,7 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
 
   const hasWidth = () => {
     if (reviewsMetadata.value.characteristics && reviewsMetadata.value.characteristics['Width']) {
+      let name = reviewsMetadata.value.characteristics['Width']['id'];
       return (
         <>
           <small>
@@ -92,26 +123,41 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
           </small>
           <Form.Check
             type='radio'
+            name={name}
+            value={1}
+            onChange={handleOnChange}
             id='width-1'
             label='1'
           />
           <Form.Check
             type='radio'
+            name={name}
+            value={2}
+            onChange={handleOnChange}
             id='width-2'
             label='2'
           />
           <Form.Check
             type='radio'
+            name={name}
+            value={3}
+            onChange={handleOnChange}
             id='width-3'
             label='3'
           />
           <Form.Check
             type='radio'
+            name={name}
+            value={4}
+            onChange={handleOnChange}
             id='width-4'
             label='4'
           />
           <Form.Check
             type='radio'
+            name={name}
+            value={5}
+            onChange={handleOnChange}
             id='width-5'
             label='5'
           />
@@ -125,6 +171,7 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
 
   const hasComfort = () => {
     if (reviewsMetadata.value.characteristics && reviewsMetadata.value.characteristics['Comfort']) {
+      let name = reviewsMetadata.value.characteristics['Comfort']['id'];
       return (
         <>
           <small>
@@ -132,26 +179,41 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
           </small>
           <Form.Check
             type='radio'
+            name={name}
+            value={1}
+            onChange={handleOnChange}
             id='comfort-1'
             label='1'
           />
           <Form.Check
             type='radio'
+            name={name}
+            value={2}
+            onChange={handleOnChange}
             id='comfort-2'
             label='2'
           />
           <Form.Check
             type='radio'
+            name={name}
+            value={3}
+            onChange={handleOnChange}
             id='comfort-3'
             label='3'
           />
           <Form.Check
             type='radio'
+            name={name}
+            value={4}
+            onChange={handleOnChange}
             id='comfort-4'
             label='4'
           />
           <Form.Check
             type='radio'
+            name={name}
+            value={5}
+            onChange={handleOnChange}
             id='comfort-5'
             label='5'
           />
@@ -165,6 +227,7 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
 
   const hasQuality = () => {
     if (reviewsMetadata.value.characteristics && reviewsMetadata.value.characteristics['Quality']) {
+      let name = reviewsMetadata.value.characteristics['Quality']['id'];
       return (
         <>
           <small>
@@ -172,26 +235,41 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
           </small>
           <Form.Check
             type='radio'
+            name={name}
+            value={1}
+            onChange={handleOnChange}
             id='quality-1'
             label='1'
           />
           <Form.Check
             type='radio'
+            name={name}
+            value={2}
+            onChange={handleOnChange}
             id='quality-2'
             label='2'
           />
           <Form.Check
             type='radio'
+            name={name}
+            value={3}
+            onChange={handleOnChange}
             id='quality-3'
             label='3'
           />
           <Form.Check
             type='radio'
+            name={name}
+            value={4}
+            onChange={handleOnChange}
             id='quality-4'
             label='4'
           />
           <Form.Check
             type='radio'
+            name={name}
+            value={5}
+            onChange={handleOnChange}
             id='quality-5'
             label='5'
           />
@@ -205,6 +283,7 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
 
   const hasLength = () => {
     if (reviewsMetadata.value.characteristics && reviewsMetadata.value.characteristics['Length']) {
+      let name = reviewsMetadata.value.characteristics['Length']['id'];
       return (
         <>
           <small>
@@ -212,26 +291,41 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
           </small>
           <Form.Check
             type='radio'
+            name={name}
+            value={1}
+            onChange={handleOnChange}
             id='length-1'
             label='1'
           />
           <Form.Check
             type='radio'
+            name={name}
+            value={2}
+            onChange={handleOnChange}
             id='length-2'
             label='2'
           />
           <Form.Check
             type='radio'
+            name={name}
+            value={3}
+            onChange={handleOnChange}
             id='length-3'
             label='3'
           />
           <Form.Check
             type='radio'
+            name={name}
+            value={4}
+            onChange={handleOnChange}
             id='length-4'
             label='4'
           />
           <Form.Check
             type='radio'
+            name={name}
+            value={5}
+            onChange={handleOnChange}
             id='length-5'
             label='5'
           />
@@ -245,6 +339,7 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
 
   const hasFit = () => {
     if (reviewsMetadata.value.characteristics && reviewsMetadata.value.characteristics['Fit']) {
+      let name = reviewsMetadata.value.characteristics['Fit']['id'];
       return (
         <>
           <small>
@@ -252,26 +347,41 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
           </small>
           <Form.Check
             type='radio'
+            name={name}
+            value={1}
+            onChange={handleOnChange}
             id='fit-1'
             label='1'
           />
           <Form.Check
             type='radio'
+            name={name}
+            value={2}
+            onChange={handleOnChange}
             id='fit-2'
             label='2'
           />
           <Form.Check
             type='radio'
+            name={name}
+            value={3}
+            onChange={handleOnChange}
             id='fit-3'
             label='3'
           />
           <Form.Check
             type='radio'
+            name={name}
+            value={4}
+            onChange={handleOnChange}
             id='fit-4'
             label='4'
           />
           <Form.Check
             type='radio'
+            name={name}
+            value={5}
+            onChange={handleOnChange}
             id='fit-5'
             label='5'
           />
@@ -287,23 +397,74 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
   const renderForm = () => {
     return (
       <Form>
-        <Form.Group className='mb-3' controlId='exampleForm.ControlTextarea1'>
+        <Form.Group className='mb-3'>
+          <Form.Label>Overall rating (mandatory)</Form.Label>
+          <div key='rating' className="mb-3">
+            <Form.Check
+              type='radio'
+              name='rating'
+              value={1}
+              onChange={handleOnChange}
+              id='rating-1'
+              label={<Stars ratingInput={1}/>}
+            />
+            <Form.Check
+              type='radio'
+              name='rating'
+              value={2}
+              onChange={handleOnChange}
+              id='rating-2'
+              label={<Stars ratingInput={2}/>}
+            />
+            <Form.Check
+              type='radio'
+              name='rating'
+              value={3}
+              onChange={handleOnChange}
+              id='rating-3'
+              label={<Stars ratingInput={3}/>}
+            />
+            <Form.Check
+              type='radio'
+              name='rating'
+              value={4}
+              onChange={handleOnChange}
+              id='rating-4'
+              label={<Stars ratingInput={4}/>}
+            />
+            <Form.Check
+              type='radio'
+              name='rating'
+              value={5}
+              onChange={handleOnChange}
+              id='rating-5'
+              label={<Stars ratingInput={5}/>}
+            />
+          </div>
+        </Form.Group>
+        <Form.Group className='mb-3'>
           <Form.Label>Do you recommend this product? (mandatory)</Form.Label>
           <div key='recommend' className="mb-3">
             <Form.Check
               type='radio'
+              name='recommend'
+              value={newReview.recommend}
+              onChange={handleOnChange}
               id='recommend-yes'
               label='Yes'
             />
             <Form.Check
               type='radio'
+              name='recommend'
+              value={newReview.recommend}
+              onChange={handleOnChange}
               id='recommend-no'
               label='No'
             />
           </div>
         </Form.Group>
         <br />
-        <Form.Group className='mb-3' controlId='exampleForm.ControlTextarea1'>
+        <Form.Group className='mb-3'>
           <Form.Label>Characteristics (mandatory)</Form.Label>
           <div key='size' className="mb-3">{hasSize()}</div>
           <div key='width' className="mb-3">{hasWidth()}</div>
@@ -313,41 +474,76 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
           <div key='fit' className="mb-3">{hasFit()}</div>
         </Form.Group>
         <br />
-        <Form.Group className='mb-3' controlId='exampleForm.ControlTextarea1'>
+        <Form.Group className='mb-3'>
           <Form.Label>Review summary</Form.Label>
-          <Form.Control as='textarea' rows={1} maxLength='60' placeholder='Example: Best purchase ever!?'/>
+          <Form.Control
+          as='textarea'
+          rows={1}
+          maxLength='60'
+          placeholder='Example: Best purchase ever!?'
+          name='summary'
+          value={newReview.summary}
+          onChange={handleOnChange}
+          />
           <Form.Text className='text-muted'>
             Up to 60 characters
           </Form.Text>
         </Form.Group>
         <br />
-        <Form.Group className='mb-3' controlId='exampleForm.ControlTextarea2'>
+        <Form.Group className='mb-3'>
           <Form.Label>Review body (mandatory)</Form.Label>
-          <Form.Control as='textarea' rows={3} minLength='50' maxLength='1000' placeholder='Why did you like the product or not?'/>
+          <Form.Control
+          as='textarea'
+          rows={3}
+          minLength='50'
+          maxLength='1000'
+          placeholder='Why did you like the product or not?'
+          name='body'
+          value={newReview.body}
+          onChange={handleOnChange}
+          />
           <Form.Text className='text-muted'>
             Between 50 to 1000 characters
           </Form.Text>
         </Form.Group>
         <br />
-        <Form.Group controlIdMultiple files input example="formFileMultiple" className="mb-3">
+        <Form.Group className="mb-3">
           <Form.Label>Upload your photos</Form.Label>
-          <Form.Control type="file" multiple arrayOf/>
+          <Form.Control
+          type="file"
+          multiple
+          name='photos'
+          value={newReview.photos}
+          onChange={handleOnChange}
+          />
           <Form.Text className='text-muted'>
             Up to 5 photos
           </Form.Text>
         </Form.Group>
         <br />
-        <Form.Group className='mb-3' controlId='exampleForm.ControlInput1'>
+        <Form.Group className='mb-3'>
           <Form.Label>What is your nickname (mandatory)</Form.Label>
-          <Form.Control type='text' placeholder='Example: jackson11!'/>
+          <Form.Control
+          type='text'
+          placeholder='Example: jackson11!'
+          name='name'
+          value={newReview.name}
+          onChange={handleOnChange}
+          />
           <Form.Text className='text-muted'>
             For privacy reasons, do not use your full name or email address
           </Form.Text>
         </Form.Group>
         <br />
-        <Form.Group className='mb-3' controlId='formBasicEmail'>
+        <Form.Group className='mb-3'>
           <Form.Label>Your email (mandatory)</Form.Label>
-          <Form.Control type='email' placeholder='Example: jackson11@email.com'/>
+          <Form.Control
+          type='email'
+          placeholder='Example: jackson11@email.com'
+          name='email'
+          value={newReview.email}
+          onChange={handleOnChange}
+          />
           <Form.Text className='text-muted'>
             For authentication reasons, you will not be emailed
           </Form.Text>

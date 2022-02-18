@@ -10,6 +10,7 @@ const ReviewsMetadata = () => {
 
   return (
     <div>
+      {console.log('REVIEWS META:', reviewsMetadata)}
       <h4>Reviews Overview</h4>
       <Stack direction='horizontal' gap={3}>
         <AverageRating ratings={reviewsMetadata.value.ratings} />

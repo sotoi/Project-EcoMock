@@ -143,11 +143,10 @@ export const getReviewsMetadata = async (product_id) => {
 >>>>>>> 51fb9ef (updated store for reviews metadata)
 };
 export const addNewReview = (newReview) => {
-  reqInstance.post(
+  return reqInstance.post(
     `${BASEURL}/reviews`,
     { params: newReview },
   )
-    .then((res) => console.log(res.data))
     .catch((err) => console.error(err));
 };
 export const markReviewAsHelpful = (product_id) => {
