@@ -145,7 +145,7 @@ export const getReviewsMetadata = async (product_id) => {
 export const addNewReview = (newReview) => {
   return reqInstance.post(
     `${BASEURL}/reviews`,
-    { params: newReview },
+    newReview
   )
     .catch((err) => console.error(err));
 };

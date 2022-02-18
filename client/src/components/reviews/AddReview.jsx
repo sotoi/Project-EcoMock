@@ -13,14 +13,14 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
 
   // HANDLE CHANGES IN FORM
   const initialState = {
-    product_id: product_id,
-    rating: 0,
-    summary: '',
-    recommend: true,
-    body: '',
-    name: '',
-    email: '',
-    photos: [],
+    'product_id': Number(product_id),
+    'rating': 0,
+    'summary': '',
+    'recommend': true,
+    'body': '',
+    'name': '',
+    'email': '',
+    // photos: ['https://images.urbndata.com/is/image/UrbanOutfitters/64169618_012_b?$xlarge$&fit=constrain&fmt=webp&qlt=80&wid=720'],
     characteristics: {}
   }
 
@@ -32,9 +32,13 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
       let newPhotos = newReview.photos;
       newPhotos.push(value);
       setNewReview({...newReview, photos: newPhotos})
+    } else if (name === 'rating') {
+      setNewReview({...newReview, [name]: Number(value)})
+    } else if (name === 'recommend') {
+      setNewReview({...newReview, [name]: Boolean(value)})
     } else if (newReview[name] === undefined) {
       let newCharacteristics = newReview.characteristics;
-      newCharacteristics[name] = value;
+      newCharacteristics[name] = Number(value);
       setNewReview({...newReview, characteristics: newCharacteristics})
     } else {
       setNewReview({...newReview, [name]: value})
@@ -43,16 +47,17 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
   console.log('NEW REVIEW:', newReview);
 
   // HANDLE REVIEW FORM SUMBIT
-  // const [submitStatus, setSubmitStatus] = useState(false);
-  // const handleSubmit = () => {
-  //   addNewReview(newReview)
-  //     .then(() => submitStatus(true));
-  // };
+  const [submitStatus, setSubmitStatus] = useState(false);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    addNewReview(newReview)
+      .then(() => setSubmitStatus(true));
+  };
 
-  // useEffect(() => {
-  //   dispatch(fetchReviews({product_id: product_id, count: reviewCount, sort: sort}));
-  //   dispatch(fetchReviewsMetadata(product_id));
-  // }, [submitStatus]);
+  useEffect(() => {
+    dispatch(fetchReviews({product_id: product_id, count: reviewCount, sort: sort}));
+    dispatch(fetchReviewsMetadata(product_id));
+  }, [submitStatus]);
 
   // FUNCTIONS TO RENDER CHARACTERISTICS DESIGNATED AS APPLICABLE TO PRODUCT
   const reviewsMetadata = useSelector((state) => state.reviewsMetadata);
@@ -453,9 +458,10 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
   // FUNCTION TO RENDER REVIEW FORM
   const renderForm = () => {
     return (
-      <Form>
+      <Form onSubmit={(event) => handleSubmit(event)}>
+        <Form.Label className='text-danger'>Please note: inputs with an * are mandatory</Form.Label>
         <Form.Group className='mb-3'>
-          <Form.Label>Overall rating (mandatory)</Form.Label>
+          <Form.Label>Overall rating *</Form.Label>
           <br />
           <small>
             {newReview.rating > 0 ? ratingChart[newReview.rating] : 'none selected'}
@@ -504,7 +510,7 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
           </div>
         </Form.Group>
         <Form.Group className='mb-3'>
-          <Form.Label>Do you recommend this product? (mandatory)</Form.Label>
+          <Form.Label>Do you recommend this product? *</Form.Label>
           <div key='recommend' className="mb-3">
             <Form.Check
               type='radio'
@@ -526,7 +532,7 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
         </Form.Group>
         <br />
         <Form.Group className='mb-3'>
-          <Form.Label>Characteristics (mandatory)</Form.Label>
+          <Form.Label>Characteristics *</Form.Label>
           <div key='size' className="mb-3">{hasSize()}</div>
           <div key='width' className="mb-3">{hasWidth()}</div>
           <div key='comfort' className="mb-3">{hasComfort()}</div>
@@ -552,7 +558,7 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
         </Form.Group>
         <br />
         <Form.Group className='mb-3'>
-          <Form.Label>Review body (mandatory)</Form.Label>
+          <Form.Label>Review body *</Form.Label>
           <Form.Control
           as='textarea'
           rows={3}
@@ -583,7 +589,7 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
         </Form.Group>
         <br />
         <Form.Group className='mb-3'>
-          <Form.Label>What is your nickname (mandatory)</Form.Label>
+          <Form.Label>What is your nickname *</Form.Label>
           <Form.Control
           type='text'
           placeholder='Example: jackson11!'
@@ -597,7 +603,7 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
         </Form.Group>
         <br />
         <Form.Group className='mb-3'>
-          <Form.Label>Your email (mandatory)</Form.Label>
+          <Form.Label>Your email *</Form.Label>
           <Form.Control
           type='email'
           placeholder='Example: jackson11@email.com'
