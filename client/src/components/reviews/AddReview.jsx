@@ -14,7 +14,7 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
   // HANDLE CHANGES IN FORM
   const initialState = {
     product_id: product_id,
-    rating: 5,
+    rating: 0,
     summary: '',
     recommend: true,
     body: '',
@@ -32,7 +32,7 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
       let newPhotos = newReview.photos;
       newPhotos.push(value);
       setNewReview({...newReview, photos: newPhotos})
-    } else if (!newReview[name]) {
+    } else if (newReview[name] === undefined) {
       let newCharacteristics = newReview.characteristics;
       newCharacteristics[name] = value;
       setNewReview({...newReview, characteristics: newCharacteristics})
@@ -60,10 +60,18 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
   const hasSize = () => {
     if (reviewsMetadata.value.characteristics && reviewsMetadata.value.characteristics['Size']) {
       let name = reviewsMetadata.value.characteristics['Size']['id'];
+      let value = newReview.characteristics[name];
+      const sizeChart = {
+        1: 'A size too small',
+        2: '1/2 a size too small',
+        3: 'Perfect',
+        4: '1/2 a size too big',
+        5: 'A size too wide'
+      };
       return (
         <>
           <small>
-              Size: [TODO: dynamically show meaning of current selection]
+              Size: {value ? sizeChart[value] : 'none selected'}
           </small>
           <Form.Check
             type='radio'
@@ -116,10 +124,18 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
   const hasWidth = () => {
     if (reviewsMetadata.value.characteristics && reviewsMetadata.value.characteristics['Width']) {
       let name = reviewsMetadata.value.characteristics['Width']['id'];
+      let value = newReview.characteristics[name];
+      const widthChart = {
+        1: 'Too narrow',
+        2: 'Slightly narrow',
+        3: 'Perfect',
+        4: 'Slightly wide',
+        5: 'Too wide'
+      };
       return (
         <>
           <small>
-            Width: [TODO: dynamically show meaning of current selection]
+          Width: {value ? widthChart[value] : 'none selected'}
           </small>
           <Form.Check
             type='radio'
@@ -172,10 +188,18 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
   const hasComfort = () => {
     if (reviewsMetadata.value.characteristics && reviewsMetadata.value.characteristics['Comfort']) {
       let name = reviewsMetadata.value.characteristics['Comfort']['id'];
+      let value = newReview.characteristics[name];
+      const comfortChart = {
+        1: 'Uncomfortable',
+        2: 'Slightly uncomfortable',
+        3: 'Ok',
+        4: 'Comfortable',
+        5: 'Perfect'
+      };
       return (
         <>
           <small>
-            Comfort: [TODO: dynamically show meaning of current selection]
+            Comfort: {value ? comfortChart[value] : 'none selected'}
           </small>
           <Form.Check
             type='radio'
@@ -228,10 +252,18 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
   const hasQuality = () => {
     if (reviewsMetadata.value.characteristics && reviewsMetadata.value.characteristics['Quality']) {
       let name = reviewsMetadata.value.characteristics['Quality']['id'];
+      let value = newReview.characteristics[name];
+      const qualityChart = {
+        1: 'Poor',
+        2: 'Below average',
+        3: 'What I expected',
+        4: 'Pretty great',
+        5: 'Perfect'
+      }
       return (
         <>
           <small>
-            Quality: [TODO: dynamically show meaning of current selection]
+            Quality: {value ? qualityChart[value] : 'none selected'}
           </small>
           <Form.Check
             type='radio'
@@ -284,10 +316,18 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
   const hasLength = () => {
     if (reviewsMetadata.value.characteristics && reviewsMetadata.value.characteristics['Length']) {
       let name = reviewsMetadata.value.characteristics['Length']['id'];
+      let value = newReview.characteristics[name];
+      const lengthChart = {
+        1: 'Runs short',
+        2: 'Runs slightly short',
+        3: 'Perfect',
+        4: 'Runs slightly long',
+        5: 'Runs long'
+      }
       return (
         <>
           <small>
-            Length: [TODO: dynamically show meaning of current selection]
+            Length: {value ? lengthChart[value] : 'none selected'}
           </small>
           <Form.Check
             type='radio'
@@ -340,10 +380,18 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
   const hasFit = () => {
     if (reviewsMetadata.value.characteristics && reviewsMetadata.value.characteristics['Fit']) {
       let name = reviewsMetadata.value.characteristics['Fit']['id'];
+      let value = newReview.characteristics[name];
+      const fitChart = {
+        1: 'Runs tight',
+        2: 'Runs slightly tight',
+        3: 'Perfect',
+        4: 'Runs slightly long',
+        5: 'Runs long'
+      }
       return (
         <>
           <small>
-            Fit: [TODO: dynamically show meaning of current selection]
+            Fit: {value ? fitChart[value] : 'none selected'}
           </small>
           <Form.Check
             type='radio'
@@ -393,12 +441,25 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
     }
   };
 
+  // RATING CHART TO DYNAMICALLY SHOW MEANING OF STAR SELECTION
+  let ratingChart = {
+    1: 'Poor',
+    2: 'Fair',
+    3: 'Average',
+    4: 'Good',
+    5: 'Great'
+  };
+
   // FUNCTION TO RENDER REVIEW FORM
   const renderForm = () => {
     return (
       <Form>
         <Form.Group className='mb-3'>
           <Form.Label>Overall rating (mandatory)</Form.Label>
+          <br />
+          <small>
+            {newReview.rating > 0 ? ratingChart[newReview.rating] : 'none selected'}
+          </small>
           <div key='rating' className="mb-3">
             <Form.Check
               type='radio'
