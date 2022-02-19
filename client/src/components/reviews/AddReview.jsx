@@ -13,14 +13,14 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
 
   // HANDLE CHANGES IN FORM
   const initialState = {
-    'product_id': Number(product_id),
-    'rating': 0,
-    'summary': '',
-    'recommend': true,
-    'body': '',
-    'name': '',
-    'email': '',
-    // photos: ['https://images.urbndata.com/is/image/UrbanOutfitters/64169618_012_b?$xlarge$&fit=constrain&fmt=webp&qlt=80&wid=720'],
+    product_id: Number(product_id),
+    rating: 0,
+    summary: '',
+    recommend: true,
+    body: '',
+    name: '',
+    email: '',
+    photos: [],
     characteristics: {}
   }
 
@@ -616,7 +616,7 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
           </Form.Text>
         </Form.Group>
         <br />
-        <Button variant='dark' type='submit'>Submit review</Button>
+        <Button variant='dark' type='submit' onClick={handleClose}>Submit review</Button>
       </Form>
     );
   };
