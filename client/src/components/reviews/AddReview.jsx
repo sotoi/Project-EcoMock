@@ -4,11 +4,15 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Modal from 'react-bootstrap/Modal';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Image from 'react-bootstrap/Image';
 import { fetchReviews, fetchReviewsMetadata } from '../../redux/store.js';
 import { addNewReview, getReviews, getReviewsMetadata } from '../helpers/main_helpers.jsx';
-import { handleSubmitWithPhotos } from '../helpers/reviewForm_helper.jsx';
 import Stars from './Stars.jsx';
 const axios = require('axios');
+const Buffer = require('buffer/').Buffer;
 
 const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
   const dispatch = useDispatch();
@@ -28,14 +32,46 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
 
   const [newReview, setNewReview] = useState(initialState);
   useEffect(() => {}, [newReview])
+  const handleOnChangePhotos = async (event) => {
+    // photo file from event
+    const {name, value} = event.target;
+    let file = event.target.files[0]
+    // function to get blobs
+    const getBase64 = (file) => {
+      const reader = new FileReader();
+      return new Promise(resolve => {
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+          resolve(reader.result);
+        }
+      })
+    }
+    // convert file data into blob
+    let blob = await getBase64(file);
+    // get url from server
+    let getUrl = await axios.get('/s3Url').then((data) => data.data)
+    // add photos to s3 bucket
+    let base64Data = new Buffer.from(blob.replace(/^data:image\/\w+;base64,/, ""), 'base64');
+    let putUrl = await axios({
+      method: 'PUT',
+      url: getUrl,
+      headers: {
+        'Content-Type': 'image/jpeg',
+        'Content-Encoding': 'base64'
+      },
+      data: base64Data
+    });
+    // get s3 url
+    let s3Url = putUrl.config.url.split('?')[0];
+    // setNewReview with s3 url at photo property
+    let newPhotos = newReview.photos;
+    newPhotos.push(s3Url);
+    setNewReview({...newReview, photos: newPhotos});
+  }
   const handleOnChange = (event) => {
     const {name, value} = event.target;
-    if (name.indexOf('photo') > -1) {
-      let newPhotos = newReview.photos;
-      newPhotos.push(event.target.files[0]);
-      setNewReview({...newReview, photos: newPhotos})
-    } else if (name === 'rating') {
-      setNewReview({...newReview, [name]: Number(value)})
+    if (name === 'rating') {
+      setNewReview({...newReview, [name]: Number(value)});
     } else if (name === 'recommend') {
       let bool;
       if (value === 'false') {
@@ -47,25 +83,19 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
     } else if (newReview[name] === undefined) {
       let newCharacteristics = newReview.characteristics;
       newCharacteristics[name] = Number(value);
-      setNewReview({...newReview, characteristics: newCharacteristics})
+      setNewReview({...newReview, characteristics: newCharacteristics});
     } else {
-      setNewReview({...newReview, [name]: value})
+      setNewReview({...newReview, [name]: value});
     }
   }
   console.log('NEW REVIEW:', newReview);
 
   // HANDLE REVIEW FORM SUMBIT
   const [submitStatus, setSubmitStatus] = useState(false);
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    if (newReview.photos.length > 0) {
-      let reviewToSubmit = await handleSubmitWithPhotos(newReview);
-      addNewReview(reviewToSubmit)
-        .then(() => setSubmitStatus(true));
-    } else {
-      addNewReview(newReview)
-        .then(() => setSubmitStatus(true));
-    }
+    addNewReview(newReview)
+      .then(() => setSubmitStatus(true));
   };
 
   useEffect(() => {
@@ -593,31 +623,65 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
           <Form.Control
           type="file"
           name='photo-1'
-          onChange={handleOnChange}
+          onChange={handleOnChangePhotos}
           />
           <Form.Control
           type="file"
           name='photo-2'
-          onChange={handleOnChange}
+          onChange={handleOnChangePhotos}
           />
           <Form.Control
           type="file"
           name='photo-3'
-          onChange={handleOnChange}
+          onChange={handleOnChangePhotos}
           />
           <Form.Control
           type="file"
           name='photo-4'
-          onChange={handleOnChange}
+          onChange={handleOnChangePhotos}
           />
           <Form.Control
           type="file"
           name='photo-5'
-          onChange={handleOnChange}
+          onChange={handleOnChangePhotos}
           />
           <Form.Text className='text-muted'>
             Up to 5 photos
           </Form.Text>
+          <Container>
+            <Row>
+              <Col>
+                {(newReview.photos[0])
+                  ? <Image src={newReview.photos[0]} thumbnail className='review-form-photos' style={{height: '100px'}}/>
+                  : <></>
+                }
+              </Col>
+              <Col>
+                {(newReview.photos[1])
+                  ? <Image src={newReview.photos[1]} thumbnail className='review-form-photos' style={{height: '100px'}}/>
+                  : <></>
+                }
+              </Col>
+              <Col>
+                {(newReview.photos[2])
+                  ? <Image src={newReview.photos[2]} thumbnail className='review-form-photos' style={{height: '100px'}}/>
+                  : <></>
+                }
+              </Col>
+              <Col>
+                {(newReview.photos[3])
+                  ? <Image src={newReview.photos[3]} thumbnail className='review-form-photos' style={{height: '100px'}}/>
+                  : <></>
+                }
+              </Col>
+              <Col>
+                {(newReview.photos[4])
+                  ? <Image src={newReview.photos[4]} thumbnail className='review-form-photos' style={{height: '100px'}}/>
+                  : <></>
+                }
+              </Col>
+            </Row>
+          </Container>
         </Form.Group>
         <br />
         <Form.Group className='mb-3'>
