@@ -4,10 +4,10 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Modal from 'react-bootstrap/Modal';
-import { fetchReviews, fetchReviewsMetadata }  from '../../redux/store.js';
+import { fetchReviews, fetchReviewsMetadata } from '../../redux/store.js';
 import { addNewReview, getReviews, getReviewsMetadata } from '../helpers/main_helpers.jsx';
+import { handleSubmitWithPhotos } from '../helpers/reviewForm_helper.jsx';
 import Stars from './Stars.jsx';
-const Buffer = require('buffer/').Buffer
 const axios = require('axios');
 
 const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
@@ -26,27 +26,13 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
     characteristics: {}
   }
 
-  // HANDLE PHOTO UPLOADS
-  // https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsDataURL
-  const getBase64 = (file) => {
-    const reader = new FileReader();
-    return new Promise(resolve => {
-      reader.readAsDataURL(file);
-      reader.onloadend = () => {
-        resolve(reader.result);
-      }
-    })
-  }
-
   const [newReview, setNewReview] = useState(initialState);
   useEffect(() => {}, [newReview])
   const handleOnChange = (event) => {
     const {name, value} = event.target;
     if (name.indexOf('photo') > -1) {
       let newPhotos = newReview.photos;
-      getBase64(event.target.files[0])
-        .then((newPhoto) => newPhotos.push(newPhoto))
-        .catch((err) => console.error(err));
+      newPhotos.push(event.target.files[0]);
       setNewReview({...newReview, photos: newPhotos})
     } else if (name === 'rating') {
       setNewReview({...newReview, [name]: Number(value)})
@@ -66,38 +52,16 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
   const [submitStatus, setSubmitStatus] = useState(false);
   const handleSubmit = async (event) => {
     event.preventDefault();
-      // get url from server
-      if (newReview.photos.length > 0) {
-        let s3UrlGetPromises = [];
-        newReview.photos.forEach((photo) => {
-          let getUrl = axios.get('/s3Url').then((data) => data.data)
-          s3UrlGetPromises.push(getUrl);
-        });
-        let s3UrlsGet = await Promise.all(s3UrlGetPromises);
-        // add photos to s3
-        let s3UrlPutPromises = [];
-        s3UrlsGet.forEach((s3Url, index) => {
-          let base64 = newReview.photos[index];
-          let base64Data = new Buffer.from(base64.replace(/^data:image\/\w+;base64,/, ""), 'base64');
-          let putUrl = axios({
-            method: 'PUT',
-            url: s3Url,
-            headers: {
-              'Content-Type': 'image/jpeg',
-              'Content-Encoding': 'base64'
-            },
-            data: base64Data
-          });
-          s3UrlPutPromises.push(putUrl);
-        });
-        let s3UrlsPut = await Promise.all(s3UrlPutPromises);
-        let s3PhotoUrls = s3UrlsPut.map((s3Url) => {
-        return s3Url.config.url.split('?')[0];
-        });
-      }
-    // add new review
-    addNewReview(newReview)
-      .then(() => setSubmitStatus(true));
+    console.log('LENGTH: ', newReview.length)
+    if (newReview.photos.length > 0) {
+      let reviewToSubmit = await handleSubmitWithPhotos(newReview);
+      console.log('REVIEW TO SUBMIT: ', reviewToSubmit);
+      addNewReview(reviewToSubmit)
+        .then(() => setSubmitStatus(true));
+    } else {
+      addNewReview(newReview)
+        .then(() => setSubmitStatus(true));
+    }
   };
 
   useEffect(() => {
