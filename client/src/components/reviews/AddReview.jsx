@@ -37,7 +37,13 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
     } else if (name === 'rating') {
       setNewReview({...newReview, [name]: Number(value)})
     } else if (name === 'recommend') {
-      setNewReview({...newReview, [name]: Boolean(value)})
+      let bool;
+      if (value === 'false') {
+        bool = false;
+      } else {
+        bool = true;
+      }
+      setNewReview({...newReview, [name]: bool})
     } else if (newReview[name] === undefined) {
       let newCharacteristics = newReview.characteristics;
       newCharacteristics[name] = Number(value);
@@ -52,10 +58,8 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
   const [submitStatus, setSubmitStatus] = useState(false);
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('LENGTH: ', newReview.length)
     if (newReview.photos.length > 0) {
       let reviewToSubmit = await handleSubmitWithPhotos(newReview);
-      console.log('REVIEW TO SUBMIT: ', reviewToSubmit);
       addNewReview(reviewToSubmit)
         .then(() => setSubmitStatus(true));
     } else {
@@ -525,7 +529,7 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
             <Form.Check
               type='radio'
               name='recommend'
-              value={newReview.recommend}
+              value={true}
               onChange={handleOnChange}
               id='recommend-yes'
               label='Yes'
@@ -533,7 +537,7 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
             <Form.Check
               type='radio'
               name='recommend'
-              value={newReview.recommend}
+              value={false}
               onChange={handleOnChange}
               id='recommend-no'
               label='No'

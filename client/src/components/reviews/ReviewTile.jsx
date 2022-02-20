@@ -44,7 +44,7 @@ const ReviewTile = ({ review, product_id, sort, reviewCount }) => {
 
   // REVIEWER RECOMMENDATION?
   const isRecommended = (trueOrFalse) => {
-    if (trueOrFalse) {
+    if (trueOrFalse === true) {
       return 'I recommend this product ✅';
     }
   }
