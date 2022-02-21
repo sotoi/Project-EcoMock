@@ -134,15 +134,12 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
     setNewReview({...newReview, rating: 5});
   }
 
-  // HANDLE CHANGES IN FORM (ASIDE FROM PHOTOS)
+  // HANDLE CHANGES IN FORM (ASIDE FROM PHOTOS AND RATING)
   // handling validation for recommendation in on change handler since it
   // is initiated with a boolean already - see below on remaining form validation
   const [recommendationValidated, setRecommendationValidated] = useState(false);
   const handleOnChange = (event) => {
     const {name, value} = event.target;
-    // if (name === 'rating') {
-    //   console.log(event.target);
-    //   setNewReview({...newReview, [name]: Number(value)});
     if (name === 'recommend') {
       let bool;
       if (value === 'false') {
@@ -640,46 +637,6 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
               <Button variant="light" name='rating5' value={5} onClick={onStar5Click}>
                 <Image src='../../../assets/FilledStar.svg'/>
               </Button>
-            {/* <Form.Check
-              type='radio'
-              name='rating'
-              value={1}
-              onChange={handleOnChange}
-              id='rating-1'
-              label={<Stars ratingInput={1}/>}
-            />
-            <Form.Check
-              type='radio'
-              name='rating'
-              value={2}
-              onChange={handleOnChange}
-              id='rating-2'
-              label={<Stars ratingInput={2}/>}
-            />
-            <Form.Check
-              type='radio'
-              name='rating'
-              value={3}
-              onChange={handleOnChange}
-              id='rating-3'
-              label={<Stars ratingInput={3}/>}
-            />
-            <Form.Check
-              type='radio'
-              name='rating'
-              value={4}
-              onChange={handleOnChange}
-              id='rating-4'
-              label={<Stars ratingInput={4}/>}
-            />
-            <Form.Check
-              type='radio'
-              name='rating'
-              value={5}
-              onChange={handleOnChange}
-              id='rating-5'
-              label={<Stars ratingInput={5}/>}
-            /> */}
           </div>
         </Form.Group>
         <Form.Group className='mb-3'>
