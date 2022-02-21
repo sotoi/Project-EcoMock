@@ -16,22 +16,24 @@ const Buffer = require('buffer/').Buffer;
 
 const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
   const dispatch = useDispatch();
+  const reviewsMetadata = useSelector((state) => state.reviewsMetadata);
 
-  // HANDLE CHANGES IN FORM
+  // SET INITIAL STATE OF FORM
   const initialState = {
     product_id: Number(product_id),
     rating: 0,
     summary: '',
-    recommend: true,
+    recommend: false,
     body: '',
     name: '',
     email: '',
     photos: [],
     characteristics: {}
   }
-
   const [newReview, setNewReview] = useState(initialState);
-  useEffect(() => {}, [newReview])
+  useEffect(() => {}, [newReview]);
+
+  // HANDLE CHANGES IN FORM PHOTOS
   const handleOnChangePhotos = async (event) => {
     // photo file from event
     const {name, value} = event.target;
@@ -68,6 +70,11 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
     newPhotos.push(s3Url);
     setNewReview({...newReview, photos: newPhotos});
   }
+
+  // HANDLE CHANGES IN FORM (ASIDE FROM PHOTOS)
+  // handling validation for recommendation in on change handler since it
+  // is initiated with a boolean already - see below on remaining form validation
+  const [recommendationValidated, setRecommendationValidated] = useState(false);
   const handleOnChange = (event) => {
     const {name, value} = event.target;
     if (name === 'rating') {
@@ -79,7 +86,8 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
       } else {
         bool = true;
       }
-      setNewReview({...newReview, [name]: bool})
+      setNewReview({...newReview, [name]: bool});
+      setRecommendationValidated(true);
     } else if (newReview[name] === undefined) {
       let newCharacteristics = newReview.characteristics;
       newCharacteristics[name] = Number(value);
@@ -91,11 +99,46 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
   console.log('NEW REVIEW:', newReview);
 
   // HANDLE REVIEW FORM SUMBIT
+  // FORM VALIDATION FUNCTIONS
+      // error if:
+      // - any mandatory fields are blank:
+        // i.e. overall rating, recommendation, characteristics, review body, nickname, email
+      // - review body is < 50 characters
+      // note: form already has validation for correct email formay and invalid photos
+
+  const requiredFields = {
+    rating: newReview.rating > 0,
+    recommend: recommendationValidated,
+    characteristics: reviewsMetadata.value.characteristics && Object.keys(newReview.characteristics).length === Object.keys(reviewsMetadata.value.characteristics).length,
+    body: newReview.body.length > 50,
+    name: newReview.name !== '',
+    email: newReview.email !== ''
+  }
+  let errorAlert= 'You must enter the following:';
+  for (var field in requiredFields) {
+    if (requiredFields[field] === false) {
+      errorAlert += '\n' + field;
+    }
+  }
+  const formValidated = () => {
+    for (var field in requiredFields) {
+      if (requiredFields[field] === false) {
+        return false;
+      }
+    }
+    return true;
+  }
   const [submitStatus, setSubmitStatus] = useState(false);
   const handleSubmit = (event) => {
     event.preventDefault();
-    addNewReview(newReview)
+    let validated = formValidated();
+    if (validated) {
+      addNewReview(newReview)
       .then(() => setSubmitStatus(true));
+      alert('Submission successful: you may exit the form');
+    } else {
+      alert(errorAlert);
+    }
   };
 
   useEffect(() => {
@@ -104,8 +147,6 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
   }, [submitStatus]);
 
   // FUNCTIONS TO RENDER CHARACTERISTICS DESIGNATED AS APPLICABLE TO PRODUCT
-  const reviewsMetadata = useSelector((state) => state.reviewsMetadata);
-
   const hasSize = () => {
     if (reviewsMetadata.value.characteristics && reviewsMetadata.value.characteristics['Size']) {
       let name = reviewsMetadata.value.characteristics['Size']['id'];
@@ -491,13 +532,22 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
   };
 
   // RATING CHART TO DYNAMICALLY SHOW MEANING OF STAR SELECTION
-  let ratingChart = {
+  const ratingChart = {
     1: 'Poor',
     2: 'Fair',
     3: 'Average',
     4: 'Good',
     5: 'Great'
   };
+
+  // 50 CHARACTER COUNTDOWN FOR REVIEW BODY
+  const remainingChars = (length) => {
+    if (length >= 50) {
+      return 0;
+    } else {
+      return 50 - length;
+    }
+  }
 
   // FUNCTION TO RENDER REVIEW FORM
   const renderForm = () => {
@@ -616,6 +666,10 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
           <Form.Text className='text-muted'>
             Between 50 to 1000 characters
           </Form.Text>
+          <br />
+          <Form.Text className='text-muted'>
+            Minimum characters remaining: {remainingChars(newReview.body.length)}
+          </Form.Text>
         </Form.Group>
         <br />
         <Form.Group className="mb-3">
@@ -712,14 +766,13 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
           </Form.Text>
         </Form.Group>
         <br />
-        <Button variant='dark' type='submit' onClick={handleClose}>Submit review</Button>
+        <Button variant='dark' type='submit'>Submit review</Button>
       </Form>
     );
   };
 
   // HANDLE MODAL
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
