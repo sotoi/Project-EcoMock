@@ -70,6 +70,69 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
     newPhotos.push(s3Url);
     setNewReview({...newReview, photos: newPhotos});
   }
+  // HANDLE CLICKING IN FORM RATING
+  let formStars = document.querySelectorAll('.form-star Button');
+  console.log(formStars);
+  const onStar1Click = () => {
+    if (formStars) {
+      formStars.forEach((star, index) => {
+        if (index === 0) {
+          star.classList.add('active');
+        } else {
+          star.classList.remove('active');
+        }
+      });
+    }
+    setNewReview({...newReview, rating: 1});
+  }
+  const onStar2Click = () => {
+    if (formStars) {
+      formStars.forEach((star, index) => {
+        if (index <= 1) {
+          star.classList.add('active');
+        } else {
+          star.classList.remove('active');
+        }
+      });
+    }
+    setNewReview({...newReview, rating: 2});
+  }
+  const onStar3Click = () => {
+    if (formStars) {
+      formStars.forEach((star, index) => {
+        if (index <= 2) {
+          star.classList.add('active');
+        } else {
+          star.classList.remove('active');
+        }
+      });
+    }
+    setNewReview({...newReview, rating: 3});
+  }
+  const onStar4Click = () => {
+    if (formStars) {
+      formStars.forEach((star, index) => {
+        if (index <= 3) {
+          star.classList.add('active');
+        } else {
+          star.classList.remove('active');
+        }
+      });
+    }
+    setNewReview({...newReview, rating: 4});
+  }
+  const onStar5Click = () => {
+    if (formStars) {
+      formStars.forEach((star, index) => {
+        if (index <= 4) {
+          star.classList.add('active');
+        } else {
+          star.classList.remove('active');
+        }
+      });
+    }
+    setNewReview({...newReview, rating: 5});
+  }
 
   // HANDLE CHANGES IN FORM (ASIDE FROM PHOTOS)
   // handling validation for recommendation in on change handler since it
@@ -77,9 +140,10 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
   const [recommendationValidated, setRecommendationValidated] = useState(false);
   const handleOnChange = (event) => {
     const {name, value} = event.target;
-    if (name === 'rating') {
-      setNewReview({...newReview, [name]: Number(value)});
-    } else if (name === 'recommend') {
+    // if (name === 'rating') {
+    //   console.log(event.target);
+    //   setNewReview({...newReview, [name]: Number(value)});
+    if (name === 'recommend') {
       let bool;
       if (value === 'false') {
         bool = false;
@@ -560,8 +624,23 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
           <small>
             {newReview.rating > 0 ? ratingChart[newReview.rating] : 'none selected'}
           </small>
-          <div key='rating' className="mb-3">
-            <Form.Check
+          <div key='rating' className="form-star">
+              <Button variant="light" name='rating1' onClick={onStar1Click}>
+                <Image src='../../../assets/FilledStar.svg'/>
+              </Button>
+              <Button variant="light" name='rating2' onClick={onStar2Click}>
+                <Image src='../../../assets/FilledStar.svg'/>
+              </Button>
+              <Button variant="light" name='rating3' value={3} onClick={onStar3Click}>
+                <Image src='../../../assets/FilledStar.svg'/>
+              </Button>
+              <Button variant="light" name='rating4' value={4} onClick={onStar4Click}>
+                <Image src='../../../assets/FilledStar.svg'/>
+              </Button>
+              <Button variant="light" name='rating5' value={5} onClick={onStar5Click}>
+                <Image src='../../../assets/FilledStar.svg'/>
+              </Button>
+            {/* <Form.Check
               type='radio'
               name='rating'
               value={1}
@@ -600,7 +679,7 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
               onChange={handleOnChange}
               id='rating-5'
               label={<Stars ratingInput={5}/>}
-            />
+            /> */}
           </div>
         </Form.Group>
         <Form.Group className='mb-3'>
