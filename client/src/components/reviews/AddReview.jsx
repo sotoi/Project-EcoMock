@@ -543,9 +543,9 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
   // 50 CHARACTER COUNTDOWN FOR REVIEW BODY
   const remainingChars = (length) => {
     if (length >= 50) {
-      return 0;
+      return 'Minimum reached';
     } else {
-      return 50 - length;
+      return 'Minimum required characters left: ' + (50 - length).toString();
     }
   }
 
@@ -668,7 +668,7 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
           </Form.Text>
           <br />
           <Form.Text className='text-muted'>
-            Minimum characters remaining: {remainingChars(newReview.body.length)}
+            {remainingChars(newReview.body.length)}
           </Form.Text>
         </Form.Group>
         <br />
