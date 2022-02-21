@@ -14,9 +14,22 @@ const Reviews = ({ product_id, product_name }) => {
   const dispatch = useDispatch();
 
   // HANDLE MORE REVIEWS BUTTON
+  const [resultsCount, setResultsCount] = useState();
+  const getTotalResults = async () => {
+    try {
+      const res = await getReviews({product_id: product_id, count: 200, sort: 'relevant'});
+      setResultsCount(res.data.results.length);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  getTotalResults();
+
   const [reviewCount, setReviewCount] = useState(2);
   const handleMoreReviewsButton = () => {
-    setReviewCount(reviewCount + 2);
+    if (reviewCount < resultsCount) {
+      setReviewCount(reviewCount + 2);
+    }
   };
 
   // HANDLE SORT SELECTION
@@ -43,7 +56,7 @@ const Reviews = ({ product_id, product_name }) => {
           <ReviewTile review={review} product_id={product_id} sort={sort} reviewCount={reviewCount} key={review.review_id} />
         ))}
       </Stack>
-      <Button variant='dark' onClick={() => handleMoreReviewsButton()}>More Reviews +</Button>
+      <>{(reviewCount < resultsCount) ? <Button variant='dark' size='sm' onClick={() => handleMoreReviewsButton()}>More Reviews +</Button> : <span>No more reviews</span>}</>
       <AddReview product_id={product_id} product_name={product_name} sort={sort} reviewCount={reviewCount} />
     </div>
   );

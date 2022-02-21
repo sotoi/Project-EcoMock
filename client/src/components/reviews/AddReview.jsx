@@ -814,7 +814,7 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
 
   return (
     <>
-      <Button variant='dark' onClick={handleShow}>Add Review +</Button>
+      <Button variant='dark' size='sm' onClick={handleShow}>Add Review +</Button>
 
       <Modal
         show={show}
