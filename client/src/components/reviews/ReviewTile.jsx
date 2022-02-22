@@ -17,13 +17,12 @@ const ReviewTile = ({ review, product_id, sort, reviewCount }) => {
   const [helpfulButtonsState, sethelpfulButtonsState] = useState(false);
 
   // HANDLE HELPFUL YES BUTTON
-  // const [helpful, setHelpful] = useState(review.helpfulness);
-  let helpful = review.helpfulness;
+  const [helpful, setHelpful] = useState(review.helpfulness);
+  // let helpful = review.helpfulness;
   const handleHelpfulButton = () => {
     if (!helpfulButtonsState) {
-      helpful += 1;
       sethelpfulButtonsState(true);
-      // setHelpful(helpful + 1);
+      setHelpful(helpful + 1);
       markReviewAsHelpful(review.review_id)
         .then(() => dispatch(fetchReviews({product_id: product_id, count: reviewCount, sort: sort})));
     }

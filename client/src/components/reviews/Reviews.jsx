@@ -40,23 +40,6 @@ const Reviews = ({ product_id, product_name, filteredReviews }) => {
     dispatch(fetchReviews({product_id: product_id, count: reviewCount, sort: sort}));
   }, [sort, reviewCount]);
 
-  // const isFiltered = () => {
-  //   console.log('FILTERED REVIEWS:', filteredReviews);
-  //   if (filteredReviews && filteredReviews.length > 0) {
-  //     return (
-  //       filteredReviews.map((review) => (
-  //         <ReviewTile review={review} product_id={product_id} sort={sort} reviewCount={reviewCount} key={review.review_id} />
-  //       ))
-  //     )
-  //   } else if (reviews.value.results) {
-  //     return (
-  //       reviews.value.results.map((review) => (
-  //         <ReviewTile review={review} product_id={product_id} sort={sort} reviewCount={reviewCount} key={review.review_id} />
-  //       ))
-  //     )
-  //   }
-  // }
-
   return (
     <div>
       {console.log('REVIEWS FROM REVIEWS:', reviews)}
