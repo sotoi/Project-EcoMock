@@ -24,18 +24,31 @@ export const getProduct = async (product_id) => {
     return null;
   }
 };
+export const getProduct2 = (product_id) => {
+    return reqInstance.get(`${BASEURL}/products/${product_id}`)
+};
+export const getStyles2 = (product_id) => {
+  return reqInstance.get(`${BASEURL}/products/${product_id}/styles`)
+}
+
 export const getStyles = (product_id, callback) => {
   reqInstance.get(`${BASEURL}/products/${product_id}/styles`)
     .then((res) => { callback(res.data.results); })
     .catch((err) => console.log(err.message));
 };
-export const getRelated = (product_id) => {
+export const getRelated = (product_id, callback) => {
   reqInstance.get(`${BASEURL}/products/${product_id}/related`)
-    .then((res) => { console.log(res.data); })
+    .then((res) => { callback(res.data); })
     .catch((err) => console.log(err.message));
 };
 
 // Cart Requests
+export const getCart = (sku_id) => {
+  return reqInstance.get(`${BASEURL}/cart`);
+}
+export const postCart = (sku_id) => {
+  return reqInstance.post(`${BASEURL}/cart`,{sku_id});
+}
 
 // Review Requests
 export const getReviews = (page, count, sort, product_id) => {

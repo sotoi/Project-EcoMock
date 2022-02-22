@@ -1,11 +1,18 @@
+body,html {
+  height: 100%;
+  width: 100%;
+}
 .style-img {
-  background-size:80px,80px;
+  background-size:cover;
   width: 80px;
   height: 80px;
+
+  margin-bottom: 11px;
   border-radius:50%;
+  cursor: pointer;
 }
 .selected-img {
-  background-size:80px,80px;
+  background-size:cover;
   width: 80px;
   height: 80px;
   border-radius: 50%;
@@ -18,19 +25,48 @@
 
 }
 .photoContainer{
-  position: relative;
-  z-index: 10;
-  top: 0;
-  left: 0;
-  width:40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 66vh;
+
+  width: 55vw;
+  max-width: 55vw;
+}
+ .carouselImg{
+   width: auto;
+   max-width: 100%;
+   max-height: 100%;
+   cursor: zoom-in;
+}
+
+.carousel-control-next-icon
+{
+  filter: invert(100%);
+}
+
+.carousel-control-prev-icon{
+filter: invert(100%);
+}
+.carousel-inner {
+  display: flex;
+}
+.carousel-item {
+  transition: none !important;
+  text-align: center;
+}
+.carousel-item.active {
+  text-align: center;
 
 }
-.carouselImg {
-  position: relative;
-  top: 0;
-  left: 0;
+.carousel{
+  display: flex;
   width: 100%;
-  height: 500px;
+  height: 100%;
+  justify-content: center;
+}
+.styleContainer{
+  height:auto;
 }
 .style-img .check {
   display: none;
@@ -38,14 +74,169 @@
 .styles {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  max-width: 350px;
+  width: 400px;
+  height: auto;
 }
-.expandIcon {
 
-  position:absolute;
-  top: 10px;
-  right:10px;
-  z-index: 1;
-  color: rgb(148, 148, 148);
-  size: 100px;
+.overview {
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: center;
+  padding-top: 2%;
+}
+.information {
+
+  padding-left: 6%;
+
+  max-width: 40vw;
+  min-width: 500px;
+}
+.productName {
+  font-size:3rem;
+  font-weight: 600;
+}
+.category {
+  font-size: 2rem;
+  padding-bottom: 20px;
+}
+.styleTitle {
+  font-size: 1.5rem;
+
+}
+#dropdownSize{
+
+  background-color: white;
+  color: black;
+  border-color: black;
+}
+.styles {
+  padding-top:30px;
+}
+.Form {
+  padding-top: 20px;
+  display: flex;
+
+}
+.btn-light {
+  border-color: black !important;
+}
+
+.modalImg {
+  width:auto ;
+  position: relative;
+  max-height: 90vh;
+  max-width: 90vw;
+  cursor:none;
+}
+.modal-dialog {
+  max-width: max-content !important;
+}
+.slashedPrice{
+  text-decoration: line-through;
+  margin-right: 20px ;
+  color: red;
+}
+.prices{
+  display: flex;
+
+}
+.description {
+  width: 82%;
+}
+#dropdownQuantity {
+  margin-inline: 25px;
+}
+.zoomContainer{
+
+  position: relative;
+}
+
+.glass {
+  cursor: none !important;
+  pointer-events: none;
+  position: absolute;
+  opacity: 1;
+  border: 1px solid lightgray;
+  /* border-radius: 50%; */
+  background-color: white;
+  background-repeat: no-repeat;
+
+
+}
+
+.card {
+  min-width: 200px;
+  max-width: 312px;
+  max-height: 408px;
+  height: 67vh;
+  border-radius: 30px;
+  border-radius: 9px !important;
+}
+.card-img-top {
+  object-fit: contain;
+  height: 100%;
+  background: #373737;
+  border-top-left-radius: 9px !important;
+  border-top-right-radius: 9px !important;
+  border: 2px solid #dbdbdb;
+  position: relative;
+}
+.Related {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  padding:30px;
+  flex-direction: column;
+}
+.Cards {
+  width: 80%;
+}
+.relatedTitle {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 11px;
+}
+.cardContainer{
+  display: flex;
+  justify-content: center;
+}
+.starIcon {
+  cursor: pointer;
+
+}
+.infoIcon {
+  cursor: pointer;
+}
+.starContainer {
+  display: flex;
+  padding-right:15px ;
+  justify-content: space-between;
+}
+.ciContainer {
+  height: 40%;
+  position: relative;
+}
+
+.comparisonContainer {
+  width: 60vw;
+  height: 60vh;
+  display: flex;
+  justify-content: space-between;
+
+}
+.imgCompContainer {
+  width: 33%;
+  display: flex;
+  align-items: center;
+}
+.compImg {
+  width: 100%;
+}
+.closeXButton {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  color: white;
+  z-index: 200;
 }
