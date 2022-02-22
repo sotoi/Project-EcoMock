@@ -1,25 +1,15 @@
 // eslint-disable-next-line no-unused-vars
 import { createAsyncThunk, createSlice, configureStore } from '@reduxjs/toolkit';
-import { combineReducers } from 'redux';
+import {  combineReducers } from 'redux';
 import { getProduct } from '../components/helpers/main_helpers.jsx';
-import { getReviews } from '../components/helpers/main_helpers.jsx';
 import { getReviewsMetadata } from '../components/helpers/main_helpers.jsx';
-
 export const fetchProductId = createAsyncThunk(
   'products/fetchProductIdStatus',
   async (productId, thunkAPI) => {
     const response = await getProduct(productId)
     return response.data
   }
-);
-
-export const fetchReviews = createAsyncThunk(
-  'reviews/fetchReviews',
-  async (params, thunkAPI) => {
-    const res = await getReviews(params);
-    return res.data;
-  }
-);
+)
 
 export const fetchReviewsMetadata = createAsyncThunk(
   'reviews/fetchReviewsMetadata',
@@ -27,7 +17,7 @@ export const fetchReviewsMetadata = createAsyncThunk(
     const res = await getReviewsMetadata(product_id);
     return res.data;
   }
-);
+)
 
 export const product = createSlice(
   {
@@ -50,25 +40,6 @@ export const product = createSlice(
   },
 );
 
-export const reviews = createSlice(
-  {
-    name: 'reviews',
-    initialState: {
-      value: {},
-    },
-    reducers: {
-      setReviews: (state, action) => {
-        state.value = action.payload;
-      },
-    },
-    extraReducers: (builder) => {
-      builder.addCase(fetchReviews.fulfilled, (state, action) => {
-        state.value = action.payload;
-      })
-    }
-  },
-);
-
 export const reviewsMetadata = createSlice(
   {
     name: 'reviewsMetadata',
@@ -88,17 +59,10 @@ export const reviewsMetadata = createSlice(
   },
 );
 
-export const reducer = combineReducers({
+const reducer = combineReducers({
   product: product.reducer,
-<<<<<<< HEAD
-<<<<<<< HEAD
   avgRating: avgRating.reducer,
-=======
-=======
-  reviews: reviews.reducer,
->>>>>>> 11a9c0f (added reviews and review tile components)
   reviewsMetadata: reviewsMetadata.reducer
->>>>>>> 51fb9ef (updated store for reviews metadata)
 });
 
 export const store = configureStore({

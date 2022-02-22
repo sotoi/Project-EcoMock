@@ -1,6 +1,6 @@
 import axios from 'axios';
 import GITAPIKEY from '../../../../config.js';
-import { store } from '../../redux/store.js';
+import { store, product } from '../../redux/store.js';
 
 const BASEURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax';
 
@@ -16,10 +16,7 @@ export const getProducts = () => {
     .then((res) => console.log(res.data))
     .catch((err) => console.log(err.message));
 };
-<<<<<<< HEAD
 
-=======
->>>>>>> 12ee090 (rendered ratings)
 export const getProduct = async (product_id) => {
   try{
     let res =  await reqInstance.get(`${BASEURL}/products/${product_id}`)
@@ -40,12 +37,8 @@ export const getStyles = (product_id, callback) => {
     .then((res) => { callback(res.data.results); })
     .catch((err) => console.log(err.message));
 };
-<<<<<<< HEAD
 
 export const getRelated = (product_id, callback) => {
-=======
-export const getRelated = (product_id) => {
->>>>>>> 12ee090 (rendered ratings)
   reqInstance.get(`${BASEURL}/products/${product_id}/related`)
     .then((res) => { callback(res.data); })
     .catch((err) => console.log(err.message));
@@ -60,7 +53,6 @@ export const postCart = (sku_id) => {
 }
 
 // Review Requests
-<<<<<<< HEAD
 export const getReviews = (page, count, sort, product_id) => {
   reqInstance.get(
     `${BASEURL}/reviews`,
@@ -71,28 +63,12 @@ export const getReviews = (page, count, sort, product_id) => {
       },
     },
   )
-<<<<<<< HEAD
   .then((res) => console.log(res.data))
   .catch((err) => console.error(err));
 };
 
-<<<<<<< HEAD
-export const getReviewsMetadata = (product_id, setMetadata) => {
-<<<<<<< HEAD
-=======
->>>>>>> 13c5479 (updated getReviewsMetaData helper)
-=======
-export const getReviewsMetadata = (product_id, callback) => {
->>>>>>> e39c380 (rendered ratings)
->>>>>>> 70ccb0a (rendered ratings)
-=======
-    .then((res) => console.log(res.data))
-    .catch((err) => console.error(err));
-};
-<<<<<<< HEAD
 
-export const getReviewsMetadata = (product_id, callback) => {
->>>>>>> 12ee090 (rendered ratings)
+export const getReviewsMetadata = (product_id, setMetadata) => {
   reqInstance.get(
     `${BASEURL}/reviews/meta`,
     {
@@ -100,59 +76,24 @@ export const getReviewsMetadata = (product_id, callback) => {
       { product_id },
     },
   )
-<<<<<<< HEAD
-<<<<<<< HEAD
     .then((res) => setMetadata(res.data))
     .catch((err) => console.error(err));
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 12ee090 (rendered ratings)
-    .then((res) => callback(res.data))
-    .catch((err) => console.error(err));
-<<<<<<< HEAD
->>>>>>> 13c5479 (updated getReviewsMetaData helper)
-=======
-    .then((res) => callback(res.data))
-    .catch((err) => callback(err));
->>>>>>> e39c380 (rendered ratings)
->>>>>>> 70ccb0a (rendered ratings)
-=======
->>>>>>> 12ee090 (rendered ratings)
-=======
-export const getReviewsMetadata = async (product_id) => {
-=======
-export const getReviews = async (params) => {
->>>>>>> 11a9c0f (added reviews and review tile components)
-  try {
-    let res = await reqInstance.get(`${BASEURL}/reviews`, {params: params});
-    return res;
-  } catch (err) {
-    return null;
-  }
-};
-export const getReviewsMetadata = async (product_id) => {
-  try {
-    let res = await reqInstance.get(`${BASEURL}/reviews/meta`, {params: { product_id }});
-    return res;
-  } catch (err) {
-    return null;
-  }
->>>>>>> 51fb9ef (updated store for reviews metadata)
 };
 export const addNewReview = (newReview) => {
-  return reqInstance.post(
+  reqInstance.post(
     `${BASEURL}/reviews`,
-    newReview
+    { params: newReview },
   )
+    .then((res) => console.log(res.data))
     .catch((err) => console.error(err));
 };
 export const markReviewAsHelpful = (product_id) => {
-  return reqInstance.put(`${BASEURL}/reviews/${product_id}/helpful`)
+  reqInstance.put(`${BASEURL}/reviews/${product_id}/helpful`)
+    .then((res) => console.log(res.data))
     .catch((err) => console.error(err));
 };
 export const reportReview = (product_id) => {
-  return reqInstance.put(`${BASEURL}/reviews/${product_id}/report`)
+  reqInstance.put(`${BASEURL}/reviews/${product_id}/report`)
+    .then((res) => console.log(res.data))
     .catch((err) => console.error(err));
 };

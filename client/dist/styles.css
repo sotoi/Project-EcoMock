@@ -78,7 +78,6 @@ filter: invert(100%);
   height: auto;
 }
 
-<<<<<<< HEAD
 .overview {
   display: flex;
   flex-wrap: wrap;
@@ -240,7 +239,6 @@ filter: invert(100%);
   top: 8px;
   color: white;
   z-index: 200;
-=======
   position:absolute;
   top: 10px;
   right:10px;
@@ -250,30 +248,4 @@ filter: invert(100%);
 }
 .star {
   height: 20px;
-<<<<<<< HEAD
->>>>>>> 6053a6d (finished star component)
-=======
-}
-
-.form-star Button {
-  height: 20px;
-  opacity: 50%;
-  cursor: pointer;
-}
-
-.form-star:hover Button {
-  opacity: 100%;
-}
-
-.form-star Button:hover {
-  opacity: 100%;
-}
-
-.form-star Button:hover ~ Button{
-  opacity: 50%;
-}
-
-.form-star Button.active {
-  opacity: 100%;
->>>>>>> 59db30e (updated stars on form - some lag with first star)
 }
