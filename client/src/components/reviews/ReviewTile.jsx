@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchReviews }  from '../../redux/store.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleCheck } from "@fortawesome/free-regular-svg-icons";
 import Stack from 'react-bootstrap/Stack';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
@@ -10,7 +12,7 @@ import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import Modal from 'react-bootstrap/Modal';
 import { markReviewAsHelpful, reportReview, getReviews } from '../helpers/main_helpers.jsx';
-import Stars from './Stars.jsx';
+import Stars from '../helpers/Stars.jsx';
 
 const ReviewTile = ({ review, product_id, sort, reviewCount }) => {
   const dispatch = useDispatch();
@@ -46,7 +48,9 @@ const ReviewTile = ({ review, product_id, sort, reviewCount }) => {
   // REVIEWER RECOMMENDATION?
   const isRecommended = (trueOrFalse) => {
     if (trueOrFalse === true) {
-      return 'I recommend this product ✅';
+      return (
+        <div>I recommend this product <FontAwesomeIcon icon={faCircleCheck} /></div>
+      )
     }
   }
 
@@ -81,7 +85,7 @@ const ReviewTile = ({ review, product_id, sort, reviewCount }) => {
           <Row>
             {photosArray.map((url, index) => (
               <Col key={url}>
-                <Button variant="light" onClick={() => handleShow(url)}>
+                <Button variant='light' className='review-tile-photos' onClick={() => handleShow(url)}>
                   <Image src={url} thumbnail className='review-photos' style={{height: '100px'}} onClick={handleShow}/>
                 </Button>
                 <Modal show={show} onHide={handleClose}>

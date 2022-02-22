@@ -5,8 +5,10 @@ import {FacebookShareButton} from "react-share";
 import { useSelector } from 'react-redux';
 import Form from './Form.jsx'
 import {postCart} from '../helpers/main_helpers.jsx'
+import AverageRating from '../helpers/AverageRating.jsx';
 const Overview = (props) => {
   const product = useSelector((state) => state.product);
+  const reviewsMetadata = useSelector((state) => state.reviewsMetadata);
   const [currStyle, setCurrStyle] = useState({});
   const [car ,setCart] = useState(0);
 
@@ -27,6 +29,7 @@ const Overview = (props) => {
         <PhotoContainer product={product.value.id} style={currStyle} />
         <div className='information'>
           <div className='productName'>{product.value.name}</div>
+          <AverageRating ratings={reviewsMetadata.value.ratings} />
           {/* <div className='social-media'><FacebookShareButton size={32} /></div> */}
           {!currStyle.sale_price ? <div className='defaultprice'>${currStyle.original_price}</div> :
             <div className='prices'>

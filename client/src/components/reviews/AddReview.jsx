@@ -10,7 +10,7 @@ import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import { fetchReviews, fetchReviewsMetadata } from '../../redux/store.js';
 import { addNewReview, getReviews, getReviewsMetadata } from '../helpers/main_helpers.jsx';
-import Stars from './Stars.jsx';
+import Stars from '../helpers/Stars.jsx';
 const axios = require('axios');
 const Buffer = require('buffer/').Buffer;
 
