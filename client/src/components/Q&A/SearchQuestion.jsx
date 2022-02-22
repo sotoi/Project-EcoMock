@@ -28,6 +28,7 @@ class SearchQuestion extends  React.Component {
     return (
       //Fragments let you group a list of children without adding extra nodes to the DOM.
      <div>
+     {/* {console.log('SearchProps = ', this.props.questions)}; */}
        <div className="searchbar">
          <form>
          <p className="searchbartitle"> QUESTIONS & ANSWERS

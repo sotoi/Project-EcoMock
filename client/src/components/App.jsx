@@ -11,9 +11,12 @@ import { getQandA } from './helpers/main_helpers.jsx';
 
 function App() {
   const { id } = useParams();
+  console.log('Id = ', id)
   const dispatch = useDispatch()
+  const product = useSelector((state) => state.product);
   const [styles, setStyles] = useState([]);
   const [related, setRelated] = useState([]);
+  const [QA, setQA] = useState([])
 
   useEffect(() => {
     dispatch(fetchProductId(id));
@@ -21,16 +24,18 @@ function App() {
     getRelated(id, setRelated)
     dispatch(fetchReviews({product_id: id, count: 2, sort: 'relevant'}));
     dispatch(fetchReviewsMetadata(id));
+    getQandA(id, setQA);
   }, [id]);
 
   return (
-
     <div>
       <Overview styles={styles}/>
       <Related related={related} styles={styles} />
+      {(QA.length > 0)
+      ? <div><QuestionMaster QA={QA} setQA={setQA}/></div>
+      : <div>Loading!!</div>}
       <ReviewsWidget product_id={id}/>
     </div>
   );
 }
-
 export default App;
