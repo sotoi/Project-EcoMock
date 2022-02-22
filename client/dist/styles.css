@@ -271,3 +271,25 @@ filter: invert(100%);
   margin-top: 3em;
   font-family: sans-serif;
 }
+
+.form-star Button {
+  height: 20px;
+  opacity: 50%;
+  cursor: pointer;
+}
+
+.form-star:hover Button {
+  opacity: 100%;
+}
+
+.form-star Button:hover {
+  opacity: 100%;
+}
+
+.form-star Button:hover ~ Button{
+  opacity: 50%;
+}
+
+.form-star Button.active {
+  opacity: 100%;
+}
