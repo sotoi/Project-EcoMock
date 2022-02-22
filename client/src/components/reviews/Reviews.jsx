@@ -9,7 +9,7 @@ import Button from 'react-bootstrap/Button';
 import { getReviews } from '../helpers/main_helpers.jsx';
 import { fetchReviews }  from '../../redux/store.js';
 
-const Reviews = ({ product_id, product_name }) => {
+const Reviews = ({ product_id, product_name, filteredReviews }) => {
   const reviews = useSelector((state) => state.reviews);
   const dispatch = useDispatch();
 
@@ -24,7 +24,6 @@ const Reviews = ({ product_id, product_name }) => {
     }
   };
   getTotalResults();
-
   const [reviewCount, setReviewCount] = useState(2);
   const handleMoreReviewsButton = () => {
     if (reviewCount < resultsCount) {
@@ -37,13 +36,30 @@ const Reviews = ({ product_id, product_name }) => {
   const handleSort = (value) => {
     setSort(value);
   };
-
   useEffect(() => {
     dispatch(fetchReviews({product_id: product_id, count: reviewCount, sort: sort}));
   }, [sort, reviewCount]);
 
+  // const isFiltered = () => {
+  //   console.log('FILTERED REVIEWS:', filteredReviews);
+  //   if (filteredReviews && filteredReviews.length > 0) {
+  //     return (
+  //       filteredReviews.map((review) => (
+  //         <ReviewTile review={review} product_id={product_id} sort={sort} reviewCount={reviewCount} key={review.review_id} />
+  //       ))
+  //     )
+  //   } else if (reviews.value.results) {
+  //     return (
+  //       reviews.value.results.map((review) => (
+  //         <ReviewTile review={review} product_id={product_id} sort={sort} reviewCount={reviewCount} key={review.review_id} />
+  //       ))
+  //     )
+  //   }
+  // }
+
   return (
     <div>
+      {console.log('REVIEWS FROM REVIEWS:', reviews)}
       <h4>Reviews</h4>
       <h6>SORT BY:</h6>
         <DropdownButton variant='dark' size='sm' id='reviews-sort-by' title={sort}>
@@ -52,9 +68,15 @@ const Reviews = ({ product_id, product_name }) => {
           <Dropdown.Item href="#/relevant" eventKey='Relevant' onClick={() => handleSort('relevant')}>relevant</Dropdown.Item>
         </DropdownButton>
       <Stack gap={3}>
-        {reviews.value.results && reviews.value.results.map((review) => (
+        {(filteredReviews && filteredReviews.length > 0)
+        ? filteredReviews.map((review) => (
           <ReviewTile review={review} product_id={product_id} sort={sort} reviewCount={reviewCount} key={review.review_id} />
-        ))}
+        ))
+        : (reviews.value.results) ? reviews.value.results.map((review) => (
+          <ReviewTile review={review} product_id={product_id} sort={sort} reviewCount={reviewCount} key={review.review_id} />
+        ))
+        : <></>
+        }
       </Stack>
       <>{(reviewCount < resultsCount) ? <Button variant='dark' size='sm' onClick={() => handleMoreReviewsButton()}>More Reviews +</Button> : <></>}</>
       <AddReview product_id={product_id} product_name={product_name} sort={sort} reviewCount={reviewCount} />

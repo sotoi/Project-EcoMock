@@ -72,7 +72,6 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
   }
   // HANDLE CLICKING IN FORM RATING
   let formStars = document.querySelectorAll('.form-star Button');
-  console.log(formStars);
   const onStar1Click = () => {
     if (formStars) {
       formStars.forEach((star, index) => {
@@ -157,7 +156,7 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
       setNewReview({...newReview, [name]: value});
     }
   }
-  console.log('NEW REVIEW:', newReview);
+  // console.log('NEW REVIEW:', newReview);
 
   // HANDLE REVIEW FORM SUMBIT
   // FORM VALIDATION FUNCTIONS

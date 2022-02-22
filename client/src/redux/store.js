@@ -88,7 +88,7 @@ export const reviewsMetadata = createSlice(
   },
 );
 
-const reducer = combineReducers({
+export const reducer = combineReducers({
   product: product.reducer,
 <<<<<<< HEAD
 <<<<<<< HEAD

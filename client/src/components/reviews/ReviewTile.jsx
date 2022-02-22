@@ -17,11 +17,13 @@ const ReviewTile = ({ review, product_id, sort, reviewCount }) => {
   const [helpfulButtonsState, sethelpfulButtonsState] = useState(false);
 
   // HANDLE HELPFUL YES BUTTON
-  const [helpful, setHelpful] = useState(review.helpfulness);
+  // const [helpful, setHelpful] = useState(review.helpfulness);
+  let helpful = review.helpfulness;
   const handleHelpfulButton = () => {
     if (!helpfulButtonsState) {
+      helpful += 1;
       sethelpfulButtonsState(true);
-      setHelpful(helpful + 1);
+      // setHelpful(helpful + 1);
       markReviewAsHelpful(review.review_id)
         .then(() => dispatch(fetchReviews({product_id: product_id, count: reviewCount, sort: sort})));
     }
@@ -138,7 +140,7 @@ const ReviewTile = ({ review, product_id, sort, reviewCount }) => {
           <div>{hasPhotos(review.photos)}</div>
           <span>Helpful?</span>
           <ButtonGroup className='helpful-button-group' size='sm'>
-            <Button id='helpful-yes' variant='outline-dark' onClick={() => {handleHelpfulButton()}}>Yes ({review.helpfulness})</Button>
+            <Button id='helpful-yes' variant='outline-dark' onClick={() => {handleHelpfulButton()}}>Yes ({helpful})</Button>
             <Button id='helpful-no' variant='outline-dark' onClick={() => {handleUnhelpfulButton()}}>No ({unhelpful})</Button>
             <Button id='danger' variant='outline-danger' onClick={() => {handleReportButton()}}>Report</Button>
           </ButtonGroup>

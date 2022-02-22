@@ -127,7 +127,6 @@ export const getReviews = async (params) => {
 >>>>>>> 11a9c0f (added reviews and review tile components)
   try {
     let res = await reqInstance.get(`${BASEURL}/reviews`, {params: params});
-    // console.log('GET REVIEWS:', res.data.results.length);
     return res;
   } catch (err) {
     return null;
