@@ -56,7 +56,7 @@ export const avgRating = createSlice(
 
 const reducer = combineReducers({
   product: product.reducer,
-  avgRating: avgRating.reducer
+  avgRating: avgRating.reducer,
 });
 
 export const store = configureStore({
