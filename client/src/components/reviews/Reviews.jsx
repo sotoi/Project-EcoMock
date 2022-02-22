@@ -18,7 +18,9 @@ const Reviews = ({ product_id, product_name, filteredReviews }) => {
   const getTotalResults = async () => {
     try {
       const res = await getReviews({product_id: product_id, count: 200, sort: 'relevant'});
-      setResultsCount(res.data.results.length);
+      if (res) {
+        setResultsCount(res.data.results.length);
+      }
     } catch (err) {
       console.error(err);
     }

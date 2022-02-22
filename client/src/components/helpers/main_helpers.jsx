@@ -53,32 +53,24 @@ export const postCart = (sku_id) => {
 }
 
 // Review Requests
-export const getReviews = (page, count, sort, product_id) => {
-  reqInstance.get(
-    `${BASEURL}/reviews`,
-    {
-      params:
-      {
-        page, count, sort, product_id,
-      },
-    },
-  )
-  .then((res) => console.log(res.data))
-  .catch((err) => console.error(err));
-};
+export const getReviews = async (params) => {
+    try {
+      let res = await reqInstance.get(`${BASEURL}/reviews`, {params: params});
+      return res;
+    } catch (err) {
+      return null;
+    }
+  };
 
+  export const getReviewsMetadata = async (product_id) => {
+    try {
+      let res = await reqInstance.get(`${BASEURL}/reviews/meta`, {params: { product_id }});
+      return res;
+    } catch (err) {
+      return null;
+    }
+  };
 
-export const getReviewsMetadata = (product_id, setMetadata) => {
-  reqInstance.get(
-    `${BASEURL}/reviews/meta`,
-    {
-      params:
-      { product_id },
-    },
-  )
-    .then((res) => setMetadata(res.data))
-    .catch((err) => console.error(err));
-};
 export const addNewReview = (newReview) => {
   reqInstance.post(
     `${BASEURL}/reviews`,
@@ -87,11 +79,13 @@ export const addNewReview = (newReview) => {
     .then((res) => console.log(res.data))
     .catch((err) => console.error(err));
 };
+
 export const markReviewAsHelpful = (product_id) => {
   reqInstance.put(`${BASEURL}/reviews/${product_id}/helpful`)
     .then((res) => console.log(res.data))
     .catch((err) => console.error(err));
 };
+
 export const reportReview = (product_id) => {
   reqInstance.put(`${BASEURL}/reviews/${product_id}/report`)
     .then((res) => console.log(res.data))

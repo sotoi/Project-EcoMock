@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import {useParams,} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import {fetchProductId} from '../redux/store.js'
+import {fetchProductId, fetchReviews, fetchReviewsMetadata} from '../redux/store.js'
 import {getStyles, getRelated} from './helpers/main_helpers.jsx'
 import Overview from './product_info/Overview.jsx'
-import Review from './reviews/Review.jsx';
 import Related from './related_items/Related.jsx'
-import ReviewsWidget from './reviews/ReviewBreakdown.jsx';
+import ReviewsWidget from './reviews/ReviewsWidget.jsx';
 
 function App() {
   const { id } = useParams();
