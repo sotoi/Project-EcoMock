@@ -44,6 +44,32 @@ export const getRelated = (product_id, callback) => {
     .catch((err) => console.log(err.message));
 };
 
+//Q&A Requests
+export const getQandA = (productId, callback) => {
+  reqInstance.get(`${BASEURL}/qa/questions/?product_id=${productId}`)
+   .then((res) => { callback(res.data.results); })
+   .catch((err) => console.log(err.message));
+};
+export const postQuestion = (newQuestion, cb) => {
+  reqInstance.post(
+    `${BASEURL}/qa/questions`,
+    { params: newQuestion },)
+    .then((res) => {callback()})
+    .catch((err) => console.log(err,message));
+};
+export const postAnswer = (newAnswer, cb) => {
+  reqInstance.post(
+    `${BASEURL}/qa/questions`,
+    { params: newAnswer },)
+    .then((res) => {callback()})
+    .catch((err) => console.log(err,message));
+};
+export const updateHelpful = (itemId) => {
+  reqInstance.put(`${BASEURL}/qa/questions`)
+    .then((res) => res.status(204).send(res.data))
+    .catch((err) => console.error(err));
+};
+
 // Cart Requests
 export const getCart = (sku_id) => {
   return reqInstance.get(`${BASEURL}/cart`);
