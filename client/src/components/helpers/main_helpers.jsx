@@ -98,22 +98,19 @@ export const getReviews = async (params) => {
   };
 
 export const addNewReview = (newReview) => {
-  reqInstance.post(
+  return reqInstance.post(
     `${BASEURL}/reviews`,
-    { params: newReview },
+    newReview
   )
-    .then((res) => console.log(res.data))
     .catch((err) => console.error(err));
 };
 
 export const markReviewAsHelpful = (product_id) => {
-  reqInstance.put(`${BASEURL}/reviews/${product_id}/helpful`)
-    .then((res) => console.log(res.data))
+  return reqInstance.put(`${BASEURL}/reviews/${product_id}/helpful`)
     .catch((err) => console.error(err));
 };
 
 export const reportReview = (product_id) => {
-  reqInstance.put(`${BASEURL}/reviews/${product_id}/report`)
-    .then((res) => console.log(res.data))
+  return reqInstance.put(`${BASEURL}/reviews/${product_id}/report`)
     .catch((err) => console.error(err));
 };

@@ -193,6 +193,7 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
     event.preventDefault();
     let validated = formValidated();
     if (validated) {
+      console.log('NEW REVIEW: ', newReview);
       addNewReview(newReview)
       .then(() => setSubmitStatus(true));
       alert('Submission successful: you may exit the form');

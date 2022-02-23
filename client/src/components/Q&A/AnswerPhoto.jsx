@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import PhotoModal from './PhotoModal.jsx';
+import PhotoModal from './photoModal.jsx';
 
 const Photos = styled.img`
   max-height: 100%;
