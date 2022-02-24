@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use('/api/*', async (req, res) => {
   const payload = await axios({
     method: req.method.toLowerCase(),
-    url: API_URL + req.originalUrl.slice(4), // slice off the api
+    url: API_URL + req.originalUrl.slice(4),
     headers: { Authorization: GITAPIKEY },
     data: req.body
   });
