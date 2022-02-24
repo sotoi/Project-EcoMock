@@ -18,10 +18,10 @@ export const getProduct = async (product_id) => {
   }
 };
 export const getProduct2 = (product_id) => {
-    return axios.get(`/api/products/${product_id}`)
+    return axios.get(`/api/products/${product_id}`).catch(err=>console.log(err))
 };
 export const getStyles2 = (product_id) => {
-  return axios.get(`/api/products/${product_id}/styles`)
+  return axios.get(`/api/products/${product_id}/styles`).catch(err=>console.log(err))
 }
 
 export const getStyles = (product_id, callback) => {
@@ -64,10 +64,10 @@ export const updateHelpful = (itemId) => {
 
 // Cart Requests
 export const getCart = (sku_id) => {
-  return axios.get(`/api/cart`);
+  return axios.get(`/api/cart`).catch(err=>console.log(err));
 }
 export const postCart = (sku_id) => {
-  return axios.post(`/api/cart`,{sku_id});
+  return axios.post(`/api/cart`,{sku_id}).catch(err=>console.log(err));
 }
 
 // Review Requests
