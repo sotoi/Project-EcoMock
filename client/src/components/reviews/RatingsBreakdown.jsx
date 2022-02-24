@@ -46,7 +46,7 @@ const RatingsBreakdown = ({ ratings, product_id, product_name }) => {
           {ratingsArray.map((rating, index) => (
             <span key={index}>
               <Button variant='outline-dark' size='sm' onClick={() => handleClickRatingsBreakdown(rating[0])}>{rating[0]} Stars:</Button>
-              <ProgressBar variant='success' now={rating[1] / totalRatingsCount * 100} label={rating[1]}/>
+              <ProgressBar now={rating[1] / totalRatingsCount * 100} label={rating[1]}/>
             </span>
           ))}
         </Stack>

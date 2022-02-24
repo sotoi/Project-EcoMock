@@ -13,9 +13,8 @@ const ReviewsWidget = ({ product_id }) => {
 
   return (
     <div>
-      <h3>Reviews for {product.value.name}</h3>
-      <h4>Reviews Overview</h4>
-      <h5>Average Rating:</h5>
+      <h3>Ratings and Reviews Overview</h3>
+      <h4>Average Rating:</h4>
       <AverageRating ratings={reviewsMetadata.value.ratings} />
       <ProductBreakdown characteristics={reviewsMetadata.value.characteristics} />
       <RatingsBreakdown ratings={reviewsMetadata.value.ratings} product_id={product_id} product_name={product.value.name}/>
