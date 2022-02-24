@@ -39,9 +39,9 @@ const RatingsBreakdown = ({ ratings, product_id, product_name }) => {
   };
 
   return (
-    <div>
-      <div>
-        <h5>Ratings Breakdown: {totalRatingsCount} Ratings</h5>
+    <div className='RatingsBreakdown-Reviews'>
+      <div className='RatingsBreakdown'>
+        <h3>Ratings Breakdown: {totalRatingsCount} Ratings</h3>
         <Stack gap={3}>
           {ratingsArray.map((rating, index) => (
             <span key={index}>
