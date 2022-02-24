@@ -1,87 +1,79 @@
 import axios from 'axios';
-import GITAPIKEY from '../../../../config.js';
 import { store, product } from '../../redux/store.js';
-
 const BASEURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax';
-
-const reqInstance = axios.create({
-  headers: {
-    Authorization: GITAPIKEY,
-  },
-});
 
 // Product Requests
 export const getProducts = () => {
-  reqInstance.get(`${BASEURL}/products`)
+  axios.get(`/api/products`)
     .then((res) => console.log(res.data))
     .catch((err) => console.log(err.message));
 };
 
 export const getProduct = async (product_id) => {
   try{
-    let res =  await reqInstance.get(`${BASEURL}/products/${product_id}`)
+    let res =  await axios.get(`/api/products/${product_id}`)
     return res
   } catch(err){
     return null;
   }
 };
 export const getProduct2 = (product_id) => {
-    return reqInstance.get(`${BASEURL}/products/${product_id}`)
+    return axios.get(`/api/products/${product_id}`)
 };
 export const getStyles2 = (product_id) => {
-  return reqInstance.get(`${BASEURL}/products/${product_id}/styles`)
+  return axios.get(`/api/products/${product_id}/styles`)
 }
 
 export const getStyles = (product_id, callback) => {
-  reqInstance.get(`${BASEURL}/products/${product_id}/styles`)
+  axios.get(`/api/products/${product_id}/styles`)
     .then((res) => { callback(res.data.results); })
     .catch((err) => console.log(err.message));
 };
 
 export const getRelated = (product_id, callback) => {
-  reqInstance.get(`${BASEURL}/products/${product_id}/related`)
+  axios.get(`/api/products/${product_id}/related`)
     .then((res) => { callback(res.data); })
     .catch((err) => console.log(err.message));
 };
 
 //Q&A Requests
 export const getQandA = (productId, callback) => {
-  reqInstance.get(`${BASEURL}/qa/questions/?product_id=${productId}`)
+  axios.get(`/api/qa/questions/?product_id=${productId}`)
    .then((res) => { callback(res.data.results); })
    .catch((err) => console.log(err.message));
 };
 export const postQuestion = (newQuestion, cb) => {
-  reqInstance.post(
-    `${BASEURL}/qa/questions`,
+  axios.post(
+    `/api/qa/questions`,
     { params: newQuestion },)
     .then((res) => {callback()})
     .catch((err) => console.log(err,message));
 };
 export const postAnswer = (newAnswer, cb) => {
-  reqInstance.post(
-    `${BASEURL}/qa/questions`,
+  axios.post(
+    `/api/qa/questions`,
     { params: newAnswer },)
     .then((res) => {callback()})
     .catch((err) => console.log(err,message));
 };
 export const updateHelpful = (itemId) => {
-  reqInstance.put(`${BASEURL}/qa/questions`)
+  axios.put(`/api/qa/questions`)
     .then((res) => res.status(204).send(res.data))
     .catch((err) => console.error(err));
 };
 
 // Cart Requests
 export const getCart = (sku_id) => {
-  return reqInstance.get(`${BASEURL}/cart`);
+  return axios.get(`/api/cart`);
 }
 export const postCart = (sku_id) => {
-  return reqInstance.post(`${BASEURL}/cart`,{sku_id});
+  return axios.post(`/api/cart`,{sku_id});
 }
 
 // Review Requests
 export const getReviews = async (params) => {
     try {
-      let res = await reqInstance.get(`${BASEURL}/reviews`, {params: params});
+      let res = await axios.get(`/api/reviews`, {params: params});
       return res;
     } catch (err) {
       return null;
@@ -90,7 +82,7 @@ export const getReviews = async (params) => {
 
   export const getReviewsMetadata = async (product_id) => {
     try {
-      let res = await reqInstance.get(`${BASEURL}/reviews/meta`, {params: { product_id }});
+      let res = await axios.get(`/api/reviews/meta`, {params: { product_id }});
       return res;
     } catch (err) {
       return null;
@@ -98,22 +90,19 @@ export const getReviews = async (params) => {
   };
 
 export const addNewReview = (newReview) => {
-  reqInstance.post(
-    `${BASEURL}/reviews`,
-    { params: newReview },
+  return axios.post(
+    `/api/reviews`,
+    newReview
   )
-    .then((res) => console.log(res.data))
     .catch((err) => console.error(err));
 };
 
 export const markReviewAsHelpful = (product_id) => {
-  reqInstance.put(`${BASEURL}/reviews/${product_id}/helpful`)
-    .then((res) => console.log(res.data))
+  return axios.put(`/api/reviews/${product_id}/helpful`)
     .catch((err) => console.error(err));
 };
 
 export const reportReview = (product_id) => {
-  reqInstance.put(`${BASEURL}/reviews/${product_id}/report`)
-    .then((res) => console.log(res.data))
+  return axios.put(`/api/reviews/${product_id}/report`)
     .catch((err) => console.error(err));
 };

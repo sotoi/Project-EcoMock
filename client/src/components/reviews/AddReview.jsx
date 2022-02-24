@@ -156,7 +156,6 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
       setNewReview({...newReview, [name]: value});
     }
   }
-  // console.log('NEW REVIEW:', newReview);
 
   // HANDLE REVIEW FORM SUMBIT
   // FORM VALIDATION FUNCTIONS
@@ -165,7 +164,6 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
         // i.e. overall rating, recommendation, characteristics, review body, nickname, email
       // - review body is < 50 characters
       // note: form already has validation for correct email formay and invalid photos
-
   const requiredFields = {
     rating: newReview.rating > 0,
     recommend: recommendationValidated,
@@ -193,6 +191,7 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
     event.preventDefault();
     let validated = formValidated();
     if (validated) {
+      console.log('NEW REVIEW: ', newReview);
       addNewReview(newReview)
       .then(() => setSubmitStatus(true));
       alert('Submission successful: you may exit the form');

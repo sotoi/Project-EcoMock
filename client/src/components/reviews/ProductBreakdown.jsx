@@ -24,12 +24,12 @@ const ProductBreakdown = ({ characteristics }) => {
 
   return (
     <div>
-      <h5>Characteristics Breakdown:</h5>
+      <h4>Characteristics Breakdown:</h4>
       <Stack direction='vertical' gap={3}>
         {characteristicsArray.map((characteristic, index) => (
           <div key={index}>
             <h6>{characteristic[0]}:</h6>
-            <ProgressBar variant='success' now={characteristic[1] / 5 * 100} label={Math.round(characteristic[1])}/>
+            <ProgressBar now={characteristic[1] / 5 * 100} label={Math.round(characteristic[1])}/>
             <small className='text-muted'>{scaleDescription(characteristic[0])}</small>
           </div>
         ))}
