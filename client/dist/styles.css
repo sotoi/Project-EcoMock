@@ -293,36 +293,3 @@ filter: invert(100%);
 .form-star Button.active {
   opacity: 100%;
 }
-
-.ReviewTile {
-  background-color: whitesmoke;
-}
-
-.ReviewsWidget {
-  margin-left: 400px;
-  margin-right: 400px;
-  margin-top: 50px;
-}
-
-h1, h2, h3 {
-  text-align: center;
-}
-
-.AverageRatingStars {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.AverageRatingStars, .ProductBreakdown, .RatingsBreakdown-Reviews {
-  margin-top: 20px;
-}
-
-.RatingsBreakdown, .ProductBreakdown {
-  width: 800px;
-  margin: 0 auto;
-}
-
-.reviews-header {
-  margin-bottom: 20px
-}

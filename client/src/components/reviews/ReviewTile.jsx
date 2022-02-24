@@ -126,7 +126,7 @@ const ReviewTile = ({ review, product_id, sort, reviewCount }) => {
   }
 
   return (
-    <div className='ReviewTile'>
+    <div>
       <div>
         <Stack className='review-header'>
           <span className='reviewer-name'>{review.reviewer_name}</span>

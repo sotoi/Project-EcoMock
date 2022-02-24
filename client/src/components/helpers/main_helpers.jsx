@@ -90,7 +90,6 @@ export const getReviews = async (params) => {
   };
 
 export const addNewReview = (newReview) => {
-  console.log('NEW REVIEW FROM AXIOS:', newReview);
   return axios.post(
     `/api/reviews`,
     newReview
