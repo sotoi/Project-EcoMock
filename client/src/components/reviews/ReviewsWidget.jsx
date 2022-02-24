@@ -12,10 +12,13 @@ const ReviewsWidget = ({ product_id }) => {
   const reviewsMetadata = useSelector((state) => state.reviewsMetadata);
 
   return (
-    <div>
-      <h3>Ratings and Reviews Overview</h3>
-      <h4>Average Rating:</h4>
-      <AverageRating ratings={reviewsMetadata.value.ratings} />
+    <div className='ReviewsWidget'>
+      <h1 className='reviews-header'>RATINGS & REVIEWS</h1>
+      <h2>OVERVIEW</h2>
+      <Stack className='AverageRatingStars' gap={1}>
+        <h3>Average Rating:</h3>
+        <AverageRating ratings={reviewsMetadata.value.ratings}/>
+      </Stack>
       <ProductBreakdown characteristics={reviewsMetadata.value.characteristics} />
       <RatingsBreakdown ratings={reviewsMetadata.value.ratings} product_id={product_id} product_name={product.value.name}/>
     </div>

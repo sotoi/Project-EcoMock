@@ -43,10 +43,9 @@ const Reviews = ({ product_id, product_name, filteredReviews }) => {
   }, [sort, reviewCount]);
 
   return (
-    <div>
-      {console.log('REVIEWS FROM REVIEWS:', reviews)}
-      <h4>Reviews</h4>
-      <h6>SORT BY:</h6>
+    <div className='Reviews'>
+      <h2>REVIEWS</h2>
+      <h4>SORT BY:</h4>
         <DropdownButton variant='dark' size='sm' id='reviews-sort-by' title={sort}>
           <Dropdown.Item href="#/helpful" eventKey='Helpful' onClick={() => handleSort('helpful')}>helpful</Dropdown.Item>
           <Dropdown.Item href="#/newest" eventKey='Newest' onClick={() => handleSort('newest')}>newest</Dropdown.Item>
