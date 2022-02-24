@@ -2,16 +2,17 @@
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
+const compression = require('compression');
 //const questions = require('./apiHelpers/qandaAPI.js');
 const app = express();
-const port = process.env.PORT || 3003;
+const port = process.env.PORT || 3001;
 const cors = require('cors');
 const s3 = require('./s3');
 const fetch = require('node-fetch');
 const GITAPIKEY = process.env.GITAPIKEY;
 const API_URL = process.env.API_URL;
 const axios = require('axios');
-
+app.use(compression());
 app.use(morgan('dev'));
 app.use(cors());
 app.use(express.static(path.join(__dirname, '../client/dist')));
