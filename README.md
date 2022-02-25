@@ -3,26 +3,28 @@ Project ECOMerce is a single page e-commerce web application created utilizing R
 
 ## :heavy_check_mark: Features
 Routing
-![Screenshot](http://g.recordit.co/pFiiwNQxV3.gif)
+
 ![Screenshot](http://g.recordit.co/r3GpT6fwVm.gif)
 
 
 
 ### Product Overview - Irving
 
-![Screenshot](http://g.recordit.co/l7jxtacOtw.gif)
-![Screenshot](http://g.recordit.co/xPjmtsaOsL.gif)
-
 * Cycle through different photos of the same style using the carousel
 * Click thumbnails to view different styles of the same product
+![Screenshot](http://g.recordit.co/pFiiwNQxV3.gif)
+
+
 * Click on image to pop up a modal
 * Zoom within the modal
+![Screenshot](http://g.recordit.co/l7jxtacOtw.gif)
 
 ### Related Items - Irving
 
 * Create your own outfits by adding items to the list
 * Cycle through your outfit within a carousel
 * Add to your favorites!
+![Screenshot](http://g.recordit.co/xPjmtsaOsL.gif)
 
 
 ### Ratings And Reviews - Samantha
