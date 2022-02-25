@@ -14,7 +14,7 @@ import Stars from '../helpers/Stars.jsx';
 const axios = require('axios');
 const Buffer = require('buffer/').Buffer;
 
-const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
+const AddReview = ({ product_id, product_name, sort }) => {
   const dispatch = useDispatch();
   const reviewsMetadata = useSelector((state) => state.reviewsMetadata);
 
@@ -156,6 +156,7 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
       setNewReview({...newReview, [name]: value});
     }
   }
+  // console.log('NEW REVIEW FROM FORM:', newReview);
 
   // HANDLE REVIEW FORM SUMBIT
   // FORM VALIDATION FUNCTIONS
@@ -191,18 +192,18 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
     event.preventDefault();
     let validated = formValidated();
     if (validated) {
-      console.log('NEW REVIEW: ', newReview);
+      console.log(submitStatus);
       addNewReview(newReview)
       .then(() => setSubmitStatus(true));
-      alert('Submission successful: you may exit the form');
     } else {
       alert(errorAlert);
     }
   };
 
   useEffect(() => {
-    dispatch(fetchReviews({product_id: product_id, count: reviewCount, sort: sort}));
+    dispatch(fetchReviews({product_id: product_id, count: 180, sort: sort}));
     dispatch(fetchReviewsMetadata(product_id));
+    handleClose();
   }, [submitStatus]);
 
   // FUNCTIONS TO RENDER CHARACTERISTICS DESIGNATED AS APPLICABLE TO PRODUCT
@@ -807,13 +808,16 @@ const AddReview = ({ product_id, product_name, sort, reviewCount }) => {
 
   // HANDLE MODAL
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    setNewReview(initialState);
+    setSubmitStatus(false);
+  };
   const handleShow = () => setShow(true);
 
   return (
     <div className='AddReview'>
-      <Button variant='dark' size='sm' onClick={handleShow}>Add Review +</Button>
-
+      <Button variant='outline-dark' size='sm' onClick={handleShow}>ADD REVIEW +</Button>
       <Modal
         show={show}
         onHide={handleClose}

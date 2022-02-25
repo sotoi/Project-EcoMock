@@ -1,6 +1,7 @@
 import React from 'react';
 import Answers from './Answers.jsx';
 import styled from 'styled-components';
+import axios from 'axios';
 import AnswerModal from './AnswerModal.jsx';
 
 const ContainerA = styled.div`
@@ -83,7 +84,6 @@ class Question extends React.Component {
   componentDidMount() {
     const { item } = this.props;
     const object = item.answers;
-    console.log('Answers = ', object);
     if (object.length <= 1) {
       this.setState({
         answers: Object.values(object).sort((a, b) => b.helpfulness - a.helpfulness)
@@ -94,31 +94,40 @@ class Question extends React.Component {
       });
     }
   }
+  componentDidUpdate(prevProps, prevState) {
+    const { item } = this.props;
+    if (prevProps.item.id !== item.id) {
+      this.oldRender();
+    }
+  }
+
   handleClick(event) {
     const { item } = this.props;
-    // if (!this.state.clickedYes && event.target.name === 'helpful') {
-    //   axios.put('/qa/questions', {
-    //     question_id: item.question_id,
-    //     type: event.target.name,
-    //   })
-    //     .then((response) => {
-    //       console.log(response);
-    //       this.setState({
-    //         helpful: this.state.helpful + 1,
-    //         clickedYes: true,
-    //       });
-    //     });
-    // } else {
-    //   axios.put('/qa/questions', {
-    //     question_id: item.question_id,
-    //     type: event.target.name,
-    //   })
-    //     .then(() => {
-    //       this.setState({
-    //         clickedReport: true,
-    //       });
-    //     });
-    // }
+    console.log('Event = ', event.target.name);
+   // console.log()
+    if (!this.state.clickedYes && event.target.name === 'helpful') {
+      axios.put(`/api/qa/questions/${item.question_id}/helpful`
+        // question_id: item.question_id,
+        // type: event.target.name,
+    )
+        .then((response) => {
+          console.log(response);
+          this.setState({
+            helpful: this.state.helpful + 1,
+            clickedYes: true,
+          });
+        });
+    } else {
+      axios.put(`/api/qa/questions/${item.question_id}/report`
+        // question_id: item.question_id,
+         //type: event.target.name,
+      )
+        .then(() => {
+          this.setState({
+            clickedReport: true,
+          });
+        });
+    }
   }
 
   selectModal() {

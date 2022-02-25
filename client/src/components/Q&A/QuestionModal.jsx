@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { postQuestion, getQandA } from '../helpers/main_helpers.jsx';
+import axios from 'axios';
+import { getQandA } from '../helpers/main_helpers.jsx';
 
 const Modal = styled.div`
     background-color: rgb(0,0,0); /* Fallback color */
@@ -122,39 +123,51 @@ class QuestionModal extends React.Component {
     }
   }
 
-  submitQuestion() {
-    const { product_id } = this.props;
+  submitQuestion(event) {
+    event.preventDefault();
+    const { product_id, setQA } = this.props;
+    console.log("product id = ", product_id, "setQA = ", setQA);
     const {
       newQuestion, newName, newEmail,
     } = this.state;
-    var Qobj = {
-      body: newQuestion,
-      name: newName,
-      email: newEmail,
-      product_id: product_id,
-      }
-
-
-    postQuestion(Qobj, ()=>{
-      console.log('successful post!');
-      alert('successful post!');
-      this.props.closeModal();
-      getQandA(product_id, this.props.setQA);
-  })
-    // this.setState({
-    //   send: true,
-    // });
-    //
-    // axios.post('/qa/questions', {
+    console.log("newQuestion = ", newQuestion, "newName = ", newName, "newEmail = ", newEmail);
+    // var Qobj = {
     //   body: newQuestion,
     //   name: newName,
     //   email: newEmail,
-    //   product_id: product_id,
-    // })
-    //   .then((response) => {
-    //     console.log('successful post!', response.data);
-    //     this.props.closeModal();
-    //   });
+    //   product_id: product_id
+    //   }
+  //   postQuestion(Qobj, ()=>{
+  //     console.log('successful post!');
+  //     alert('successful post!');
+  //     this.props.closeModal();
+  //     getQandA(product_id, this.props.setQA);
+  // })
+    // this.setState({
+    //   send: true,
+    // });
+    axios.post('/api/qa/questions', {
+      body: newQuestion,
+      name: newName,
+      email: newEmail,
+      product_id: Number(product_id)
+    })
+      .then((response) => {
+       // alert('Success Question post ', response.data)
+        console.log('successful post!', response.data);
+        getQandA(product_id, setQA);
+      //  axios.get(`/api/qa/questions`, {
+      //   product_id: Number(product_id)
+      //  })
+      //  .then((response) => {
+      //    console.log('GET RESPONSE ==== ', response.data)
+      //  })
+        this.props.closeModal();
+        // this.setState({
+        //     send: true,
+        //   });
+      });
+
   }
   render() {
     const { newName, newEmail, newQuestion } = this.state;
@@ -172,7 +185,7 @@ class QuestionModal extends React.Component {
             <NewQueB placeholder="Examples: jackson11!" required type="text" maxLength="60" autoComplete="off" value={newName} onChange={(event) => { this.type(event); }} />
             <p>For privacy reasons, do not use your full name or email address</p>
             <NewQueC placeholder="Enter Question Here..." required type="text" maxLength="1000" minLength="" autoComplete="off" value={newQuestion} onChange={(event) => { this.type(event); }} />
-            <Button className="submitQ" onClick={(event) => { this.submitQuestion(event); }}> Submit Question </Button>
+            <Button className="submitQ" onClick={(event) => this.submitQuestion(event)}> Submit Question </Button>
           </NewForm>
         </Modal_Con>
       </Modal>

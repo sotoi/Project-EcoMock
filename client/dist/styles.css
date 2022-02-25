@@ -97,7 +97,7 @@ filter: invert(100%);
   min-width: 500px;
 }
 .productName {
-
+  text-transform: lowercase;
   font-size:3rem;
   font-weight: 600;
 }
@@ -201,7 +201,8 @@ filter: invert(100%);
   width: 82%;
 }
 .relatedTitle {
-  font-size: 1.4rem;
+  text-transform: lowercase;
+  font-size:2.5rem;
   display: flex;
   justify-content: center;
   font-weight: 600;
@@ -210,6 +211,7 @@ filter: invert(100%);
 .cardContainer{
   display: flex;
   justify-content: center;
+  margin-bottom: 10px;
 }
 .starIcon {
   cursor: pointer;
@@ -306,15 +308,16 @@ filter: invert(100%);
 
 .ReviewTile {
   background-color: whitesmoke;
+  margin-bottom: 20px;
 }
 
 .ReviewsWidget {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  margin-left: 80vw;
-  margin-right: 80vw;
-  margin-top: 50px;
+  padding-top: 80px;
+  width: 80vw;
+  margin: 0 auto;
 }
 
 h1, h2, h3 {
@@ -326,22 +329,52 @@ h1, h2, h3 {
   justify-content: center;
   align-items: center;
 }
+.reviews-container {
+  display: flex;
+  justify-content: center;
+}
 
+.ReviewTile {
+  padding: 60px;
+}
+
+.Reviews {
+  width: 80vw;
+}
 .AverageRatingStars, .ProductBreakdown, .RatingsBreakdown-Reviews {
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .RatingsBreakdown, .ProductBreakdown {
-  width: 800px;
+  width: 60vw;
   margin: 0 auto;
 }
 
-.reviews-header {
-  margin-bottom: 20px
+.Header{
+  width: 100%;
+  height: 88px;
+  background-color: #474747;
+  display: flex;
+  align-items: center;
 }
-@media only screen and (max-width: 603px) {
+.logo{
+  font-size: x-large;
+  margin: 10px;
+  color: white;
+}
+.compassIcon{
+  margin-left: 10px;
+  color: white;
+}
+.linkContainer{
+  display: flex;
+  align-items: center;
+}
+@media only screen
+and (max-width : 900px) {
   .photoContainer{
-    height: 40vh;
+    max-height: 33vh;
   }
   .information{
     max-width: 80vw;
@@ -363,10 +396,29 @@ h1, h2, h3 {
     width: 90%;
   }
 }
-/* @media only screen and (max-width: 819px) {
-  .photoContainer{
-    height: 25vh;
-  }
 
+
+.review-header {
+  margin-bottom: 20px;
+  font-weight: bold;
 }
 
+.sort-by-header, .reviews-sort-by {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.more-reviews-btn .current-filters-list {
+  margin-top: 20px;
+}
+
+.more-reviews-btn, .AddReview, .current-filters {
+  margin-bottom: 20px;
+}
+
+.progress-bar {
+  background-color: #474747 !important;
+}

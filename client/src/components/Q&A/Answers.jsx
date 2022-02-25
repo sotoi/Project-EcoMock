@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import AnswerPhoto from './AnswerPhoto.jsx';
-
+import axios from 'axios';
 const Container = styled.div`
   display: flex;
   /* padding: 10px;
@@ -53,7 +53,7 @@ if (!this.state.clickedYes && event.target.name === 'helpful') {
   this.setState({
     clickedYes : true
   });
-  axios.put('/qa/questions', {
+  axios.put('api/qa/questions', {
     answer_id: this.props.item.id,
     type: event.target.name,
   })

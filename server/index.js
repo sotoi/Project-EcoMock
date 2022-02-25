@@ -5,7 +5,7 @@ const path = require('path');
 const compression = require('compression')
 //const questions = require('./apiHelpers/qandaAPI.js');
 const app = express();
-const port = process.env.PORT || 3002;
+const port = process.env.PORT || 3001;
 const cors = require('cors');
 const s3 = require('./s3');
 const fetch = require('node-fetch');
@@ -25,19 +25,20 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use('/api/*', async (req, res) => {
 
   try{
+    console.log('URL:', API_URL + req.originalUrl.slice(4))
     const payload = await axios({
       method: req.method.toLowerCase(),
       url: API_URL + req.originalUrl.slice(4),
       headers: { Authorization: GITAPIKEY },
       data: req.body
     });
+    console.log('PAYLOAD:', payload)
     res.send(payload.data);
 
   } catch(err) {
     res.send(err);
+
   }
-
-
 });
 
 app.get('/s3Url', (req, res) => {

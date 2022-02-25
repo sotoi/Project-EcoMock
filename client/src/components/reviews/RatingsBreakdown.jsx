@@ -5,7 +5,7 @@ import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 
-const RatingsBreakdown = ({ ratings, product_id, product_name }) => {
+const RatingsBreakdown = ({ ratings, product_id, product_name, totalReviews }) => {
   const reviews = useSelector((state) => state.reviews);
 
   let ratingsArray = [];
@@ -41,19 +41,21 @@ const RatingsBreakdown = ({ ratings, product_id, product_name }) => {
   return (
     <div className='RatingsBreakdown-Reviews'>
       <div className='RatingsBreakdown'>
-        <h3>Ratings Breakdown: {totalRatingsCount} Ratings</h3>
+        <h3>ratings breakdown: {totalRatingsCount} Ratings</h3>
         <Stack gap={3}>
           {ratingsArray.map((rating, index) => (
             <span key={index}>
-              <Button variant='outline-dark' size='sm' onClick={() => handleClickRatingsBreakdown(rating[0])}>{rating[0]} Stars:</Button>
+              <Button variant='outline-dark' size='sm' className='current-filters' onClick={() => handleClickRatingsBreakdown(rating[0])}>{rating[0]} Stars:</Button>
               <ProgressBar now={rating[1] / totalRatingsCount * 100} label={rating[1]}/>
             </span>
           ))}
         </Stack>
-        <h6>Current filters: {(filter.length === 0) ? 'none' : filter.join(', ')}</h6>
-        <Button variant='dark' size='sm' onClick={() => handleClickRemoveFilters()}>Remove all filters</Button>
+        <h6 className='current-filters-list'>current filters: {(filter.length === 0) ? 'none' : filter.join(', ')}</h6>
+        <Button variant='outline-dark' size='sm' className='current-filters' onClick={() => handleClickRemoveFilters()}>REMOVE ALL FILTERS</Button>
       </div>
-      <Reviews product_id={product_id} product_name={product_name} filteredReviews={filteredReviews}/>
+      <div className='reviews-container'>
+        <Reviews product_id={product_id} product_name={product_name} filteredReviews={filteredReviews} totalReviews={totalReviews}/>
+      </div>
     </div>
   );
 }

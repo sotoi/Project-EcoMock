@@ -39,7 +39,7 @@ export const getRelated = (product_id, callback) => {
 //Q&A Requests
 export const getQandA = (productId, callback) => {
   axios.get(`/api/qa/questions/?product_id=${productId}`)
-   .then((res) => { callback(res.data.results); })
+   .then((res) => { callback(res.data.results) })
    .catch((err) => console.log(err.message));
 };
 export const postQuestion = (newQuestion, cb) => {
