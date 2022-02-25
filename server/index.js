@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 const express = require('express');
+const dotenv = require('dotenv').config();
 const morgan = require('morgan');
 const path = require('path');
 const compression = require('compression')
