@@ -1,6 +1,12 @@
 body,html {
+  /* font-family: 'Noto Serif Display', serif; */
   height: 100%;
   width: 100%;
+}
+*{
+  font-family: 'Libre Caslon Display', serif;
+  font-weight: 650 !important;
+
 }
 .style-img {
   background-size:cover;
@@ -29,7 +35,6 @@ body,html {
   justify-content: center;
   align-items: center;
   height: 66vh;
-
   width: 55vw;
   max-width: 55vw;
 }
@@ -88,11 +93,11 @@ filter: invert(100%);
 .information {
 
   padding-left: 6%;
-
-  max-width: 40vw;
+  max-width: 30vw;
   min-width: 500px;
 }
 .productName {
+
   font-size:3rem;
   font-weight: 600;
 }
@@ -101,6 +106,7 @@ filter: invert(100%);
   padding-bottom: 20px;
 }
 .styleTitle {
+
   font-size: 1.5rem;
 
 }
@@ -118,8 +124,10 @@ filter: invert(100%);
   display: flex;
 
 }
-.btn-light {
-  border-color: black !important;
+.cartButton{
+  background: white !important;
+    color: black !important;
+    border-color: black !important;
 }
 
 .modalImg {
@@ -190,10 +198,12 @@ filter: invert(100%);
   flex-direction: column;
 }
 .Cards {
-  width: 80%;
+  width: 82%;
 }
 .relatedTitle {
   font-size: 1.4rem;
+  display: flex;
+  justify-content: center;
   font-weight: 600;
   margin-bottom: 11px;
 }
@@ -269,7 +279,7 @@ filter: invert(100%);
   position: relative;
   font-size: .6em;
   margin-top: 3em;
-  font-family: sans-serif;
+
 }
 
 .form-star Button {
@@ -299,8 +309,11 @@ filter: invert(100%);
 }
 
 .ReviewsWidget {
-  margin-left: 400px;
-  margin-right: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 80vw;
+  margin-right: 80vw;
   margin-top: 50px;
 }
 
@@ -326,3 +339,34 @@ h1, h2, h3 {
 .reviews-header {
   margin-bottom: 20px
 }
+@media only screen and (max-width: 603px) {
+  .photoContainer{
+    height: 40vh;
+  }
+  .information{
+    max-width: 80vw;
+  }
+  .productName{font-size: 3.5rem;}
+
+  .slashedPrice{
+    font-size: 2rem;
+    margin-right: 20px ;
+  }
+  .defaultprice{
+    font-size: 2rem;
+  }
+  .styleTitle{
+    font-size: 1.8rem;
+  }
+  .description {
+    font-size: 1.5rem;
+    width: 90%;
+  }
+}
+/* @media only screen and (max-width: 819px) {
+  .photoContainer{
+    height: 25vh;
+  }
+
+}
+

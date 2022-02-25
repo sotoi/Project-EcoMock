@@ -16,7 +16,7 @@ const Button = styled.button`
   cursor: pointer;
   &:hover {
     text-decoration: none;
-    font-weight: bold;
+
   }
 `;
 const AnwserDiv = styled.div`
@@ -30,7 +30,7 @@ const Divide = styled.span`
   margin-left: 5px;
   margin-right: 5px;
   padding-top: 0px;
-  font-weight: bold;
+
 `;
 const PhotoDiv = styled.div`
   display: flex;

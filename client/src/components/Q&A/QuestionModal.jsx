@@ -48,7 +48,7 @@ const Close = styled.span`
    color: #aaaaaa;
    float: right; /* Positioned to the right of the parent container whichever size it is */
    font-size: 25px;
-   font-weight: bold;
+
 `;
 
 const NewForm = styled.form`

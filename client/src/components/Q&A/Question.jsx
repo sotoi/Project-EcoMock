@@ -34,8 +34,7 @@ const Button = styled.button`
   cursor: pointer;
   &:hover {
     text-decoration: none;
-    font-weight: bold;
-  }
+
 `;
 
 const LoadButton = styled.button`
@@ -43,14 +42,14 @@ const LoadButton = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
-  font-weight: bold;
+
 `;
 
 const Divide = styled.span`
   margin-left: 5px;
   margin-right: 5px;
   padding-top: 17.5px;
-  font-weight: bold;
+
   display: flex;
 `;
 

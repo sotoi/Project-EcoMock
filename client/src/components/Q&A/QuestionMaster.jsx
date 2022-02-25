@@ -18,7 +18,7 @@ const Container = styled.div`
   border-radius: 10px;
   padding: 5px;
   margin: 5px;
-  max-width: 1280px;
+  width:80vw;
 `;
 const ButtonA = styled.button`
   height: 60px;
@@ -55,7 +55,7 @@ const QuestionContainer = styled.div`
   position: center;
 `;
 const SearchDiv = styled.div`
-  width: 60%;
+  width: 100%;
   position: relative;
   display: flex;
 `;
