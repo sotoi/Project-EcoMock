@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import { postQuestion, getQandA } from '../helpers/main_helpers.jsx';
+import { getQandA } from '../helpers/main_helpers.jsx';
 
 const Modal = styled.div`
     background-color: rgb(0,0,0); /* Fallback color */
@@ -49,7 +49,7 @@ const Close = styled.span`
    color: #aaaaaa;
    float: right; /* Positioned to the right of the parent container whichever size it is */
    font-size: 25px;
-   font-weight: bold;
+
 `;
 
 const NewForm = styled.form`
@@ -125,8 +125,8 @@ class QuestionModal extends React.Component {
 
   submitQuestion(event) {
     event.preventDefault();
-    const { product_id } = this.props;
-    console.log("submitQuestion ==== ", product_id)
+    const { product_id, setQA } = this.props;
+    console.log("product id = ", product_id, "setQA = ", setQA);
     const {
       newQuestion, newName, newEmail,
     } = this.state;
@@ -153,8 +153,15 @@ class QuestionModal extends React.Component {
       product_id: Number(product_id)
     })
       .then((response) => {
+       // alert('Success Question post ', response.data)
         console.log('successful post!', response.data);
-        getQandA(product_id, this.props.setQA);
+        getQandA(product_id, setQA);
+      //  axios.get(`/api/qa/questions`, {
+      //   product_id: Number(product_id)
+      //  })
+      //  .then((response) => {
+      //    console.log('GET RESPONSE ==== ', response.data)
+      //  })
         this.props.closeModal();
         // this.setState({
         //     send: true,

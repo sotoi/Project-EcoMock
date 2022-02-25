@@ -47,11 +47,11 @@ const Related = (props) => {
   return (
    <div className='Related'>
      <Comparison product ={product.value} style={props.styles[0]} compStyle={compStyle} compProduct ={compProduct} seeModal= {seeModal} setSeeModal={setSeeModal}/>
-     <div className='relatedTitle'> Related Items </div>
+     <div className='relatedTitle'> RELATED ITEMS </div>
      <div className= 'cardContainer'>
        <Cards classname={'related'} products={products} butt={toOutfits} />
      </div>
-     <div className='relatedTitle'> My Outfits </div>
+     <div className='relatedTitle'> MY OUTFITS </div>
      <div className='cardContainer'>
      <Cards classname={'favorites'} products={outfits} butt={setSeeModal} setCompStyle={setCompStyle} setCompProduct= {setCompProduct}  closeCard={closeCard} />
      </div>

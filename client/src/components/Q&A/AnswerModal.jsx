@@ -49,7 +49,7 @@ const Close = styled.span`
    color: #aaaaaa;
    float: right; /* Positioned to the right of the parent container whichever size it is */
    font-size: 25px;
-   font-weight: bold;
+
 `;
 
 const NewForm = styled.form`
@@ -136,7 +136,7 @@ class AnswerModal extends React.Component {
     const {
       newAnswer, newName, newEmail, images,
     } = this.state;
-    console.log("newAnswer = ", newAnswer, "newEmail = ", newEmail, "newName = ", newName)
+    // console.log("newAnswer = ", newAnswer, "newEmail = ", newEmail, "newName = ", newName)
     const { q_id } = this.props;
     // this.setState({
     //   send: true,

@@ -12,14 +12,17 @@ const ReviewsWidget = ({ product_id }) => {
 
   return (
     <div className='ReviewsWidget'>
-      <h1 className='reviews-header'>Ratings & Reviews</h1>
+      <h1 className='reviews-header'>ratings & reviews</h1>
       <Stack className='AverageRatingStars' gap={1}>
-        <h2>Overview</h2>
-        <h3>Average Rating:</h3>
+        <h2>overview</h2>
+        <h3>average rating:</h3>
         <AverageRating ratings={reviewsMetadata.value.ratings}/>
       </Stack>
+      <div className= 'graphData'>
       <ProductBreakdown characteristics={reviewsMetadata.value.characteristics} />
       <RatingsBreakdown ratings={reviewsMetadata.value.ratings} product_id={product_id} product_name={product.value.name} />
+      </div>
+
     </div>
   );
 }

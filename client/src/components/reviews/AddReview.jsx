@@ -808,13 +808,16 @@ const AddReview = ({ product_id, product_name, sort }) => {
 
   // HANDLE MODAL
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    setNewReview(initialState);
+    setSubmitStatus(false);
+  };
   const handleShow = () => setShow(true);
 
   return (
     <div className='AddReview'>
-      <Button variant='dark' size='sm' onClick={handleShow}>Add Review +</Button>
-
+      <Button variant='outline-dark' size='sm' onClick={handleShow}>ADD REVIEW +</Button>
       <Modal
         show={show}
         onHide={handleClose}

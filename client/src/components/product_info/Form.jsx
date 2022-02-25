@@ -51,8 +51,8 @@ let Form = (props) => {
       {renderQuantity(sku.quantity)}
      </DropdownButton>}
      {quantity!=='-'?
-     <Button onClick={()=>{resetForm()}} variant="light">ADD TO CART</Button>:
-     <Button disabled variant="light">ADD TO CART</Button>
+     <Button className='cartButton' onClick={()=>{resetForm()}} >ADD TO CART</Button>:
+     <Button className='cartButton' disabled >ADD TO CART</Button>
     }
     </div>)
 }

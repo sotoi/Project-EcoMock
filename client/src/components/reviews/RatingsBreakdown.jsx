@@ -41,7 +41,7 @@ const RatingsBreakdown = ({ ratings, product_id, product_name, totalReviews }) =
   return (
     <div className='RatingsBreakdown-Reviews'>
       <div className='RatingsBreakdown'>
-        <h3>Ratings Breakdown: {totalRatingsCount} Ratings</h3>
+        <h3>ratings breakdown: {totalRatingsCount} Ratings</h3>
         <Stack gap={3}>
           {ratingsArray.map((rating, index) => (
             <span key={index}>
@@ -50,8 +50,8 @@ const RatingsBreakdown = ({ ratings, product_id, product_name, totalReviews }) =
             </span>
           ))}
         </Stack>
-        <h6 className='current-filters-list'>Current filters: {(filter.length === 0) ? 'none' : filter.join(', ')}</h6>
-        <Button variant='dark' size='sm' className='current-filters' onClick={() => handleClickRemoveFilters()}>Remove all filters</Button>
+        <h6 className='current-filters-list'>current filters: {(filter.length === 0) ? 'none' : filter.join(', ')}</h6>
+        <Button variant='outline-dark' size='sm' className='current-filters' onClick={() => handleClickRemoveFilters()}>REMOVE ALL FILTERS</Button>
       </div>
       <div className='reviews-container'>
         <Reviews product_id={product_id} product_name={product_name} filteredReviews={filteredReviews} totalReviews={totalReviews}/>

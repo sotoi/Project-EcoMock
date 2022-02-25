@@ -24,7 +24,7 @@ const ProductBreakdown = ({ characteristics }) => {
 
   return (
     <div className='ProductBreakdown'>
-      <h3>Characteristics Breakdown:</h3>
+      <h3>characteristics breakdown:</h3>
       <Stack direction='vertical' gap={3}>
         {characteristicsArray.map((characteristic, index) => (
           <div key={index}>

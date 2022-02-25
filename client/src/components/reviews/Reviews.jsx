@@ -42,12 +42,12 @@ const Reviews = ({ product_id, product_name, filteredReviews}) => {
 
   return (
     <div className='Reviews'>
-      <h2>Reviews</h2>
-      <h4 className='sort-by-header'>Sort By:</h4>
-        <DropdownButton variant='dark' size='sm' className='reviews-sort-by' title={sort}>
-          <Dropdown.Item href="#/helpful" eventKey='Helpful' onClick={() => handleSort('helpful')}>helpful</Dropdown.Item>
-          <Dropdown.Item href="#/newest" eventKey='Newest' onClick={() => handleSort('newest')}>newest</Dropdown.Item>
-          <Dropdown.Item href="#/relevant" eventKey='Relevant' onClick={() => handleSort('relevant')}>relevant</Dropdown.Item>
+      <h2>reviews</h2>
+      <h4 className='sort-by-header'>sort by:</h4>
+        <DropdownButton variant='outline-dark' size='sm' className='reviews-sort-by' title={sort.toUpperCase()}>
+          <Dropdown.Item href="#/helpful" eventKey='Helpful' onClick={() => handleSort('helpful')}>HELPFUL</Dropdown.Item>
+          <Dropdown.Item href="#/newest" eventKey='Newest' onClick={() => handleSort('newest')}>NEWEST</Dropdown.Item>
+          <Dropdown.Item href="#/relevant" eventKey='Relevant' onClick={() => handleSort('relevant')}>RELEVANT</Dropdown.Item>
         </DropdownButton>
       <Stack gap={3}>
         {(filteredReviews && filteredReviews.length > 0)
@@ -60,7 +60,7 @@ const Reviews = ({ product_id, product_name, filteredReviews}) => {
         : <></>
         }
       </Stack>
-      <>{(reviewCount < totalReviews) ? <Button variant='dark' size='sm' className='more-reviews-btn' onClick={() => handleMoreReviewsButton()}>More Reviews +</Button> : <div className='more-reviews-btn'>No more reviews</div>}</>
+      <>{(reviewCount < totalReviews) ? <Button variant='outline-dark' size='sm' className='more-reviews-btn' onClick={() => handleMoreReviewsButton()}>MORE REVIEWS +</Button> : <div className='more-reviews-btn'>no more reviews</div>}</>
       <AddReview product_id={product_id} product_name={product_name} sort={sort} reviewCount={reviewCount} />
     </div>
   );

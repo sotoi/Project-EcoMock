@@ -2,7 +2,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
-const compression = require('compression');
+const compression = require('compression')
 //const questions = require('./apiHelpers/qandaAPI.js');
 const app = express();
 const port = process.env.PORT || 3001;
@@ -12,14 +12,18 @@ const fetch = require('node-fetch');
 const GITAPIKEY = process.env.GITAPIKEY;
 const API_URL = process.env.API_URL;
 const axios = require('axios');
-app.use(express.json());
-// app.use(compression());
+app.use(express.json())
+app.use(compression());
 app.use(morgan('dev'));
+
 app.use(cors());
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
-app.use('/api/*', async (req, res, next) => {
-console.log('REQUEST OBJ:', req);
+
+
+
+app.use('/api/*', async (req, res) => {
+
   try{
     console.log('URL:', API_URL + req.originalUrl.slice(4))
     const payload = await axios({
@@ -30,10 +34,10 @@ console.log('REQUEST OBJ:', req);
     });
     console.log('PAYLOAD:', payload)
     res.send(payload.data);
-    next();
+
   } catch(err) {
     res.send(err);
-    next();
+
   }
 });
 
