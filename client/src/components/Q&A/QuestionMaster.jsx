@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import SearchQuestion from './SearchQuestion.jsx';
 import Question from './Question.jsx';
 import QuestionModal from './QuestionModal.jsx';
-
+import getQandA from '../helpers/main_helpers.jsx';
 
 const FlexContainer = styled.div`
 display: flex;
@@ -111,6 +111,7 @@ class QuestionMaster extends  React.Component {
     this.selectModal = this.selectModal.bind(this);
     this.showMore = this.showMore.bind(this);
     this.searchDb = this.searchDb.bind(this);
+    this.oldRender = this.oldRender.bind(this);
   };
   componentDidMount() {
       if ( this.props.QA.length > 0) {
@@ -121,7 +122,16 @@ class QuestionMaster extends  React.Component {
         });
       }
   }
+  componentDidUpdate(prevProps) {
+   // const { productID } = this.props.ID;
+   // console.log("productID = ", productID)
+    // console.log('componentDidUpdate is made', prevProps.ID)
+    // console.log('current props ',  this.props.ID)
 
+    if ( prevProps.ID !== this.props.ID) {
+      this.oldRender();
+    }
+  }
   handleSearch () {
     this.setState({
       searchText: event.target.value
@@ -168,8 +178,23 @@ selectModal() {
     modal: !modal
   });
 }
+oldRender() {
+  const productID = this.props.ID;
+  console.log("oldRender method called = ", this.props.ID)
+  if(productID !== undefined) {
+    axios.get(`/api/qa/questions/?product_id=${this.props.ID}`)
+    .then((response) => {
+     // console.log('GET REQUEST MADE', response.data.results)
+      this.setState({
+        questionData: response.data.results.sort((a, b) => a.helpfulness - b.helpfulness),
+        filteredData: response.data.results.sort((a, b) => a.helpfulness - b.helpfulness)
+      });
+    });
+  }
+}
   render () {
-    const {productID} = this.props;
+   // const {productID} = this.props.ID;
+   // console.log("Render method called = ", this.props.ID)
     const {filteredData, itemsToShow, searchText, expanded, modal} = this.state;
     return (
      <FlexContainer>
@@ -204,7 +229,7 @@ selectModal() {
       <QuestionModal
         displayModal={modal}
         closeModal={this.selectModal}
-        product_id={productID}
+        product_id={this.props.ID }
         setQA={this.props.setQA}
       />
        </Container>

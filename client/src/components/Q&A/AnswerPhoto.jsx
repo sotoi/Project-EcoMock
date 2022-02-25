@@ -41,7 +41,7 @@ class AnswerPhoto extends React.Component {
           closeModal={this.selectModal}
         />
       </PhotoContainer>
-{console.log("AnswerPhoto props = ", this.props.photo)}
+{/* {console.log("AnswerPhoto props = ", this.props.photo)} */}
       </div>
     );
   }
