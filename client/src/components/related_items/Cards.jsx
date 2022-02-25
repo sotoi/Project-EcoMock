@@ -3,8 +3,9 @@ import React from 'react';
 import {Link}  from 'react-router-dom';
 import { Pagination, Navigation } from "swiper";
 import Card from 'react-bootstrap/Card';
-import 'swiper/swiper-bundle.min.css'
-import 'swiper/swiper.min.css'
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faRectangleList, faCircleXmark } from "@fortawesome/free-regular-svg-icons";
 
@@ -50,9 +51,7 @@ const renderProducts= (products) => {
      <Swiper
         slidesPerView={4}
         spaceBetween={30}
-        slidesPerGroup={5}
         loop={false}
-        loopFillGroupWithBlank={true}
         pagination={{
           clickable: true,
         }}
