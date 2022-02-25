@@ -14,19 +14,18 @@ import Modal from 'react-bootstrap/Modal';
 import { markReviewAsHelpful, reportReview, getReviews } from '../helpers/main_helpers.jsx';
 import Stars from '../helpers/Stars.jsx';
 
-const ReviewTile = ({ review, product_id, sort, reviewCount }) => {
+const ReviewTile = ({ review, product_id, sort }) => {
   const dispatch = useDispatch();
   const [helpfulButtonsState, sethelpfulButtonsState] = useState(false);
 
   // HANDLE HELPFUL YES BUTTON
   const [helpful, setHelpful] = useState(review.helpfulness);
-  // let helpful = review.helpfulness;
   const handleHelpfulButton = () => {
     if (!helpfulButtonsState) {
       sethelpfulButtonsState(true);
       setHelpful(helpful + 1);
       markReviewAsHelpful(review.review_id)
-        .then(() => dispatch(fetchReviews({product_id: product_id, count: reviewCount, sort: sort})));
+        .then(() => dispatch(fetchReviews({product_id: product_id, count: 180, sort: sort})));
     }
   }
 
@@ -42,7 +41,7 @@ const ReviewTile = ({ review, product_id, sort, reviewCount }) => {
   // HANDLE REPORT BUTTON
   const handleReportButton = () => {
     reportReview(review.review_id)
-      .then(() => dispatch(fetchReviews({product_id: product_id, count: reviewCount, sort: sort})));
+      .then(() => dispatch(fetchReviews({product_id: product_id, count: 180, sort: sort})));
   }
 
   // REVIEWER RECOMMENDATION?

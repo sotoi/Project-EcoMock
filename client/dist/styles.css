@@ -299,9 +299,12 @@ filter: invert(100%);
 }
 
 .ReviewsWidget {
-  margin-left: 400px;
-  margin-right: 400px;
-  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 80px;
+  width: 80vw;
+  margin: 0 auto;
 }
 
 h1, h2, h3 {
@@ -313,16 +316,45 @@ h1, h2, h3 {
   justify-content: center;
   align-items: center;
 }
+.reviews-container {
+  display: flex;
+  justify-content: center;
+}
 
+.ReviewTile {
+  padding: 60px;
+}
+
+.Reviews {
+  width: 80vw;
+}
 .AverageRatingStars, .ProductBreakdown, .RatingsBreakdown-Reviews {
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .RatingsBreakdown, .ProductBreakdown {
-  width: 800px;
+  width: 80vw;
   margin: 0 auto;
 }
 
-.reviews-header {
-  margin-bottom: 20px
+.review-header {
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.sort-by-header, .reviews-sort-by {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.more-reviews-btn .current-filters-list {
+  margin-top: 20px;
+}
+
+.more-reviews-btn, .AddReview, .current-filters {
+  margin-bottom: 20px;
 }

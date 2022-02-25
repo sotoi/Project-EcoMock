@@ -21,8 +21,8 @@ function App() {
   useEffect(() => {
     dispatch(fetchProductId(id));
     getStyles(id, setStyles);
-    getRelated(id, setRelated)
-    dispatch(fetchReviews({product_id: id, count: 2, sort: 'relevant'}));
+    getRelated(id, setRelated);
+    dispatch(fetchReviews({product_id: id, count: 180, sort: 'relevant'}));
     dispatch(fetchReviewsMetadata(id));
     getQandA(id, setQA);
   }, [id]);
@@ -32,9 +32,9 @@ function App() {
       <Overview styles={styles}/>
       <Related related={related} styles={styles} />
       {(QA.length > 0)
-      ? <div><QuestionMaster QA={QA} setQA={setQA}/></div>
+      ? <div><QuestionMaster ID={id} QA={QA} setQA={setQA} /></div>
       : <div>Loading!!</div>}
-      <ReviewsWidget product_id={id}/>
+      <ReviewsWidget product_id={id} />
     </div>
   );
 }

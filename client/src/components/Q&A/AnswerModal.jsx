@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import { postAnswer, getQandA } from '../helpers/main_helpers.jsx';
 
 const Modal = styled.div`
@@ -131,37 +132,44 @@ class AnswerModal extends React.Component {
   }
 
   postAnAnswer(event) {
+    event.preventDefault();
     const {
       newAnswer, newName, newEmail, images,
     } = this.state;
+    console.log("newAnswer = ", newAnswer, "newEmail = ", newEmail, "newName = ", newName)
     const { q_id } = this.props;
-    this.setState({
-      send: true,
-    });
-    // axios.post('/qa/questions', {
-    //   body: newAnswer,
-    //   name: newName,
-    //   email: newEmail,
-    //   photos: images,
-    //   question_id: q_id,
-    // })
-    //   .then((response) => {
-    //     console.log('successful answer post', response.data);
-    //     this.props.closeModal(event);
-    //   });
-    var Aobj = {
+    // this.setState({
+    //   send: true,
+    // });
+
+    axios.post(`/api/qa/questions/${q_id}/answers`, {
+
       body: newAnswer,
       name: newName,
-      email: newEmail,
-      photos: images,
-      question_id: q_id
-      }
-      postAnswer(Aobj, ()=>{
-      console.log('successful post!');
-      alert('successful adding the answers!!');
-      this.props.closeModal(event);
-      getQandA(product_id, this.props.setQA);
-  })
+      email: newEmail
+     // photos: images
+     // question_id: q_id,
+    })
+      .then((response) => {
+        alert('Success answer post ')
+        console.log('successful answer post', response.data);
+        axios.get(`/api/qa/questions/${q_id}/answers`)
+        this.props.closeModal(event);
+
+      });
+  //   var Aobj = {
+  //     body: newAnswer,
+  //     name: newName,
+  //     email: newEmail,
+  //     photos: images,
+  //     question_id: q_id
+  //     }
+  //     postAnswer(Aobj, ()=>{
+  //     console.log('successful post!');
+  //     alert('successful adding the answers!!');
+  //     this.props.closeModal(event);
+  //     getQandA(product_id, this.props.setQA);
+  // })
 }
 
 
@@ -198,9 +206,10 @@ class AnswerModal extends React.Component {
             <p>For authentication reasons, you will not be emailed</p>
             <NewQueB placeholder="Examples: jackson11!" required type="text" maxLength="75" autoComplete="off" value={newName} onChange={(event) => { event.preventDefault(); this.type(event); }} />
             <p>For privacy reasons, do not use your full name or email address</p>
-            <NewQueC placeholder="Enter Answer Here..." required type="text" maxLength="1000" minLength="1" autoComplete="off" value={newAnswer} onChange={(event) => { event.preventDefault(); this.type(event); }} />
+            <NewQueC placeholder="Enter Answer Here..." required type="text" maxLength="1000" minLength="1" autoComplete="off" value={newAnswer}
+            onChange={(event) => { event.preventDefault(); this.type(event); }} />
             <AddImg type="file" onChange={this.addImg} />
-            <Button className="submitA" onClick={(event) => { this.postAnAnswer(event); }}> Submit Answer </Button>
+            <Button className="submitA" onClick={(event) =>  this.postAnAnswer(event) }> Submit Answer </Button>
           </NewForm>
         </ModalCon>
       </Modal>
