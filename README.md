@@ -1,17 +1,17 @@
-# Project ECOM
+# Project ECOMerce
 Project ECOMerce is a single page e-commerce web application created utilizing React and Node/Express. This project was created by a team of three engineers.
 
 ## :heavy_check_mark: Features
 Routing
-[Screenshot](http://g.recordit.co/pFiiwNQxV3.gif)
-[Screenshot](http://g.recordit.co/r3GpT6fwVm.gif)
+![Screenshot](http://g.recordit.co/pFiiwNQxV3.gif)
+![Screenshot](http://g.recordit.co/r3GpT6fwVm.gif)
 
 
 
 ### Product Overview - Irving
 
-[Screenshot](http://g.recordit.co/l7jxtacOtw.gif)
-[Screenshot](http://g.recordit.co/xPjmtsaOsL.gif)
+![Screenshot](http://g.recordit.co/l7jxtacOtw.gif)
+![Screenshot](http://g.recordit.co/xPjmtsaOsL.gif)
 
 * Cycle through different photos of the same style using the carousel
 * Click thumbnails to view different styles of the same product
