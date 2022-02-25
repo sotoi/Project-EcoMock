@@ -30,14 +30,15 @@ Routing
 ### Ratings And Reviews - Samantha
 
 * See how others have rated products and characteristics breakdown
-* Add your own reviews to products
-* Search reviews for products
-* Add photos to AWS S3 Bucket
-* Leave ratings
+![Screenshot] (https://recordit.co/jfAHkVylAd)
+* Add your own reviews and ratings to products with photos (through AWS S3 Bucket)
+![Screenshot] (https://recordit.co/xVK5Wb13gR)
 * Filter reviews by rating
+![Screenshot] (https://recordit.co/D0cJvi1uVr)
 * Sort by relevant, newest, and helpful
-* Mark review as helpful
-* Report and remove a review
+![Screenshot] (https://recordit.co/tjbQ2I5iYZ)
+* Mark review as helpful, not helpful, and report and remove a review
+![Screenshot] (https://recordit.co/wwns5psfs2)
 
 ### Questions And Answers - Siva
 * Search Questions already asked
@@ -46,6 +47,7 @@ Routing
 * Add Questions
 * Report a question
 * Mark a question as helpful
+![Screenshot] (http://g.recordit.co/o3aQWOciMZ.gif)
 
 ## :heavy_check_mark: Installation
 
