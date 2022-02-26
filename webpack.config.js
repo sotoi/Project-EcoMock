@@ -1,14 +1,36 @@
 var webpack = require('webpack');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 var path = require('path');
 var SRC_DIR = path.join(__dirname, '/client/src');
 var DIST_DIR = path.join(__dirname, '/client/dist');
 
 module.exports = {
   entry: `${SRC_DIR}/index.jsx`,
-  mode: 'development',
+  mode: 'production',
   output: {
     filename: 'bundle.js',
     path: DIST_DIR
+  },
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000
+},
+  plugins: [
+    new MiniCssExtractPlugin({
+      attributes: {
+        id: "target",
+        "data-target": "example",
+      },
+    }),
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
+      },
+    ],
   },
   module : {
     rules : [

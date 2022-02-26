@@ -14,7 +14,7 @@ const Comparison = (props) => {
     <Modal.Body>
     <div className='comparisonContainer'>
         <div className='imgCompContainer'>
-          <img className='compImg' src= {props.style.photos[0].url}/>
+          <img className='compImg' src= {props.style.photos[0].url} alt={props.style.style_id}/>
         </div>
         <div classname ='textComparison'>
 

@@ -32,11 +32,11 @@ const PhotoContainer = (props) => {
         {props.style.photos.map((photo, i)=>{
 
           return(
-          <Carousel.Item >
+          <Carousel.Item key={i}>
           <img
           className="carouselImg"
           src={photo.url}
-          alt= {`${photo.url}slide`}
+          alt= {`Img not available`}
           onClick={(e)=>{setOpenModal(true);setClicked(photo.url)}}
         />
         </Carousel.Item>

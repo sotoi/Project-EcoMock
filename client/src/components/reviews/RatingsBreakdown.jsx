@@ -46,7 +46,7 @@ const RatingsBreakdown = ({ ratings, product_id, product_name, totalReviews }) =
           {ratingsArray.map((rating, index) => (
             <span key={index}>
               <Button variant='outline-dark' size='sm' className='current-filters' onClick={() => handleClickRatingsBreakdown(rating[0])}>{rating[0]} Stars:</Button>
-              <ProgressBar now={rating[1] / totalRatingsCount * 100} label={rating[1]}/>
+              <ProgressBar now={rating[1] / totalRatingsCount * 100} label={rating[1]} className={rating[0]}/>
             </span>
           ))}
         </Stack>

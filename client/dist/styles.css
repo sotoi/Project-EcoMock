@@ -6,7 +6,6 @@ body,html {
 *{
   font-family: 'Libre Caslon Display', serif;
   font-weight: 650 !important;
-
 }
 .style-img {
   background-size:cover;
@@ -349,6 +348,10 @@ h1, h2, h3 {
 .RatingsBreakdown, .ProductBreakdown {
   width: 60vw;
   margin: 0 auto;
+}
+
+.sort-by-header {
+  font-size: 24px;
 }
 
 .Header{

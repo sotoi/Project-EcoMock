@@ -17,11 +17,11 @@ const renderProducts= (products) => {
   for (let product in products) {
     product = products[product];
     result.push(
-      <div className={props.classname}>
+      <div key={`${props.classname}-${i}`} className={props.classname}>
         <SwiperSlide key={`${props.classname}-${i}`} >
-          <Card>
+          <Card >
             <Link className='ciContainer' to={`/products/${product.product.id}`}>
-              <Card.Img variant="top" src={product.style.results[0].photos[0].url} />
+              <Card.Img variant="top" src={product.style.results[0].photos[0].url} alt={product.style.results[0].style_id} />
               {props.classname==='favorites'&&<FontAwesomeIcon className='closeXButton' icon={faCircleXmark} onClick ={(e)=>{e.preventDefault();props.closeCard(product.product)}} ></FontAwesomeIcon>}
             </Link>
             <Card.Body>

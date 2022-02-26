@@ -43,7 +43,7 @@ const Reviews = ({ product_id, product_name, filteredReviews}) => {
   return (
     <div className='Reviews'>
       <h2>reviews</h2>
-      <h4 className='sort-by-header'>sort by:</h4>
+      <div className='sort-by-header'>sort by:</div>
         <DropdownButton variant='outline-dark' size='sm' className='reviews-sort-by' title={sort.toUpperCase()}>
           <Dropdown.Item href="#/helpful" eventKey='Helpful' onClick={() => handleSort('helpful')}>HELPFUL</Dropdown.Item>
           <Dropdown.Item href="#/newest" eventKey='Newest' onClick={() => handleSort('newest')}>NEWEST</Dropdown.Item>

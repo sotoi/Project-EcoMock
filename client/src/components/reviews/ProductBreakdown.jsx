@@ -29,7 +29,7 @@ const ProductBreakdown = ({ characteristics }) => {
         {characteristicsArray.map((characteristic, index) => (
           <div key={index}>
             <h6>{characteristic[0]}:</h6>
-            <ProgressBar now={characteristic[1] / 5 * 100} label={Math.round(characteristic[1])}/>
+            <ProgressBar now={characteristic[1] / 5 * 100} label={Math.round(characteristic[1])} className={characteristic[0]}/>
             <small className='text-muted'>{scaleDescription(characteristic[0])}</small>
           </div>
         ))}

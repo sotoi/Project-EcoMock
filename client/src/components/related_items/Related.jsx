@@ -42,8 +42,6 @@ const Related = (props) => {
     delete outfitC[outfit.id];
     setOutfits(outfitC);
   }
-  console.log(outfits)
-
   return (
    <div className='Related'>
      <Comparison product ={product.value} style={props.styles[0]} compStyle={compStyle} compProduct ={compProduct} seeModal= {seeModal} setSeeModal={setSeeModal}/>

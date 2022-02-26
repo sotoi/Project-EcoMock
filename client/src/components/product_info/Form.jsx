@@ -32,11 +32,11 @@ let Form = (props) => {
   <div className='Form'>
     {Object.keys(props.style.skus)[0]!=='null' ?
     <DropdownButton id= 'dropdownSize' title ={sku.size}>
-      {Object.keys(props.style.skus).map((sku)=>{
+      {Object.keys(props.style.skus).map((sku, i)=>{
 
         if(props.style.skus[sku].quantity!==0){
           return(
-          <Dropdown.Item onClick= {()=>{
+          <Dropdown.Item key={i} onClick= {()=>{
             setSku({sku:sku, size:props.style.skus[sku].size,quantity:props.style.skus[sku].quantity  });
             setQuantity('-');
             }} >

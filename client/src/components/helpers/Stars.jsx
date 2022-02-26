@@ -15,79 +15,79 @@ const Stars = ({ ratingInput }) => {
   const renderPartialStar = (partialStar) => {
     if (partialStar === 25) {
       return (
-        <Image src='../../../assets/QuarterFilledStar.svg' className='star'/>
+        <Image src='../../../assets/QuarterFilledStar.svg' alt='star.25' className='star'/>
       );
     } else if (partialStar === 50) {
       return (
-        <Image src='../../../assets/HalfFilledStar.svg' className='star'/>
+        <Image src='../../../assets/HalfFilledStar.svg' alt='star.5' className='star'/>
       );
     } else {
       return (
-        <Image src='../../../assets/ThreeQuarterFilledStar.svg' className='star'/>
+        <Image src='../../../assets/ThreeQuarterFilledStar.svg' alt='star.75' className='star'/>
       );
     }
   };
 
   if (wholeStars === 1) {
-    star1 = <Image src='../../../assets/FilledStar.svg' className='star'/>;
+    star1 = <Image src='../../../assets/FilledStar.svg' alt='star1' className='star'/>;
     if (partialStar) {
       star2 = renderPartialStar(partialStar);
-      star3 = <Image src='../../../assets/EmptyStar.svg' className='star'/>;
-      star4 = <Image src='../../../assets/EmptyStar.svg' className='star'/>;
-      star5 = <Image src='../../../assets/EmptyStar.svg' className='star'/>;
+      star3 = <Image src='../../../assets/EmptyStar.svg' alt='star0' className='star'/>;
+      star4 = <Image src='../../../assets/EmptyStar.svg' alt='star0' className='star'/>;
+      star5 = <Image src='../../../assets/EmptyStar.svg' alt='star0' className='star'/>;
     } else {
-      star2 = <Image src='../../../assets/EmptyStar.svg' className='star'/>;
-      star3 = <Image src='../../../assets/EmptyStar.svg' className='star'/>;
-      star4 = <Image src='../../../assets/EmptyStar.svg' className='star'/>;
-      star5 = <Image src='../../../assets/EmptyStar.svg' className='star'/>;
+      star2 = <Image src='../../../assets/EmptyStar.svg' alt='star0' className='star'/>;
+      star3 = <Image src='../../../assets/EmptyStar.svg' alt='star0' className='star'/>;
+      star4 = <Image src='../../../assets/EmptyStar.svg' alt='star0' className='star'/>;
+      star5 = <Image src='../../../assets/EmptyStar.svg' alt='star0' className='star'/>;
     }
   }
 
   if (wholeStars === 2) {
-    star1 = <Image src='../../../assets/FilledStar.svg' className='star'/>;
-    star2 = <Image src='../../../assets/FilledStar.svg' className='star'/>;
+    star1 = <Image src='../../../assets/FilledStar.svg' alt='star1' className='star'/>;
+    star2 = <Image src='../../../assets/FilledStar.svg' alt='star1' className='star'/>;
     if (partialStar) {
       star3 = renderPartialStar(partialStar);
-      star4 = <Image src='../../../assets/EmptyStar.svg' className='star'/>;
-      star5 = <Image src='../../../assets/EmptyStar.svg' className='star'/>;
+      star4 = <Image src='../../../assets/EmptyStar.svg' alt='star0' className='star'/>;
+      star5 = <Image src='../../../assets/EmptyStar.svg' alt='star0' className='star'/>;
     } else {
-      star3 = <Image src='../../../assets/EmptyStar.svg' className='star'/>;
-      star4 = <Image src='../../../assets/EmptyStar.svg' className='star'/>;
-      star5 = <Image src='../../../assets/EmptyStar.svg' className='star'/>;
+      star3 = <Image src='../../../assets/EmptyStar.svg' alt='star0' className='star'/>;
+      star4 = <Image src='../../../assets/EmptyStar.svg' alt='star0' className='star'/>;
+      star5 = <Image src='../../../assets/EmptyStar.svg' alt='star0' className='star'/>;
     }
   }
 
   if (wholeStars === 3) {
-    star1 = <Image src='../../../assets/FilledStar.svg' className='star'/>;
-    star2 = <Image src='../../../assets/FilledStar.svg' className='star'/>;
-    star3 = <Image src='../../../assets/FilledStar.svg' className='star'/>;
+    star1 = <Image src='../../../assets/FilledStar.svg' alt='star1' className='star'/>;
+    star2 = <Image src='../../../assets/FilledStar.svg' alt='star1' className='star'/>;
+    star3 = <Image src='../../../assets/FilledStar.svg' alt='star1' className='star'/>;
     if (partialStar) {
       star4 = renderPartialStar(partialStar);
-      star5 = <Image src='../../../assets/EmptyStar.svg' className='star'/>;
+      star5 = <Image src='../../../assets/EmptyStar.svg' alt='star0' className='star'/>;
     } else {
-      star4 = <Image src='../../../assets/EmptyStar.svg' className='star'/>;
-      star5 = <Image src='../../../assets/EmptyStar.svg' className='star'/>;
+      star4 = <Image src='../../../assets/EmptyStar.svg' alt='star0' className='star'/>;
+      star5 = <Image src='../../../assets/EmptyStar.svg' alt='star0' className='star'/>;
     }
   }
 
   if (wholeStars === 4) {
-    star1 = <Image src='../../../assets/FilledStar.svg' className='star'/>;
-    star2 = <Image src='../../../assets/FilledStar.svg' className='star'/>;
-    star3 = <Image src='../../../assets/FilledStar.svg' className='star'/>;
-    star4 = <Image src='../../../assets/FilledStar.svg' className='star'/>;
+    star1 = <Image src='../../../assets/FilledStar.svg' alt='star1' className='star'/>;
+    star2 = <Image src='../../../assets/FilledStar.svg' alt='star1' className='star'/>;
+    star3 = <Image src='../../../assets/FilledStar.svg' alt='star1' className='star'/>;
+    star4 = <Image src='../../../assets/FilledStar.svg' alt='star1' className='star'/>;
     if (partialStar) {
       star5 = renderPartialStar(partialStar);
     } else {
-      star5 = <Image src='../../../assets/EmptyStar.svg' className='star'/>;
+      star5 = <Image src='../../../assets/EmptyStar.svg' alt='star0' className='star'/>;
     }
   }
 
   if (wholeStars === 5) {
-    star1 = <Image src='../../../assets/FilledStar.svg' className='star'/>;
-    star2 = <Image src='../../../assets/FilledStar.svg' className='star'/>;
-    star3 = <Image src='../../../assets/FilledStar.svg' className='star'/>;
-    star4 = <Image src='../../../assets/FilledStar.svg' className='star'/>;
-    star5 = <Image src='../../../assets/FilledStar.svg' className='star'/>;
+    star1 = <Image src='../../../assets/FilledStar.svg' alt='star1' className='star'/>;
+    star2 = <Image src='../../../assets/FilledStar.svg' alt='star1' className='star'/>;
+    star3 = <Image src='../../../assets/FilledStar.svg' alt='star1' className='star'/>;
+    star4 = <Image src='../../../assets/FilledStar.svg' alt='star1' className='star'/>;
+    star5 = <Image src='../../../assets/FilledStar.svg' alt='star1' className='star'/>;
   }
 
   return (

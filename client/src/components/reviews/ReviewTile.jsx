@@ -85,7 +85,7 @@ const ReviewTile = ({ review, product_id, sort }) => {
             {photosArray.map((url, index) => (
               <Col key={url}>
                 <Button variant='light' className='review-tile-photos' onClick={() => handleShow(url)}>
-                  <Image src={url} thumbnail className='review-photos' style={{height: '100px'}} onClick={handleShow}/>
+                  <Image src={url} alt='review photo' thumbnail className='review-photos' style={{height: '100px'}} onClick={handleShow}/>
                 </Button>
                 <Modal show={show} onHide={handleClose}>
                   <Modal.Header closeButton></Modal.Header>
@@ -142,9 +142,9 @@ const ReviewTile = ({ review, product_id, sort }) => {
           <div>{hasPhotos(review.photos)}</div>
           <span>Helpful?</span>
           <ButtonGroup className='helpful-button-group' size='sm'>
-            <Button id='helpful-yes' variant='outline-dark' onClick={() => {handleHelpfulButton()}}>Yes ({helpful})</Button>
-            <Button id='helpful-no' variant='outline-dark' onClick={() => {handleUnhelpfulButton()}}>No ({unhelpful})</Button>
-            <Button id='danger' variant='outline-danger' onClick={() => {handleReportButton()}}>Report</Button>
+            <Button id='helpful-yes' className='helpful' variant='outline-dark' onClick={() => {handleHelpfulButton()}}>Yes ({helpful})</Button>
+            <Button id='helpful-no' className='unhelpful' variant='outline-dark' onClick={() => {handleUnhelpfulButton()}}>No ({unhelpful})</Button>
+            <Button id='danger' className='report' variant='outline-danger' onClick={() => {handleReportButton()}}>Report</Button>
           </ButtonGroup>
         </Stack>
       </div>
