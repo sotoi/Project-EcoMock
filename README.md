@@ -30,17 +30,17 @@ Routing
 ### Ratings And Reviews - Samantha
 
 * See how others have rated products and characteristics breakdown
-![Screenshot](http://g.recordit.co/zSDKQHGHK1.gif)
+![Screenshot](http://g.recordit.co/hj3jUVBapp.gif)
 * Add your own reviews and ratings to products with photos (through AWS S3 Bucket)
-![Screenshot](http://g.recordit.co/Yk9BiAdwnZ.gif)
+![Screenshot](http://g.recordit.co/i3aKxZZT3f.gif)
 * Filter reviews by rating
 ![Screenshot](http://g.recordit.co/uB6qHhuGWa.gif)
 * Sort by relevant, newest, and helpful
-![Screenshot](http://g.recordit.co/lCQCRLTgjp.gif)
+![Screenshot](http://g.recordit.co/WFocltvvfG.gif)
 * Mark review as helpful, not helpful, and report and remove a review
-![Screenshot](http://g.recordit.co/wwns5psfs2.gif)
+![Screenshot](http://g.recordit.co/lIXMBueAlt.gif)
 
-### Questions And Answers - Siva
+### Questions And Answers - Sivaranjani
 * Search Questions already asked
 ![Screenshot](http://g.recordit.co/D4Gat6BBok.gif)
 * See questions and answers others have posted
@@ -92,5 +92,5 @@ http://localhost:3001/
 <br>
 [Samantha Pham](https://github.com/samanthavpham)
 <br>
-[Siva](https://github.com/sivaranjani19)
+[Sivaranjani Thangavel](https://github.com/sivaranjani19)
 
