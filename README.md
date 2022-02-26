@@ -34,7 +34,7 @@ Routing
 * Add your own reviews and ratings to products with photos (through AWS S3 Bucket)
 ![Screenshot](http://g.recordit.co/6kExNNsekv.gif)
 * Filter reviews by rating
-![Screenshot](http://g.recordit.co/qK68D9KuC4.gif)
+![Screenshot](http://g.recordit.co/jIuF3ErQAt.gif)
 * Sort by relevant, newest, and helpful
 ![Screenshot](http://g.recordit.co/WFocltvvfG.gif)
 * Mark review as helpful, not helpful, and report and remove a review
