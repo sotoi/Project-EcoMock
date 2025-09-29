@@ -1,97 +1,129 @@
-# Project ECOMerce
-Project ECOMerce is a single page e-commerce web application created utilizing React and Node/Express. This project was created by a team of three engineers.
+# 🛒 Project ECOMerce
 
-## :heavy_check_mark: Features
-Routing
+Project ECOMerce is a single-page e-commerce web application built with **React** and **Node/Express**. Developed by a team of three engineers, it provides a full-featured shopping experience with modern UI and robust backend integration.
 
-![687474703a2f2f672e7265636f726469742e636f2f7233477054366677566d2e676966](https://github.com/user-attachments/assets/6a04ec6e-cd9d-432e-aa7f-7259289f41e7)
+---
 
+## 🚀 Features
 
+### ⚡ Routing
 
+![Routing](https://github.com/user-attachments/assets/6a04ec6e-cd9d-432e-aa7f-7259289f41e7)
 
-### Product Overview - Irving
+---
 
-* Cycle through different photos of the same style using the carousel
-* Click thumbnails to view different styles of the same product
-![687474703a2f2f672e7265636f726469742e636f2f70466969774e517856332e676966](https://github.com/user-attachments/assets/423a847a-f70d-409a-aa26-9356af208272)
+### 🛍️ Product Overview & Carousel — *Irving*
 
+- **Browse Styles:** Cycle through different photos of the same style using the carousel.
+- **Thumbnail Navigation:** Click thumbnails to view various styles of the same product.
+  
+  ![Product Thumbnails](https://github.com/user-attachments/assets/423a847a-f70d-409a-aa26-9356af208272)
 
-* Click on image to pop up a modal
-* Zoom within the modal
-![687474703a2f2f672e7265636f726469742e636f2f6c376a787461634f74772e676966](https://github.com/user-attachments/assets/5c1e4a73-886e-4f9f-a75d-4b2281661256)
+- **Modal View:** Click on an image to open a modal.
+- **Image Zoom:** Zoom into product images within the modal.
 
+  ![Zoom Modal](https://github.com/user-attachments/assets/5c1e4a73-886e-4f9f-a75d-4b2281661256)
 
-### Related Items - Irving
+---
 
-* Create your own outfits by adding items to the list
-* Cycle through your outfit within a carousel
-* Add to your favorites!
-![687474703a2f2f672e7265636f726469742e636f2f78506a6d7473614f734c2e676966](https://github.com/user-attachments/assets/ecc0cce6-6c0e-4b24-bdd6-e9237a417c1e)
+### 👗 Related Items & Outfits — *Irving*
 
+- **Custom Outfits:** Create outfits by adding items to your list.
+- **Outfit Carousel:** Cycle through your custom outfits.
+- **Favorites:** Add items to your favorites!
 
-### Ratings And Reviews - Samantha
+  ![Related Items Carousel](https://github.com/user-attachments/assets/ecc0cce6-6c0e-4b24-bdd6-e9237a417c1e)
 
-* See how others have rated products and characteristics breakdown
-![687474703a2f2f672e7265636f726469742e636f2f686a336a5556426170702e676966](https://github.com/user-attachments/assets/f2356594-e9bb-4c26-b529-16de60944e2a)
-* Add your own reviews and ratings to products with photos (through AWS S3 Bucket)
-![687474703a2f2f672e7265636f726469742e636f2f366b45784e4e73656b762e676966](https://github.com/user-attachments/assets/2810f243-7605-48aa-9e46-9b7248b92967)
-* Filter reviews by rating
-![687474703a2f2f672e7265636f726469742e636f2f6a4975463345725141742e676966](https://github.com/user-attachments/assets/ce57850d-bbff-4015-9d95-a0c0c36b49cc)
-* Sort by relevant, newest, and helpful
-![687474703a2f2f672e7265636f726469742e636f2f57466f636c74767666472e676966](https://github.com/user-attachments/assets/d5a68137-89ec-410b-9c54-b05f59b93a3f)
-* Mark review as helpful, not helpful, and report and remove a review
-![687474703a2f2f672e7265636f726469742e636f2f6c49584d427565416c742e676966](https://github.com/user-attachments/assets/3f5e830e-d4b5-432b-a4a1-fdebea79be5b)
+---
 
-### Questions And Answers - Sivaranjani
-* Search Questions already asked
-![Screenshot](http://g.recordit.co/D4Gat6BBok.gif)
-* See questions and answers others have posted
-![Screenshot](http://g.recordit.co/DUP8GYtYPq.gif)
-* Add Answers about products
-* Add Questions
-* ![687474703a2f2f672e7265636f726469742e636f2f6f336151574f63694d5a2e676966](https://github.com/user-attachments/assets/69f9d60a-af8c-4532-b3d9-23a251d019d4)
-* Report a question
-![687474703a2f2f672e7265636f726469742e636f2f493141354232485546532e676966](https://github.com/user-attachments/assets/24d7cb51-84bc-4ade-8d5a-2644558c1ed6)
-* Mark a question as helpful
-![687474703a2f2f672e7265636f726469742e636f2f6433634c65494279674f2e676966](https://github.com/user-attachments/assets/88af62d8-a7a8-440f-a9f6-529c159359ab)
+### ⭐ Ratings & Reviews — *Samantha*
 
-## :heavy_check_mark: Installation
+- **Community Feedback:** See how others have rated products and view characteristic breakdowns.
 
-```
+  ![Ratings Breakdown](https://github.com/user-attachments/assets/f2356594-e9bb-4c26-b529-16de60944e2a)
+
+- **Share Your Experience:** Add your own reviews and ratings, including photos (uploaded through AWS S3).
+
+  ![Add Review](https://github.com/user-attachments/assets/2810f243-7605-48aa-9e46-9b7248b92967)
+
+- **Review Filters:** Filter reviews by rating.
+
+  ![Filter Reviews](https://github.com/user-attachments/assets/ce57850d-bbff-4015-9d95-a0c0c36b49cc)
+
+- **Sort Reviews:** Sort by relevance, newest, and most helpful.
+
+  ![Sort Reviews](https://github.com/user-attachments/assets/d5a68137-89ec-410b-9c54-b05f59b93a3f)
+
+- **Moderation:** Mark reviews as helpful/not helpful, report, and remove reviews.
+
+  ![Moderate Reviews](https://github.com/user-attachments/assets/3f5e830e-d4b5-432b-a4a1-fdebea79be5b)
+
+---
+
+### ❓ Questions & Answers — *Sivaranjani*
+
+- **Search:** Search previously asked questions.
+
+  ![Search Questions](http://g.recordit.co/D4Gat6BBok.gif)
+
+- **Browse Q&A:** See questions and answers posted by others.
+
+  ![Browse Q&A](http://g.recordit.co/DUP8GYtYPq.gif)
+
+- **Contribute:** Add answers and questions about products.
+
+  ![Add Q&A](https://github.com/user-attachments/assets/69f9d60a-af8c-4532-b3d9-23a251d019d4)
+
+- **Moderation:** Report questions, mark as helpful.
+
+  ![Report Question](https://github.com/user-attachments/assets/24d7cb51-84bc-4ade-8d5a-2644558c1ed6)
+  ![Mark Helpful](https://github.com/user-attachments/assets/88af62d8-a7a8-440f-a9f6-529c159359ab)
+
+---
+
+## 🛠️ Installation
+
+```bash
 npm install
 ```
 
-## Setup
-* Create a .env file
-  * Paste with your information:
-    * S3_KEY = 'EXAMPLES3KEYHERE'
-    * S3_SECRET= 'S3_SECRETSAUCE'
-    * BUCKET_REGION= 'us-west-1'
-    * BUCKET_NAME= 'YOURBUCKETNAMEHERE'
-    * GITAPIKEY= "GIT_APIKEY_HERE"
-    * API_URL= "API_URL_HERE"
+---
 
+## ⚙️ Setup
 
+1. **Create a `.env` file** with the following content (replace with your info):
 
-In two different terminals run
+    ```env
+    S3_KEY=EXAMPLES3KEYHERE
+    S3_SECRET=S3_SECRETSAUCE
+    BUCKET_REGION=us-west-1
+    BUCKET_NAME=YOURBUCKETNAMEHERE
+    GITAPIKEY=GIT_APIKEY_HERE
+    API_URL=API_URL_HERE
+    ```
 
-```
-npm run build
-npm start
-```
+2. **Build & Start the App**
 
-open
+   In two different terminals, run:
 
-```
-http://localhost:3001/
+    ```bash
+    npm run build
+    ```
 
-```
+    ```bash
+    npm start
+    ```
 
-## :heavy_check_mark: Credit
+3. **Open in your browser:**
 
-[Irving Soto](https://github.com/sotoi)
-<br>
-[Samantha Pham](https://github.com/samanthavpham)
-<br>
-[Sivaranjani Thangavel](https://github.com/sivaranjani19)
+   [http://localhost:3001/](http://localhost:3001/)
 
+---
+
+## 🙌 Credits
+
+- [**Irving Soto**](https://github.com/sotoi)  
+- [**Samantha Pham**](https://github.com/samanthavpham)  
+- [**Sivaranjani Thangavel**](https://github.com/sivaranjani19)
+
+---
